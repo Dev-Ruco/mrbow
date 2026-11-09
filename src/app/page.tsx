@@ -4,7 +4,7 @@ import { ArrowDown, ArrowRight, ArrowUpRight, Instagram, Menu, Play, X, Youtube 
 import { musicLinks, upcomingShows } from "@/lib/content";
 
 const concert = "/images/Mr%20bow%20hero.jpg";
-const crowd = "/images/Mr%20bow%20hero.jpg";
+const crowd = "/images/setion%203.jpg";
 const lights = "https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?auto=format&fit=crop&w=1600&q=85";
 
 function Reveal({children,className="",delay=0}:{children:React.ReactNode;className?:string;delay?:number}) {
