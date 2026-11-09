@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { ArrowDown, ArrowRight, ArrowUpRight, Instagram, Menu, Play, X, Youtube } from "lucide-react";
 import { musicLinks, upcomingShows } from "@/lib/content";
 
-const concert = "https://images.unsplash.com/photo-1459749411175-04bf5292ceea?auto=format&fit=crop&w=2200&q=85";
+const concert = "/images/Mr%20bow%20hero.jpg";
 const crowd = "https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=1500&q=85";
 const lights = "https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?auto=format&fit=crop&w=1600&q=85";
 
