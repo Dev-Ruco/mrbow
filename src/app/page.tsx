@@ -43,14 +43,9 @@ export default function Home(){
    <section className="hero" id="inicio">
     <div className="hero-photo" style={{backgroundImage:`url("${concert}")`}} aria-hidden="true"/>
     <div className="hero-grain" aria-hidden="true"/>
-    <div className="hero-topline"><span>MOÇAMBIQUE / PARA O MUNDO</span><span>ARTISTA · MÚSICA · CULTURA</span></div>
-    <div className="hero-title-wrap">
-     <p className="hero-prelude">THE OFFICIAL WORLD OF</p>
+    <div className="hero-title-wrap hero-title-only">
      <h1 className="hero-title"><span className="hero-first">MR</span><span className="hero-second">BOW<span className="hero-period">.</span></span></h1>
-     <div className="hero-intro"><p>UMA VOZ.<br/><em>UMA IDENTIDADE.</em><br/>UM LEGADO.</p><a className="circle-cta" href="#musica" aria-label="Descobrir a música"><ArrowUpRight size={28}/></a></div>
     </div>
-    <div className="hero-baseline"><a href="#musica">SCROLL TO EXPLORE <ArrowDown size={16}/></a><span>OFFICIAL ARTIST EXPERIENCE <b>©2026</b></span></div>
-    <div className="vertical-label" aria-hidden="true">THE SOUND OF A GENERATION</div>
    </section>
 
    <section className="manifesto section-shell" id="musica">
