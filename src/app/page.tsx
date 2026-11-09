@@ -23,16 +23,17 @@ const nav=[["Início","#inicio"],["Música","#musica"],["Ao vivo","#ao-vivo"],["
 export default function Home(){
  const [open,setOpen]=useState(false);
  const [progress,setProgress]=useState(0);
+ const [scrolled,setScrolled]=useState(false);
  useEffect(()=>{
   let raf=0;
-  const update=()=>{cancelAnimationFrame(raf);raf=requestAnimationFrame(()=>{const max=document.documentElement.scrollHeight-window.innerHeight;setProgress(max>0?window.scrollY/max*100:0);});};
+  const update=()=>{cancelAnimationFrame(raf);raf=requestAnimationFrame(()=>{const max=document.documentElement.scrollHeight-window.innerHeight;setProgress(max>0?window.scrollY/max*100:0);setScrolled(window.scrollY>24);});};
   update();window.addEventListener("scroll",update,{passive:true});window.addEventListener("resize",update);
   return()=>{cancelAnimationFrame(raf);window.removeEventListener("scroll",update);window.removeEventListener("resize",update);};
  },[]);
  useEffect(()=>{document.body.style.overflow=open?"hidden":"";return()=>{document.body.style.overflow="";};},[open]);
  return <>
   <div className="reading-progress" style={{width:`${progress}%`}}/>
-  <header className="masthead">
+  <header className={`masthead ${scrolled?"masthead-scrolled":""} ${open?"masthead-menu-open":""}`}>
    <a className="brand" href="#inicio" onClick={()=>setOpen(false)} aria-label="Mr Bow — início">MR<span>BOW</span><b>®</b></a>
    <nav className="desktop-links" aria-label="Menu principal">{nav.slice(0,4).map(([label,href])=><a key={href} href={href}>{label}</a>)}</nav>
    <a href="#booking" className="masthead-booking">BOOKING <ArrowUpRight size={17}/></a>
