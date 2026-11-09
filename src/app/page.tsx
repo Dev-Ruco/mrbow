@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import { ArrowDown, ArrowRight, ArrowUpRight, Instagram, Menu, Play, X, Youtube } from "lucide-react";
+import { ArrowDown, ArrowRight, ArrowUpRight, ChevronLeft, ChevronRight, Disc3, Instagram, Menu, Play, X, Youtube } from "lucide-react";
 import { musicLinks, upcomingShows } from "@/lib/content";
 
 const concert = "/images/Mr%20bow%20hero.jpg";
@@ -24,6 +24,7 @@ export default function Home(){
  const [open,setOpen]=useState(false);
  const [progress,setProgress]=useState(0);
  const [scrolled,setScrolled]=useState(false);
+ const albumsRail=useRef<HTMLDivElement>(null);
  useEffect(()=>{
   let raf=0;
   const update=()=>{cancelAnimationFrame(raf);raf=requestAnimationFrame(()=>{const max=document.documentElement.scrollHeight-window.innerHeight;setProgress(max>0?window.scrollY/max*100:0);setScrolled(window.scrollY>24);});};
@@ -49,11 +50,41 @@ export default function Home(){
     </div>
    </section>
 
-   <section className="manifesto section-shell" id="musica">
-    <div className="section-index"><span>01 / THE MUSIC</span><span>O UNIVERSO SONORO</span></div>
-    <Reveal className="manifesto-heading"><h2>NÃO É SÓ<br/><em>MÚSICA.</em><br/>É O QUE<br/><span>FICA.</span></h2></Reveal>
-    <div className="manifesto-bottom"><Reveal><p>Há canções que se ouvem. E há canções que se vivem. Descubra o universo musical de Mr Bow, onde cada melodia conta uma história.</p></Reveal><Reveal delay={120}><div className="listen-group"><span>OUÇA NAS PLATAFORMAS</span>{musicLinks.map((l)=><a key={l.label} href={l.href} target="_blank" rel="noopener noreferrer">{l.label}<ArrowUpRight size={19}/></a>)}</div></Reveal></div>
-    <div className="manifesto-stamp" aria-hidden="true">SOUND<br/>/ 01</div>
+   <section className="music-showcase" id="musica">
+    <div className="music-showcase-inner">
+     <div className="music-meta"><span>01 / THE MUSIC</span><span className="music-meta-right">MR BOW — DISCOGRAFIA & VÍDEOS</span></div>
+     <Reveal className="music-heading"><div><span className="music-eyebrow"><Disc3 size={16}/> O SOM DE MR BOW</span><h2>OUVE.<br/><em>SENTE.</em><br/>VIVE.</h2></div><p>As canções que nos aproximam. Os vídeos que transformam cada melodia numa história.</p></Reveal>
+     <div className="release-topline"><div><span className="release-small">01 — 03 / EM DESTAQUE</span><h3>ÁLBUNS <i>SELECCIONADOS</i></h3></div><div className="release-arrows"><button type="button" aria-label="Álbum anterior" onClick={()=>albumsRail.current?.scrollBy({left:-340,behavior:"smooth"})}><ChevronLeft size={22}/></button><button type="button" aria-label="Álbum seguinte" onClick={()=>albumsRail.current?.scrollBy({left:340,behavior:"smooth"})}><ChevronRight size={22}/></button></div></div>
+     <div className="albums-rail" ref={albumsRail}>
+      {[
+       {number:"01",image:"/images/Album%201.jpeg",title:"ÁLBUM 01",note:"CAPA OFICIAL"},
+       {number:"02",image:"/images/Album%202.jpg",title:"ÁLBUM 02",note:"CAPA OFICIAL"},
+       {number:"03",image:"/images/Album%203.jpg",title:"ÁLBUM 03",note:"CAPA OFICIAL"}
+      ].map((album,index)=><Reveal className="album-card" key={album.number} delay={index*105}>
+        <a className="album-artwork" href="https://open.spotify.com/search/Mr%20Bow" target="_blank" rel="noopener noreferrer" aria-label={`Procurar ${album.title} de Mr Bow no Spotify`}>
+          <img src={album.image} alt={`Capa enviada para ${album.title} de Mr Bow`} loading="lazy"/>
+          <span className="album-index">{album.number} / 03</span>
+          <span className="album-play"><Play fill="currentColor" size={23}/></span>
+        </a>
+        <div className="album-card-info"><div><span>{album.note}</span><h4>{album.title}</h4></div><a href="https://open.spotify.com/search/Mr%20Bow" target="_blank" rel="noopener noreferrer">OUVIR NO SPOTIFY <ArrowUpRight size={18}/></a></div>
+       </Reveal>)}
+     </div>
+     <Reveal className="music-bottom-strip"><span>O UNIVERSO MUSICAL DE MR BOW</span><a href="https://open.spotify.com/search/Mr%20Bow" target="_blank" rel="noopener noreferrer">EXPLORAR NO SPOTIFY <ArrowUpRight size={18}/></a></Reveal>
+     <div className="video-showcase">
+      <Reveal className="videos-heading"><div><span className="release-small">PARA VER E SENTIR</span><h3>VISUAL <em>STORIES.</em></h3></div><p>Videoclipes, energia e identidade em movimento. Descobre as mais recentes histórias visuais de Mr Bow.</p></Reveal>
+      <div className="videos-grid">
+       <Reveal className="video-feature">
+        <a className="video-cover video-cover-one" href="https://www.youtube.com/results?search_query=Mr+Bow+I%27ll+Be+Waiting+Official+Music+Video" target="_blank" rel="noopener noreferrer" aria-label="Procurar videoclip I'll Be Waiting no YouTube"><span className="video-big-play"><Play fill="currentColor" size={26}/></span><span className="video-watermark">01 / MUSIC VIDEO</span></a>
+        <div className="video-detail"><span>VIDEOCLIPE EM DESTAQUE</span><a href="https://www.youtube.com/results?search_query=Mr+Bow+I%27ll+Be+Waiting+Official+Music+Video" target="_blank" rel="noopener noreferrer">I'LL BE WAITING <ArrowUpRight size={23}/></a></div>
+       </Reveal>
+       <Reveal className="video-feature" delay={140}>
+        <a className="video-cover video-cover-two" href="https://www.youtube.com/results?search_query=Mr+Bow+Mocambique+Anima+Awilo+Longomba+Official+Music+Video" target="_blank" rel="noopener noreferrer" aria-label="Procurar videoclip Moçambique Anima no YouTube"><span className="video-big-play"><Play fill="currentColor" size={26}/></span><span className="video-watermark">02 / MUSIC VIDEO</span></a>
+        <div className="video-detail"><span>VIDEOCLIPE EM DESTAQUE</span><a href="https://www.youtube.com/results?search_query=Mr+Bow+Mocambique+Anima+Awilo+Longomba+Official+Music+Video" target="_blank" rel="noopener noreferrer">MOÇAMBIQUE ANIMA <ArrowUpRight size={23}/></a></div>
+       </Reveal>
+      </div>
+      <Reveal className="video-footer"><span>AS IMAGENS DOS VÍDEOS SÃO FOTOGRAFIAS ILUSTRATIVAS DO ARTISTA.</span><a href="https://www.youtube.com/@mrbowofficial/videos" target="_blank" rel="noopener noreferrer">VER TODOS OS VÍDEOS <ArrowUpRight size={19}/></a></Reveal>
+     </div>
+    </div>
    </section>
 
    <section className="cinema-panel" id="ao-vivo">
