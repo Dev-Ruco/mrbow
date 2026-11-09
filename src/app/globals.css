@@ -57,3 +57,44 @@
 @media (prefers-reduced-motion: reduce) {
   .hero-photo { animation: none; transform: none; }
 }
+
+/* Composição desktop v2 — duas zonas visuais definidas e sem sobreposição no rosto. */
+@media (min-width: 1060px) {
+  .hero-photo {
+    inset: 0 0 0 31%;
+    background-size: cover;
+    background-position: 50% 38%;
+    animation: heroPhotoReveal 1.5s cubic-bezier(.22,1,.36,1) both;
+    transform: none;
+  }
+  .hero::after {
+    background: linear-gradient(90deg,#080809 0%,rgba(8,8,9,.97) 21%,rgba(8,8,9,.76) 35%,rgba(8,8,9,.18) 58%,rgba(8,8,9,.06) 100%),linear-gradient(0deg,rgba(0,0,0,.55),transparent 38%);
+  }
+  .hero-title-wrap.hero-title-only {
+    left: 4.2vw;
+    width: 39vw;
+    top: 54%;
+    transform: translateY(-50%);
+  }
+  .hero-title-only .hero-title {
+    font-size: clamp(144px,17.5vw,290px);
+    line-height: .78;
+    letter-spacing: -.075em;
+  }
+  .desktop-links {
+    transform: translateX(-6vw);
+  }
+}
+@keyframes heroPhotoReveal {
+  from { opacity:.5; transform:scale(1.035); }
+  to { opacity:1; transform:scale(1); }
+}
+@media (min-width:761px) and (max-width:1059px) {
+  .hero-photo { inset:0 0 0 24%; background-position:center 42%;animation:heroPhotoReveal 1.5s ease-out both; }
+  .hero-title-wrap.hero-title-only {left:4vw;width:45vw;top:52%;transform:translateY(-50%)}
+  .hero-title-only .hero-title {font-size:clamp(128px,19vw,205px);line-height:.8}
+  .hero::after {background:linear-gradient(90deg,#090909 0%,rgba(0,0,0,.84) 32%,rgba(0,0,0,.12) 68%)}
+}
+@media(prefers-reduced-motion:reduce) {
+  .hero-photo {animation:none!important;transform:none!important}
+}
