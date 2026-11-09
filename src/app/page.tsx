@@ -19,7 +19,7 @@ function Reveal({children,className="",delay=0}:{children:React.ReactNode;classN
   },[]);
   return <div ref={ref} className={`reveal ${className}`} style={{transitionDelay:`${delay}ms`}}>{children}</div>;
 }
-const nav=[["Início","#inicio"],["Música","#musica"],["Ao vivo","#ao-vivo"],["Artista","#artista"],["Booking","#booking"]];
+const nav=[["Início","#inicio"],["Artista","#artista"],["Música","#musica"],["Ao vivo","#ao-vivo"],["Booking","#booking"]];
 export default function Home(){
  const [open,setOpen]=useState(false);
  const [progress,setProgress]=useState(0);
@@ -50,6 +50,11 @@ export default function Home(){
     </div>
    </section>
 
+   <section className="artist-section" id="artista">
+    <div className="artist-photo" style={{backgroundImage:`url("${lights}")`}} aria-label="Imagem ilustrativa de concerto" role="img"><span>THE ARTIST / 04</span></div>
+    <div className="artist-copy"><span className="eyebrow">04 / THE MAN BEHIND THE MUSIC</span><Reveal><h2>A HISTÓRIA<br/>CONTINUA<span>.</span></h2></Reveal><Reveal delay={100}><p className="artist-lead">Da música que marca gerações à energia que une multidões.</p><p>Mr Bow representa uma identidade musical profundamente ligada a Moçambique, à emoção e ao público. Uma trajectória construída com autenticidade e visão.</p><div className="artist-sign">MR BOW <span>— ARTISTA</span></div></Reveal></div>
+   </section>
+
    <section className="music-showcase" id="musica">
     <div className="music-showcase-inner">
      <div className="music-meta"><span>01 / THE MUSIC</span><span className="music-meta-right">MR BOW — DISCOGRAFIA & VÍDEOS</span></div>
@@ -70,6 +75,11 @@ export default function Home(){
        </Reveal>)}
      </div>
      <Reveal className="music-bottom-strip"><span>O UNIVERSO MUSICAL DE MR BOW</span><a href="https://open.spotify.com/search/Mr%20Bow" target="_blank" rel="noopener noreferrer">EXPLORAR NO SPOTIFY <ArrowUpRight size={18}/></a></Reveal>
+    </div>
+   </section>
+
+   <section className="music-showcase music-videos-section" id="videos">
+    <div className="music-showcase-inner">
      <div className="video-showcase">
       <Reveal className="videos-heading"><div><span className="release-small">PARA VER E SENTIR</span><h3>VISUAL <em>STORIES.</em></h3></div><p>Videoclipes, energia e identidade em movimento. Descobre as mais recentes histórias visuais de Mr Bow.</p></Reveal>
       <div className="videos-grid">
@@ -100,11 +110,6 @@ export default function Home(){
     <Reveal><div className="agenda-head"><h2>PRÓXIMOS<br/><em>ENCONTROS.</em></h2><p>O próximo momento inesquecível pode estar mais perto do que imagina.</p></div></Reveal>
     {upcomingShows.length? <div className="dates">{upcomingShows.map(s=><div className="date-row" key={s.date+s.city}><strong>{s.date} <small>{s.month}</small></strong><span>{s.city}<small>{s.venue}</small></span>{s.ticketUrl?<a href={s.ticketUrl} target="_blank" rel="noopener noreferrer">BILHETES <ArrowUpRight size={20}/></a>:<span>EM BREVE</span>}</div>)}</div>:
     <Reveal><div className="agenda-empty"><span className="asterisk">✳</span><div><strong>NOVAS DATAS<br/>A CAMINHO.</strong><p>Consulte esta área para conhecer os próximos espectáculos oficialmente confirmados.</p></div><a href="#booking" aria-label="Solicitar espectáculo"><ArrowUpRight size={32}/></a></div></Reveal>}
-   </section>
-
-   <section className="artist-section" id="artista">
-    <div className="artist-photo" style={{backgroundImage:`url("${lights}")`}} aria-label="Imagem ilustrativa de concerto" role="img"><span>THE ARTIST / 04</span></div>
-    <div className="artist-copy"><span className="eyebrow">04 / THE MAN BEHIND THE MUSIC</span><Reveal><h2>A HISTÓRIA<br/>CONTINUA<span>.</span></h2></Reveal><Reveal delay={100}><p className="artist-lead">Da música que marca gerações à energia que une multidões.</p><p>Mr Bow representa uma identidade musical profundamente ligada a Moçambique, à emoção e ao público. Uma trajectória construída com autenticidade e visão.</p><div className="artist-sign">MR BOW <span>— ARTISTA</span></div></Reveal></div>
    </section>
 
    <section className="booking section-shell" id="booking">
