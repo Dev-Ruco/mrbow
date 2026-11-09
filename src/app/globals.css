@@ -23,3 +23,37 @@
 .masthead-booking{border-color:rgba(255,255,255,.3);background:rgba(255,255,255,.035);padding:13px 18px;letter-spacing:.12em;transition:background .3s,color .3s,border-color .3s}
 .masthead-booking:hover{border-color:#fff}
 @media(prefers-reduced-motion:reduce){.masthead{transition:none}}
+
+/* Desktop hero: retrato à direita e assinatura tipográfica à esquerda. */
+@media (min-width: 761px) {
+  .hero-title-wrap.hero-title-only {
+    left: 4.5vw;
+    right: auto;
+    width: 45vw;
+    top: 52%;
+  }
+  .hero-title-only .hero-title {
+    font-size: clamp(155px, 22.5vw, 345px);
+    line-height: .78;
+    letter-spacing: -.08em;
+  }
+  .hero-photo {
+    inset: -8%;
+    background-position: 27% 43%;
+    animation: heroPortraitRight 12s ease-out both;
+  }
+  .desktop-links {
+    transform: translateX(-4vw);
+  }
+}
+@keyframes heroPortraitRight {
+  from { transform: translateX(5%) scale(1.12); }
+  to { transform: translateX(5%) scale(1.025); }
+}
+@media (min-width: 761px) and (max-width: 1050px) {
+  .hero-title-only .hero-title { font-size: clamp(150px, 23vw, 245px); }
+  .desktop-links { transform: translateX(-2vw); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero-photo { animation: none; transform: none; }
+}
