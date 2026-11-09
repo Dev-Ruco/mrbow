@@ -59,7 +59,7 @@ export default function Home(){
    <section className="cinema-panel" id="ao-vivo">
     <div className="cinema-image" style={{backgroundImage:`url("${crowd}")`}} aria-hidden="true"/>
     <div className="cinema-shade" aria-hidden="true"/>
-    <div className="cinema-top"><span>02 / LIVE EXPERIENCE</span><span>THE STAGE IS HOME</span></div>
+    
     <Reveal className="cinema-content"><span className="cinema-mini">DOS GRANDES PALCOS AOS MOMENTOS MAIS ESPECIAIS</span><h2>O PALCO<br/><em>É NOSSO.</em></h2><p>Dos grandes concertos aos casamentos que marcam uma vida.<br/>Mr Bow transforma cada celebração num momento inesquecível.</p><a className="circle-link" href="#agenda">AGENDA DE ESPECTÁCULOS <ArrowUpRight size={20}/></a></Reveal>
     <span className="cinema-corner">MB / LIVE</span>
    </section>
