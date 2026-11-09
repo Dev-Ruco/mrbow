@@ -4,7 +4,7 @@ import { ArrowDown, ArrowRight, ArrowUpRight, Instagram, Menu, Play, X, Youtube 
 import { musicLinks, upcomingShows } from "@/lib/content";
 
 const concert = "/images/Mr%20bow%20hero.jpg";
-const crowd = "https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=1500&q=85";
+const crowd = "/images/Mr%20bow%20hero.jpg";
 const lights = "https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?auto=format&fit=crop&w=1600&q=85";
 
 function Reveal({children,className="",delay=0}:{children:React.ReactNode;className?:string;delay?:number}) {
@@ -60,7 +60,7 @@ export default function Home(){
     <div className="cinema-image" style={{backgroundImage:`url("${crowd}")`}} aria-hidden="true"/>
     <div className="cinema-shade" aria-hidden="true"/>
     <div className="cinema-top"><span>02 / LIVE EXPERIENCE</span><span>THE STAGE IS HOME</span></div>
-    <Reveal className="cinema-content"><span className="cinema-mini">ENERGIA QUE SE SENTE</span><h2>O PALCO<br/><em>É NOSSO.</em></h2><p>Milhares de vozes. Uma só emoção.<br/>Viva a intensidade de cada espectáculo.</p><a className="circle-link" href="#agenda">AGENDA DE ESPECTÁCULOS <ArrowUpRight size={20}/></a></Reveal>
+    <Reveal className="cinema-content"><span className="cinema-mini">DOS GRANDES PALCOS AOS MOMENTOS MAIS ESPECIAIS</span><h2>O PALCO<br/><em>É NOSSO.</em></h2><p>Dos grandes concertos aos casamentos que marcam uma vida.<br/>Mr Bow transforma cada celebração num momento inesquecível.</p><a className="circle-link" href="#agenda">AGENDA DE ESPECTÁCULOS <ArrowUpRight size={20}/></a></Reveal>
     <span className="cinema-corner">MB / LIVE</span>
    </section>
 
