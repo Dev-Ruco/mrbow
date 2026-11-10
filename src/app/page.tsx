@@ -57,7 +57,7 @@ export default function Home(){
      <Reveal delay={100}><p className="artist-lead">Da música que marca gerações à energia que une multidões.</p><p>Mr Bow representa uma identidade musical profundamente ligada a Moçambique, à emoção e ao público. Uma trajectória construída com autenticidade e visão.</p><div className="artist-sign">MR BOW <span>— ARTISTA</span></div></Reveal>
     </div>
     <div className="artist-portrait-stage">
-     <img src="/images/mr-bow-artist-cutout.webp" alt="Mr Bow com fato preto, de óculos escuros" className="artist-cutout" loading="lazy" onError={(event) => {event.currentTarget.style.visibility="hidden";}} />
+     <img src="/images/Elegant%20Tuxedo%20Portrait%20Cutout.png" alt="Mr Bow com fato preto, de óculos escuros" className="artist-cutout" loading="lazy" onError={(event) => {event.currentTarget.style.visibility="hidden";}} />
     </div>
    </section>
 
