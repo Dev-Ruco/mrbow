@@ -178,10 +178,19 @@ export default function Home(){
     <Reveal><div className="agenda-empty"><span className="asterisk">✳</span><div><strong>NOVAS DATAS<br/>A CAMINHO.</strong><p>Consulte esta área para conhecer os próximos espectáculos oficialmente confirmados.</p></div><a href="#booking" aria-label="Solicitar espectáculo"><ArrowUpRight size={32}/></a></div></Reveal>}
    </section>
 
-   <section className="booking section-shell" id="booking">
-    <div className="section-index"><span>05 / BOOKINGS</span><span>LET'S MAKE IT HAPPEN</span></div>
-    <Reveal><span className="booking-label">O PRÓXIMO GRANDE MOMENTO COMEÇA AQUI.</span><h2>FAÇAMOS<br/><em>HISTÓRIA</em><span> JUNTOS.</span></h2><a className="booking-link" href="mailto:booking@mrbow.co.mz?subject=Pedido%20de%20contrata%C3%A7%C3%A3o%20-%20Mr%20Bow">SOLICITAR CONTRATAÇÃO <span><ArrowUpRight size={29}/></span></a></Reveal>
-    <p className="booking-disclaimer">O endereço de contratação é provisório e será confirmado pela equipa antes da publicação definitiva.</p>
+   <section className="booking section-shell booking-photo" id="booking">
+    <div className="booking-photo-backdrop" aria-hidden="true"/>
+    <div className="booking-content">
+     <div className="section-index"><span>05 / BOOKINGS</span><span>LET'S MAKE IT HAPPEN</span></div>
+     <Reveal>
+      <span className="booking-label">O PRÓXIMO GRANDE MOMENTO COMEÇA AQUI.</span>
+      <h2>FAÇAMOS<br/><em>HISTÓRIA</em><span> JUNTOS.</span></h2>
+      <a className="booking-link booking-whatsapp" href="https://wa.me/258843000002?text=Ol%C3%A1%2C%20gostaria%20de%20solicitar%20informa%C3%A7%C3%B5es%20para%20contratar%20o%20Mr%20Bow%20para%20um%20evento." target="_blank" rel="noopener noreferrer" aria-label="Solicitar contratação de Mr Bow por WhatsApp">
+       CONTRATAR VIA WHATSAPP <span><ArrowUpRight size={29}/></span>
+      </a>
+     </Reveal>
+     <p className="booking-disclaimer">Contacto público da equipa de contratações. Confirmação pendente.</p>
+    </div>
    </section>
   </main>
   <footer className="footer"><div className="footer-upper"><a className="brand" href="#inicio">MR<span>BOW</span><b>®</b></a><div className="footer-networks"><a href={musicLinks[0].href} target="_blank" rel="noopener noreferrer" aria-label="YouTube"><Youtube/></a><a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" aria-label="Instagram — ligação provisória"><Instagram/></a></div></div><div className="footer-lower"><span>© {new Date().getFullYear()} MR BOW. TODOS OS DIREITOS RESERVADOS.</span><span>MADE IN MOZAMBIQUE. FELT EVERYWHERE.</span><a href="#inicio">VOLTAR AO TOPO ↑</a></div></footer>
