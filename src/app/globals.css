@@ -1274,3 +1274,58 @@
 @media(prefers-reduced-motion:reduce){
  .audio-invite,.audio-invite-arrow,.site-audio-toggle:not(.is-playing) .site-audio-icon{animation:none!important}
 }
+
+
+/* Navegação internacional PT / EN / Xitsonga */
+.site-language-switcher{
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ gap:3px;
+ flex:none;
+ padding:4px;
+ border:1px solid rgba(255,255,255,.37);
+ background:rgba(5,5,6,.27);
+ border-radius:3px;
+}
+.site-language-switcher button{
+ color:rgba(255,255,255,.77);
+ background:transparent;
+ border:0;
+ padding:6px 7px;
+ min-width:30px;
+ min-height:32px;
+ font:800 10px "DM Sans",sans-serif;
+ letter-spacing:.055em;
+ cursor:pointer;
+ border-radius:2px;
+ transition:background .2s,color .2s;
+}
+.site-language-switcher button.is-active{background:#a32643;color:#fff}
+.site-language-switcher button:hover:not(.is-active){background:rgba(255,255,255,.16);color:white}
+.masthead>.site-language-switcher{margin-left:auto;margin-right:15px}
+.legal-top .site-language-switcher,.history-nav .site-language-switcher{border-color:rgba(30,25,27,.26);background:rgba(25,25,25,.04)}
+.legal-top .site-language-switcher button,.history-nav .site-language-switcher button{color:#332b2c}
+.legal-top .site-language-switcher button.is-active,.history-nav .site-language-switcher button.is-active{color:#fff}
+.legal-top a:nth-of-type(2){font-size:11px;font-weight:800;letter-spacing:.1em}
+.history-nav .site-language-switcher{margin-left:10px}
+@media(min-width:761px) and (max-width:1120px){
+ .masthead>.site-language-switcher{margin-right:10px}
+ .masthead .desktop-links{gap:clamp(9px,1.5vw,18px)}
+ .masthead .masthead-booking{padding:10px 11px}
+}
+@media(max-width:760px){
+ .masthead>.site-language-switcher{margin:0 10px 0 auto;gap:2px;padding:3px}
+ .site-language-switcher button{min-height:35px;min-width:31px;padding:5px 5px;font-size:10px}
+ .legal-top,.history-nav{flex-wrap:wrap}
+ .legal-top .site-language-switcher,.history-nav .site-language-switcher{margin-left:auto}
+ .legal-top a:nth-of-type(2){font-size:10px}
+ .legal-hero h1{overflow-wrap:anywhere}
+}
+@media(max-width:370px){
+ .masthead>.site-language-switcher{margin-right:5px}
+ .site-language-switcher button{min-width:26px;font-size:9px}
+ .masthead .brand{font-size:26px}
+ .mobile-trigger{min-width:43px}
+}
+@media(prefers-reduced-motion:reduce){.site-language-switcher button{transition:none!important}}
