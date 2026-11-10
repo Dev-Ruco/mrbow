@@ -545,3 +545,38 @@
  .music-mosaic-note{font-size:7px}
 }
 @media(prefers-reduced-motion:reduce){.music-mosaic-cell img{transition:none!important}}
+
+
+/* Galeria musical — enquadramento responsivo com movimento subtil. */
+.music-mosaic{grid-template-rows:clamp(138px,12vw,205px) clamp(138px,12vw,205px) clamp(200px,16vw,280px);gap:10px;padding-bottom:0}
+.music-mosaic-cell{isolation:isolate;transform:translateZ(0)}
+.music-mosaic-cell img{object-fit:cover;object-position:center 38%;animation:mosaicSlowDrift 16s ease-in-out infinite alternate;will-change:transform}
+.music-mosaic-crowd img{object-position:center 43%;animation-duration:19s}
+.music-mosaic-stage img{object-position:center 30%;animation-duration:18s;animation-delay:-5s}
+.music-mosaic-fans img{object-position:center 35%;animation-duration:21s;animation-delay:-9s}
+.music-mosaic-atmosphere img{object-position:center 36%;animation-duration:22s;animation-delay:-7s}
+.music-mosaic-cell:hover img{animation-play-state:paused;transform:scale(1.07);filter:saturate(1.03) contrast(1.05)}
+.music-mosaic-cell::after{inset:55% 0 0;background:linear-gradient(0deg,rgba(0,0,0,.66),transparent)}
+@keyframes mosaicSlowDrift{
+ from{transform:scale(1.01) translate3d(0,0,0)}
+ to{transform:scale(1.065) translate3d(-.5%,-.6%,0)}
+}
+@media(min-width:1500px){
+ .music-mosaic{grid-template-rows:clamp(180px,12vw,230px) clamp(180px,12vw,230px) clamp(230px,15vw,315px)}
+}
+@media(max-width:1100px) and (min-width:761px){
+ .music-mosaic{grid-template-rows:clamp(125px,14vw,165px) clamp(125px,14vw,165px) clamp(170px,18vw,225px);gap:8px}
+}
+@media(max-width:760px){
+ .music-hero-composition{gap:34px}
+ .music-mosaic{grid-template-columns:minmax(0,1.12fr) minmax(0,.88fr);grid-template-rows:clamp(120px,33vw,200px) clamp(120px,33vw,200px) clamp(205px,57vw,330px);gap:8px}
+ .music-mosaic-cell img{animation-duration:22s}
+ .music-mosaic-atmosphere img{object-position:center 34%}
+}
+@media(max-width:420px){
+ .music-mosaic{grid-template-rows:clamp(112px,33vw,145px) clamp(112px,33vw,145px) clamp(185px,56vw,240px);gap:6px}
+ .music-mosaic-label{font-size:8px;letter-spacing:.07em;left:10px;bottom:9px}
+}
+@media(prefers-reduced-motion:reduce){
+ .music-mosaic-cell img{animation:none!important;transform:none!important;will-change:auto}
+}
