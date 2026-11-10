@@ -2,7 +2,7 @@
 import { useEffect, useRef, useState } from "react";
 import { ArrowDown, ArrowRight, ArrowUpRight, ChevronLeft, ChevronRight, Disc3, Instagram, Menu, Mic2, Newspaper, Pause, Play, Tv2, Volume2, X, Youtube } from "lucide-react";
 import { musicLinks, upcomingShows } from "@/lib/content";
-import { mediaAppearances } from "@/lib/media";
+import { mediaAppearances, featuredLiveConcert } from "@/lib/media";
 import { getConsentChoice, CONSENT_EVENT } from "./components/CookiePreferences";
 import { LanguageSwitcher, useLocale } from "./components/LocaleProvider";
 
@@ -30,8 +30,8 @@ function Reveal({children,className="",delay=0}:{children:React.ReactNode;classN
   },[]);
   return <div ref={ref} className={`reveal ${className}`} style={{transitionDelay:`${delay}ms`}}>{children}</div>;
 }
-const nav=[["Início","#inicio"],["Artista","#artista"],["Música","#musica"],["Media","#entrevistas"],["Ao vivo","#ao-vivo"],["Booking","#booking"]];
-const mobileNav=[["Início","#inicio"],["A História","#artista"],["Música","#musica"],["Videoclipes","#videos"],["Prémios","#premios"],["Entrevistas","#entrevistas"],["Ao Vivo","#ao-vivo"],["Agenda","#agenda"]];
+const nav=[["Início","#inicio"],["Artista","#artista"],["Música","#musica"],["Media","#entrevistas"],["Concerto","#concerto-gravado"],["Ao vivo","#ao-vivo"],["Booking","#booking"]];
+const mobileNav=[["Início","#inicio"],["A História","#artista"],["Música","#musica"],["Videoclipes","#videos"],["Prémios","#premios"],["Entrevistas","#entrevistas"],["Concerto","#concerto-gravado"],["Ao Vivo","#ao-vivo"],["Agenda","#agenda"]];
 export default function Home(){
  const {locale}=useLocale();
  const bookingMessage=locale==="en"
@@ -397,6 +397,19 @@ export default function Home(){
       <div><span className="media-kicker">PARA ALÉM DA MÚSICA</span><h2 id="media-heading">A VOZ.<br/><em>AS HISTÓRIAS.</em></h2></div>
       <p>Entrevistas, conversas e momentos na comunicação social. Conhece as ideias, as experiências e o percurso de Mr Bow através de podcasts, televisão e notícias.</p>
      </Reveal>
+     <div className="media-feature-label"><span>ENTREVISTAS EM DESTAQUE</span><span>05 / YOUTUBE</span></div>
+     <div className="media-featured-grid">
+      {mediaAppearances.filter(appearance=>appearance.category==="entrevista").map((appearance,index)=><Reveal className={`media-featured-card ${index===0?"media-featured-lead":""}`} key={appearance.id} delay={Math.min(index*65,250)}>
+       <a href={appearance.url} className="media-featured-link" target="_blank" rel="noopener noreferrer" aria-label={`Ver entrevista ${index+1} de Mr Bow no YouTube`}>
+        <div className="media-featured-image">
+         <img src={allowExternalMedia?appearance.image:"/images/setion%203.jpg"} loading="lazy" alt={allowExternalMedia?`Miniatura da entrevista ${index+1} de Mr Bow`:`Imagem ilustrativa de entrevista ${index+1}`}/>
+         <span className="media-featured-play"><Play size={25} fill="currentColor" aria-hidden="true"/></span>
+         <span className="media-featured-number">{String(index+1).padStart(2,"0")} / 05</span>
+        </div>
+        <div className="media-featured-info"><span>ENTREVISTA / YOUTUBE</span><h3>{locale==="en"?`MR BOW · INTERVIEW ${String(index+1).padStart(2,"0")}`:locale==="ts"?`MR BOW · MBURISANO ${String(index+1).padStart(2,"0")}`:`MR BOW · ENTREVISTA ${String(index+1).padStart(2,"0")}`}</h3><span className="media-featured-action">VER ENTREVISTA <ArrowUpRight size={17}/></span></div>
+       </a>
+      </Reveal>)}
+     </div>
      <div className="media-category-grid">
       {([
        {id:"podcast" as const,number:"01",icon:Mic2,category:"PODCASTS",headline:"CONVERSAS QUE MARCAM.",description:"Entrevistas e conversas aprofundadas em podcasts."},
@@ -419,6 +432,40 @@ export default function Home(){
       })}
      </div>
      <div className="media-endnote"><span>MR BOW. PARA ALÉM DO PALCO.</span><span>ENTREVISTAS & MEDIA</span></div>
+    </div>
+   </section>
+
+   <section className="concert-recorded" id="concerto-gravado" aria-labelledby="concert-recorded-title">
+    <div className="concert-recorded-inner">
+     <div className="concert-recorded-topline"><span>MR BOW / AO VIVO</span><span>CONCERTO GRAVADO</span></div>
+     <Reveal className="concert-recorded-heading">
+      <span>PALCO. ENERGIA. EMOÇÃO.</span>
+      <h2 id="concert-recorded-title">A EXPERIÊNCIA<br/><em>AO VIVO.</em></h2>
+      <p>Revive a energia de um concerto de Mr Bow. Um espectáculo gravado, disponível para assistir na íntegra.</p>
+     </Reveal>
+     <Reveal className="concert-recorded-visual">
+      <a href={featuredLiveConcert.url} target="_blank" rel="noopener noreferrer" className="concert-recorded-link" aria-label="Assistir ao concerto gravado de Mr Bow no YouTube">
+       <img
+        src={allowExternalMedia?featuredLiveConcert.image:featuredLiveConcert.localImage}
+        onError={event=>{
+         const image=event.currentTarget;
+         if(!allowExternalMedia){image.onerror=null;image.src=featuredLiveConcert.localImage;return;}
+         if(image.src.includes("maxresdefault"))image.src=featuredLiveConcert.fallbackImage;
+         else{image.onerror=null;image.src=featuredLiveConcert.localImage;}
+        }}
+        alt="Mr Bow em concerto ao vivo — capa do vídeo"
+        loading="lazy"
+       />
+       <span className="concert-recorded-scrim"/>
+       <span className="concert-recorded-play"><Play size={34} fill="currentColor" aria-hidden="true"/></span>
+       <span className="concert-recorded-caption">
+        <span>GRAVAÇÃO AO VIVO · YOUTUBE</span>
+        <strong>MR BOW<br/>LIVE IN CONCERT</strong>
+        <span className="concert-recorded-watch">VER CONCERTO COMPLETO <ArrowUpRight size={20}/></span>
+       </span>
+      </a>
+     </Reveal>
+     <div className="concert-recorded-foot"><span>UMA EXPERIÊNCIA PARA REVIVER.</span><span>THE SOUND OF MR BOW.</span></div>
     </div>
    </section>
 
