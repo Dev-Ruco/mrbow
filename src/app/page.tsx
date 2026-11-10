@@ -89,7 +89,7 @@ export default function Home(){
         {image:"/images/01%20%3A%20PU%CC%81BLICO%20EM%20E%CC%82XTASE.jpeg",label:"01 / PÚBLICO EM ÊXTASE",name:"Público a vibrar",className:"music-mosaic-crowd"},
         {image:"/images/02%20%3A%20EM%20PALCO.jpeg",label:"02 / EM PALCO",name:"Actuação ao vivo",className:"music-mosaic-stage"},
         {image:"/images/03%20%3A%20A%20ENERGIA.jpeg",label:"03 / A ENERGIA",name:"Fãs a celebrar",className:"music-mosaic-fans"},
-        {image:"/images/04%20%3A%20ATMOSFERA.jpg",label:"04 / ATMOSFERA",name:"Ambiente de espectáculo",className:"music-mosaic-atmosphere"}
+        {image:"/images/04%20_%20ATMOSFERA_Easy-Resize.com.jpg",label:"04 / ATMOSFERA",name:"Ambiente de espectáculo",className:"music-mosaic-atmosphere"}
        ].map((photo,i)=><Reveal key={photo.label} className={`music-mosaic-cell ${photo.className}`} delay={i*95}>
         <img src={photo.image} alt={photo.name+" nos espectáculos de Mr Bow"} loading="lazy" />
         <span className="music-mosaic-label">{photo.label}</span>
