@@ -430,3 +430,55 @@
  object-position:center center;
  max-width:none;
 }
+
+
+/* Awards & Recognition — capítulo editorial da evolução do artista. */
+.awards-section{background:#101416;color:#f2eee7;padding:100px max(5vw,24px) 110px;position:relative;overflow:hidden}
+.awards-section::before{content:"";pointer-events:none;position:absolute;right:-14%;top:-38%;height:850px;width:850px;border-radius:50%;border:1px solid rgba(230,227,217,.055)}
+.awards-inner{max-width:1450px;margin:0 auto;position:relative}
+.awards-eyebrow{display:flex;justify-content:space-between;align-items:center;gap:20px;border-bottom:1px solid rgba(255,255,255,.2);padding:0 0 15px;color:#c6bfb5;font-size:10px;letter-spacing:.2em;font-weight:700}
+.awards-heading{display:grid;grid-template-columns:1.2fr .8fr;align-items:end;gap:36px;padding:70px 0 78px}
+.awards-kicker{font-size:10px;letter-spacing:.2em;color:#b8aaa1}
+.awards-heading h2{font:800 clamp(70px,10.1vw,164px)/.83 "Barlow Condensed",sans-serif;letter-spacing:-.04em;margin:28px 0 0}
+.awards-heading h2 em{font:400 .82em Italiana,serif;color:#d0b7aa}
+.awards-heading p{font-size:clamp(15px,1.4vw,19px);line-height:1.7;color:#bcbab7;max-width:440px;margin:0 0 8px}
+.awards-feature{display:grid;grid-template-columns:minmax(240px,.75fr) minmax(0,1.25fr);gap:5vw;border-top:1px solid rgba(255,255,255,.19);padding-top:33px}
+.awards-stat{align-self:start;position:sticky;top:100px}
+.awards-stat>strong{font:800 clamp(130px,17vw,260px)/1 "Barlow Condensed",sans-serif;letter-spacing:-.07em}
+.awards-stat>strong span{font-size:.42em;vertical-align:top;letter-spacing:0;color:#d2a995}
+.awards-stat p{font-size:clamp(19px,2vw,27px);line-height:1.22;max-width:330px;margin:16px 0 18px}
+.awards-stat small{font-size:10px;letter-spacing:.2em;color:#b5aca4}
+.awards-timeline{border-top:1px solid rgba(255,255,255,.17)}
+.awards-row{display:grid;grid-template-columns:95px 1fr 30px;gap:23px;align-items:center;padding:22px 0;border-bottom:1px solid rgba(255,255,255,.17)}
+.awards-year{font:700 35px/1 "Barlow Condensed",sans-serif}
+.awards-row>div{display:flex;flex-direction:column;gap:6px}
+.awards-row small{font-size:9px;letter-spacing:.17em;color:#b3a9a2}
+.awards-row strong{font-size:clamp(16px,1.8vw,24px);font-weight:600}
+.awards-row>div span{font-size:13px;color:#c3bbb2}
+.awards-cross{text-align:right;color:#ae887a;font-size:24px}
+.awards-additional{display:grid;grid-template-columns:.8fr 1.2fr auto;gap:30px;align-items:center;border-top:1px solid rgba(255,255,255,.17);border-bottom:1px solid rgba(255,255,255,.17);padding:31px 0;margin-top:73px}
+.awards-additional>span{font-size:10px;letter-spacing:.16em;color:#b8aaa1}
+.awards-additional>div{display:flex;flex-direction:column;gap:8px}
+.awards-additional strong{font-size:clamp(18px,1.7vw,25px);font-weight:600}
+.awards-additional>a{display:flex;align-items:center;gap:9px;font-size:10px;letter-spacing:.12em;font-weight:700;white-space:nowrap}
+.awards-source{font-size:10px;color:#858786;margin:20px 0 0}
+@media(max-width:900px){
+ .awards-heading{grid-template-columns:1fr;gap:25px;padding:55px 0}
+ .awards-feature{grid-template-columns:1fr;gap:36px}
+ .awards-stat{position:static}
+ .awards-stat>strong{font-size:135px}
+ .awards-stat p{margin-top:0}
+ .awards-additional{grid-template-columns:1fr;gap:20px}
+}
+@media(max-width:560px){
+ .awards-section{padding:72px 6vw 80px}
+ .awards-eyebrow{font-size:8px}
+ .awards-eyebrow span:last-child{display:none}
+ .awards-heading h2{font-size:16vw}
+ .awards-heading p{font-size:15px}
+ .awards-row{grid-template-columns:65px 1fr 20px;gap:12px;padding:22px 0}
+ .awards-year{font-size:29px}
+ .awards-row strong{font-size:17px}
+ .awards-row>div span{font-size:12px}
+ .awards-additional{margin-top:50px}
+}
