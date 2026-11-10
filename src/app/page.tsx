@@ -56,7 +56,7 @@ export default function Home(){
     </div>
     <div className="artist-copy">
      <span className="eyebrow">04 / THE MAN BEHIND THE MUSIC</span>
-     <Reveal><h2>A HISTÓRIA<br/>CONTINUA<span>.</span></h2></Reveal>
+     <Reveal><h2>UMA HISTÓRIA<br/>ALÉM DOS<br/>PALCOS<span>.</span></h2></Reveal>
      <Reveal delay={100}>
       <div className="artist-biography">
        <p>Antes de se tornar Mr. Bow, Salvador Pedro Maiaze era um jovem de Manjacaze, na província de Gaza, com uma paixão pela música e a determinação de construir o seu próprio caminho.</p>
