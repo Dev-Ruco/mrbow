@@ -869,3 +869,80 @@
  }
  .cinema-slider-fill{transition:none!important}
 }
+
+
+/* HERO / entrada principal: alternância entre retrato do artista e casamento. */
+.hero.hero-cinematic-slider{position:relative;isolation:isolate;background:#090809}
+.hero-slide-photo{
+ position:absolute;inset:-2%;z-index:-1;
+ background-size:cover;background-repeat:no-repeat;
+ background-position:60% 42%;
+ opacity:0;transform:scale(1.05);
+ filter:grayscale(44%) contrast(1.08) brightness(.62);
+ transition:opacity 1.35s ease-in-out,filter 1.35s ease-in-out;
+ pointer-events:none;
+}
+.hero-slide-photo:nth-child(2){background-position:50% 49%;filter:grayscale(28%) saturate(.68) contrast(1.06) brightness(.63)}
+.hero-slide-photo.is-active{opacity:1;animation:heroLivingPortrait 7s ease-in-out both}
+.hero-slide-photo:nth-child(2).is-active{animation-name:heroLivingWedding}
+.hero.hero-cinematic-slider.is-paused .hero-slide-photo.is-active{animation-play-state:paused}
+@keyframes heroLivingPortrait{
+ 0%{transform:scale(1.035) translate3d(0,0,0)}
+ 50%{transform:scale(1.07) translate3d(-.45%,-.3%,0)}
+ 100%{transform:scale(1.045) translate3d(.35%,.15%,0)}
+}
+@keyframes heroLivingWedding{
+ 0%{transform:scale(1.045) translate3d(0,0,0)}
+ 50%{transform:scale(1.075) translate3d(.4%,-.45%,0)}
+ 100%{transform:scale(1.035) translate3d(-.3%,.2%,0)}
+}
+.hero.hero-cinematic-slider::after{z-index:0;pointer-events:none;background:linear-gradient(90deg,rgba(0,0,0,.58) 0%,rgba(0,0,0,.34) 45%,rgba(0,0,0,.08) 100%),linear-gradient(0deg,rgba(0,0,0,.84) 0%,transparent 40%,rgba(0,0,0,.15) 100%)}
+.hero.hero-cinematic-slider .hero-title-wrap{z-index:2;pointer-events:none}
+.hero-slide-story{
+ position:absolute;z-index:3;
+ left:5vw;right:32vw;bottom:clamp(95px,10vh,145px);
+ max-width:550px;
+ display:flex;flex-direction:column;align-items:flex-start;gap:11px;
+ color:#fff;animation:heroSlideStoryEnter .95s cubic-bezier(.2,.7,.2,1) both;
+}
+@keyframes heroSlideStoryEnter{
+ from{opacity:0;transform:translateY(26px);filter:blur(5px)}
+ to{opacity:1;transform:translateY(0);filter:blur(0)}
+}
+.hero-story-eyebrow{font-size:10px;letter-spacing:.22em;font-weight:800;color:rgba(255,255,255,.8)}
+.hero-slide-story strong{font:700 clamp(20px,2.25vw,32px)/1.15 "Barlow Condensed",sans-serif;letter-spacing:.035em}
+.hero-slide-story p{font-size:clamp(13px,1.1vw,16px);line-height:1.55;max-width:410px;color:rgba(255,255,255,.85)}
+.hero-slide-story a{display:inline-flex;align-items:center;gap:15px;padding:0 0 8px;border-bottom:1px solid rgba(255,255,255,.8);font-size:10px;font-weight:800;letter-spacing:.12em;margin-top:7px;transition:gap .25s}
+.hero-slide-story a:hover{gap:24px}
+.hero-slider-controls{
+ position:absolute;z-index:4;right:5vw;bottom:clamp(70px,8vh,110px);
+ display:flex;align-items:center;gap:13px;
+}
+.hero-slider-dot{width:62px;min-height:44px;border:0;background:transparent;cursor:pointer;padding:15px 0;display:flex;align-items:center}
+.hero-slider-track{height:3px;background:rgba(255,255,255,.4);display:block;position:relative;overflow:hidden;width:100%}
+.hero-slider-fill{position:absolute;top:0;bottom:0;left:0;background:#fff;transition:width .09s linear}
+.hero-slider-dot:not(.is-active) .hero-slider-fill{width:0!important}
+.hero-slider-dot:hover .hero-slider-track{background:rgba(255,255,255,.72)}
+@media(max-width:760px){
+ .hero.hero-cinematic-slider{height:95svh;min-height:660px}
+ .hero-slide-photo{background-position:62% center}
+ .hero-slide-photo:nth-child(2){background-position:49% 38%}
+ .hero.hero-cinematic-slider::after{background:linear-gradient(180deg,rgba(0,0,0,.13) 0%,rgba(0,0,0,.13) 30%,rgba(0,0,0,.77) 70%,rgba(0,0,0,.93) 100%)}
+ .hero.hero-cinematic-slider .hero-title-wrap{top:38%;left:5vw}
+ .hero.hero-cinematic-slider .hero-title{font-size:38vw}
+ .hero-slide-story{left:6vw;right:6vw;bottom:115px;max-width:420px;gap:8px}
+ .hero-slide-story strong{font-size:clamp(19px,5.7vw,28px)}
+ .hero-slide-story p{font-size:13px;max-width:340px}
+ .hero-slider-controls{left:6vw;right:auto;bottom:32px;gap:10px}
+ .hero-slider-dot{width:54px}
+}
+@media(max-width:390px){
+ .hero-slide-story{bottom:110px}
+ .hero.hero-cinematic-slider .hero-title{font-size:37vw}
+ .hero-slider-dot{width:45px}
+}
+@media(prefers-reduced-motion:reduce){
+ .hero-slide-photo.is-active{animation:none!important;transform:none!important}
+ .hero-slide-story{animation:none!important;filter:none!important}
+ .hero-slider-fill{transition:none!important}
+}
