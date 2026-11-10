@@ -172,3 +172,15 @@
   .artist-section-editorial .artist-portrait-stage{width:100%;min-height:450px;height:65vh;max-height:610px}
   .artist-section-editorial .artist-cutout{height:95%}
 }
+
+/* Layout editorial final: retrato à esquerda, biografia à direita. */
+.artist-section.artist-section-editorial{grid-template-columns:minmax(0,.92fr) minmax(0,1.08fr)}
+.artist-section-editorial .artist-portrait-stage{order:1}
+.artist-section-editorial .artist-copy{order:2;padding:100px 7vw 92px 4vw}
+@media(min-width:761px) and (max-width:1050px){
+ .artist-section-editorial .artist-copy{padding:85px 6vw 70px 4vw}
+}
+@media(max-width:760px){
+ .artist-section-editorial .artist-portrait-stage{order:1}
+ .artist-section-editorial .artist-copy{order:2;padding:50px 6vw 80px}
+}
