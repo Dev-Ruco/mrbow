@@ -42,43 +42,88 @@ export default function Home(){
   return()=>window.removeEventListener(CONSENT_EVENT,sync);
  },[]);
  const audioRef=useRef<HTMLAudioElement>(null);
+ const fadeTimerRef=useRef<number|null>(null);
  const audioOptedOut=useRef(false);
  const [audioPlaying,setAudioPlaying]=useState(false);
  const [audioReady,setAudioReady]=useState(false);
+ const [audioInviteDismissed,setAudioInviteDismissed]=useState(false);
+ const targetVolume=.60;
+ const clearAudioFade=()=>{
+  if(fadeTimerRef.current!==null){window.clearInterval(fadeTimerRef.current);fadeTimerRef.current=null;}
+ };
+ const fadeAudio=(target:number,duration:number,after?:()=>void)=>{
+  const audio=audioRef.current;
+  if(!audio)return;
+  clearAudioFade();
+  const start=performance.now();
+  const from=audio.volume;
+  fadeTimerRef.current=window.setInterval(()=>{
+   const fraction=Math.min(1,(performance.now()-start)/duration);
+   const eased=fraction*fraction*(3-2*fraction);
+   audio.volume=Math.max(0,Math.min(1,from+(target-from)*eased));
+   if(fraction>=1){clearAudioFade();after?.();}
+  },50);
+ };
+ const playSiteAudio=async()=>{
+  const audio=audioRef.current;
+  if(!audio)return;
+  audioOptedOut.current=false;
+  try{
+   if(audio.paused){audio.volume=0;await audio.play();}
+   fadeAudio(targetVolume,1800);
+   setAudioInviteDismissed(true);
+  }catch{/* Os browsers podem exigir um clique explícito no controlo. */}
+ };
+ const toggleSiteAudio=()=>{
+  const audio=audioRef.current;
+  if(!audio)return;
+  setAudioInviteDismissed(true);
+  if(!audio.paused){
+   audioOptedOut.current=true;
+   fadeAudio(0,900,()=>audio.pause());
+  }else{void playSiteAudio();}
+ };
  useEffect(()=>{
   const audio=audioRef.current;
   if(!audio)return;
-  audio.volume=.22;
-  const onPlay=()=>setAudioPlaying(true);
+  audio.volume=0;
+  const onPlay=()=>{setAudioPlaying(true);setAudioInviteDismissed(true);};
   const onPause=()=>setAudioPlaying(false);
   const onCanPlay=()=>setAudioReady(true);
+  const onTimeUpdate=()=>{
+   if(!Number.isFinite(audio.duration)||audio.duration<=0||audio.paused)return;
+   const remaining=audio.duration-audio.currentTime;
+   if(remaining<2.3&&audio.volume>.1&&fadeTimerRef.current===null){
+    fadeAudio(0,1900);
+   }
+   if(audio.currentTime<.5&&audio.volume<.1&&fadeTimerRef.current===null){
+    fadeAudio(targetVolume,1500);
+   }
+  };
   audio.addEventListener("play",onPlay);
   audio.addEventListener("pause",onPause);
   audio.addEventListener("canplay",onCanPlay);
-  // Tenta reproduzir na abertura. Os browsers podem exigir um gesto do visitante.
-  audio.play().catch(()=>{});
+  audio.addEventListener("timeupdate",onTimeUpdate);
+  // Tenta iniciar o áudio, respeitando a política de reprodução do navegador.
+  audio.play().then(()=>fadeAudio(targetVolume,1800)).catch(()=>{});
   const enableOnGesture=(event:Event)=>{
    if(audioOptedOut.current||!audio.paused)return;
    const target=event.target;
    if(target instanceof Element&&target.closest(".site-audio-toggle"))return;
-   audio.play().catch(()=>{});
+   void playSiteAudio();
   };
   document.addEventListener("pointerdown",enableOnGesture);
   document.addEventListener("keydown",enableOnGesture);
   return()=>{
+   clearAudioFade();
    document.removeEventListener("pointerdown",enableOnGesture);
    document.removeEventListener("keydown",enableOnGesture);
    audio.removeEventListener("play",onPlay);
    audio.removeEventListener("pause",onPause);
    audio.removeEventListener("canplay",onCanPlay);
+   audio.removeEventListener("timeupdate",onTimeUpdate);
   };
  },[]);
- const toggleSiteAudio=()=>{
-  const audio=audioRef.current;
-  if(!audio)return;
-  if(!audio.paused){audioOptedOut.current=true;audio.pause();}
-  else{audioOptedOut.current=false;audio.play().catch(()=>{});}
- };
  const albumsRail=useRef<HTMLDivElement>(null);
  const mobileMenuRef=useRef<HTMLDivElement>(null);
  const mobileMenuButtonRef=useRef<HTMLButtonElement>(null);
@@ -186,6 +231,7 @@ export default function Home(){
  },[open]);
  return <>
   <audio ref={audioRef} src="/images/Mr.%20Bow%20-%20Txova%20Xitaduma.mp3" preload="auto" loop aria-label="Mr Bow — Txova Xitaduma"/>
+  {!audioPlaying&&!audioInviteDismissed&&!scrolled&&<div className="audio-invite" aria-hidden="true"><span>ACTIVA A EMOÇÃO.</span><strong>OUVE MR BOW!</strong><span className="audio-invite-arrow">↘</span></div>}
   <button type="button" className={`site-audio-toggle ${audioPlaying?"is-playing":""}`} onClick={toggleSiteAudio} aria-label={audioPlaying?"Pausar música ambiente":"Reproduzir música ambiente"} aria-pressed={audioPlaying} title={audioPlaying?"Pausar música":"Ouvir Mr Bow"}>
    <span className="site-audio-icon">{audioPlaying?<Pause size={18} fill="currentColor"/>:<Volume2 size={19}/>}</span>
    <span className="site-audio-info"><strong>MR BOW</strong><small>{audioPlaying?"A TOCAR · TXOVA XITADUMA":audioReady?"ACTIVAR MÚSICA":"OUVIR MÚSICA"}</small></span>
