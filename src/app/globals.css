@@ -803,3 +803,69 @@
 @media(prefers-reduced-motion:reduce){
  .cinema-slide-image,.cinema-slide-content{transition:none!important;animation:none!important;transform:none!important;filter:none!important}
 }
+
+
+/* Slider live — movimento contínuo enquanto o slide está visível. */
+.cinema-panel.cinema-slider .cinema-slide-image{
+ transform:scale(1.06);
+ transition:opacity 1.35s ease-in-out,filter 1.35s ease-in-out;
+ animation:none;
+}
+.cinema-panel.cinema-slider .cinema-slide-image.is-active{
+ opacity:1;
+ transform:scale(1.06);
+ animation:liveImageBreath 7s ease-in-out both;
+}
+.cinema-panel.cinema-slider .cinema-slide-image:nth-child(2).is-active{
+ animation-name:liveImageDream;
+}
+.cinema-panel.cinema-slider.is-paused .cinema-slide-image.is-active{
+ animation-play-state:paused;
+}
+@keyframes liveImageBreath{
+ 0%{transform:scale(1.035) translate3d(0,0,0)}
+ 50%{transform:scale(1.075) translate3d(-.55%,-.35%,0)}
+ 100%{transform:scale(1.045) translate3d(.45%,.2%,0)}
+}
+@keyframes liveImageDream{
+ 0%{transform:scale(1.055) translate3d(.25%,0,0)}
+ 50%{transform:scale(1.08) translate3d(-.6%,-.45%,0)}
+ 100%{transform:scale(1.04) translate3d(.3%,.2%,0)}
+}
+/* Progresso rigorosamente ligado ao tempo efectivo do slide. */
+.cinema-slider-dot{width:55px;min-height:44px;align-items:center}
+.cinema-slider-track{
+ display:block;
+ position:relative;
+ width:100%;
+ height:3px;
+ background:rgba(255,255,255,.34);
+ overflow:hidden;
+}
+.cinema-slider-dot.is-active .cinema-slider-track{
+ background:rgba(255,255,255,.34);
+ transform:none;
+}
+.cinema-slider-fill{
+ position:absolute;
+ inset:0 auto 0 0;
+ display:block;
+ height:100%;
+ background:#fff;
+ transition:width .08s linear;
+}
+.cinema-slider-dot:not(.is-active) .cinema-slider-fill{width:0!important}
+.cinema-slider-dot:hover .cinema-slider-track{background:rgba(255,255,255,.67)}
+@media(max-width:760px){
+ .cinema-slider-dot{width:38px;min-height:40px}
+ .cinema-panel.cinema-slider .cinema-slide-image.is-active{
+  animation-duration:7s;
+ }
+}
+@media(prefers-reduced-motion:reduce){
+ .cinema-panel.cinema-slider .cinema-slide-image.is-active{
+  animation:none!important;
+  transform:none!important;
+ }
+ .cinema-slider-fill{transition:none!important}
+}
