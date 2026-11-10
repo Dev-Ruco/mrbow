@@ -119,17 +119,21 @@ export default function Home(){
     <div className="music-showcase-inner">
      <div className="video-showcase">
       <Reveal className="videos-heading"><div><span className="release-small">PARA VER E SENTIR</span><h3>VISUAL <em>STORIES.</em></h3></div><p>Videoclipes, energia e identidade em movimento. Descobre as mais recentes histórias visuais de Mr Bow.</p></Reveal>
-      <div className="videos-grid">
-       <Reveal className="video-feature">
-        <a className="video-cover video-cover-one" href="https://www.youtube.com/results?search_query=Mr+Bow+I%27ll+Be+Waiting+Official+Music+Video" target="_blank" rel="noopener noreferrer" aria-label="Procurar videoclip I'll Be Waiting no YouTube"><span className="video-big-play"><Play fill="currentColor" size={26}/></span><span className="video-watermark">01 / MUSIC VIDEO</span></a>
-        <div className="video-detail"><span>VIDEOCLIPE EM DESTAQUE</span><a href="https://www.youtube.com/results?search_query=Mr+Bow+I%27ll+Be+Waiting+Official+Music+Video" target="_blank" rel="noopener noreferrer">I'LL BE WAITING <ArrowUpRight size={23}/></a></div>
-       </Reveal>
-       <Reveal className="video-feature" delay={140}>
-        <a className="video-cover video-cover-two" href="https://www.youtube.com/results?search_query=Mr+Bow+Mocambique+Anima+Awilo+Longomba+Official+Music+Video" target="_blank" rel="noopener noreferrer" aria-label="Procurar videoclip Moçambique Anima no YouTube"><span className="video-big-play"><Play fill="currentColor" size={26}/></span><span className="video-watermark">02 / MUSIC VIDEO</span></a>
-        <div className="video-detail"><span>VIDEOCLIPE EM DESTAQUE</span><a href="https://www.youtube.com/results?search_query=Mr+Bow+Mocambique+Anima+Awilo+Longomba+Official+Music+Video" target="_blank" rel="noopener noreferrer">MOÇAMBIQUE ANIMA <ArrowUpRight size={23}/></a></div>
-       </Reveal>
+      <div className="videos-grid videos-grid-three">
+       {[
+        {id:"gUj6XUuaNfw",number:"01",kind:"VIDEOCLIPE PRINCIPAL"},
+        {id:"_crVajIlmYk",number:"02",kind:"VIDEOCLIPE OFICIAL"},
+        {id:"1vr_ZwnxCgg",number:"03",kind:"VIDEOCLIPE OFICIAL"}
+       ].map((video,index)=><Reveal className={`video-feature video-feature-${video.number}`} key={video.id} delay={index*100}>
+        <a className="video-cover video-cover-direct" href={`https://www.youtube.com/watch?v=${video.id}`} target="_blank" rel="noopener noreferrer" aria-label={`Ver videoclip ${video.number} de Mr Bow no YouTube`}>
+         <img src={`https://img.youtube.com/vi/${video.id}/hqdefault.jpg`} alt={`Miniatura oficial do videoclip ${video.number} de Mr Bow`} loading="lazy" />
+         <span className="video-big-play"><Play fill="currentColor" size={26}/></span>
+         <span className="video-watermark">{video.number} / MUSIC VIDEO</span>
+        </a>
+        <div className="video-detail"><span>{video.kind}</span><a href={`https://www.youtube.com/watch?v=${video.id}`} target="_blank" rel="noopener noreferrer">VER VIDEOCLIPE {video.number} <ArrowUpRight size={23}/></a></div>
+       </Reveal>)}
       </div>
-      <Reveal className="video-footer"><span>AS IMAGENS DOS VÍDEOS SÃO FOTOGRAFIAS ILUSTRATIVAS DO ARTISTA.</span><a href="https://www.youtube.com/@mrbowofficial/videos" target="_blank" rel="noopener noreferrer">VER TODOS OS VÍDEOS <ArrowUpRight size={19}/></a></Reveal>
+      <Reveal className="video-footer"><span>TRÊS VIDEOCLIPES DE MR BOW · VER NO YOUTUBE.</span><a href="https://www.youtube.com/@mrbowofficial/videos" target="_blank" rel="noopener noreferrer">VER TODOS OS VÍDEOS <ArrowUpRight size={19}/></a></Reveal>
      </div>
     </div>
    </section>
