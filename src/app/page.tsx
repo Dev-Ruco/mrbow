@@ -230,11 +230,11 @@ export default function Home(){
   return()=>{document.body.style.overflow="";document.removeEventListener("keydown",onKeyDown);};
  },[open]);
  return <>
-  <audio ref={audioRef} src="/images/Mr.%20Bow%20-%20Txova%20Xitaduma.mp3" preload="auto" loop aria-label="Mr Bow — Txova Xitaduma"/>
+  <audio ref={audioRef} src="/images/Mr.%20Bow%20-%20Xisuti%20Xamina.mp3" preload="auto" loop aria-label="Mr Bow — Xisuti Xamina"/>
   {!audioPlaying&&!audioInviteDismissed&&!scrolled&&<div className="audio-invite" aria-hidden="true"><span>ACTIVA A EMOÇÃO.</span><strong>OUVE MR BOW!</strong><span className="audio-invite-arrow">↘</span></div>}
   <button type="button" className={`site-audio-toggle ${audioPlaying?"is-playing":""}`} onClick={toggleSiteAudio} aria-label={audioPlaying?"Pausar música ambiente":"Reproduzir música ambiente"} aria-pressed={audioPlaying} title={audioPlaying?"Pausar música":"Ouvir Mr Bow"}>
    <span className="site-audio-icon">{audioPlaying?<Pause size={18} fill="currentColor"/>:<Volume2 size={19}/>}</span>
-   <span className="site-audio-info"><strong>MR BOW</strong><small>{audioPlaying?"A TOCAR · TXOVA XITADUMA":audioReady?"ACTIVAR MÚSICA":"OUVIR MÚSICA"}</small></span>
+   <span className="site-audio-info"><strong>MR BOW</strong><small>{audioPlaying?"A TOCAR · XISUTI XAMINA":audioReady?"ACTIVAR MÚSICA":"OUVIR MÚSICA"}</small></span>
   </button>
   <div className="reading-progress" style={{width:`${progress}%`}}/>
   <header className={`masthead ${scrolled?"masthead-scrolled":""} ${open?"masthead-menu-open":""}`}>
