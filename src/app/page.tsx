@@ -58,7 +58,7 @@ export default function Home(){
        <figcaption>MR BOW <span>— OS PRIMEIROS ANOS</span></figcaption>
       </figure>
       <figure className="artist-now-frame">
-       <div className="artist-now-portrait"><img src="/images/Elegant%20Tuxedo%20Portrait%20Cutout.png" alt="Mr Bow numa fotografia mais recente, de fato preto" loading="lazy" /></div>
+       <div className="artist-now-portrait"><img src="/images/Mr%20bow%2003.jpg" alt="Fotografia mais recente de Mr Bow" loading="lazy" /></div>
        <figcaption>MR BOW <span>— HOJE</span></figcaption>
       </figure>
      </div>
