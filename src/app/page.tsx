@@ -52,10 +52,16 @@ export default function Home(){
 
    <section className="artist-section artist-section-editorial" id="artista">
     <div className="artist-portrait-stage artist-archive-stage">
-     <figure className="artist-archive-frame">
-      <img src="/images/Mr%20bow%20old%20pinrure.jpg" alt="Fotografia histórica de Mr Bow nos primeiros anos da sua carreira" className="artist-archive-photo" loading="lazy" />
-      <figcaption>MR BOW <span>— ARQUIVO / OS PRIMEIROS ANOS</span></figcaption>
-     </figure>
+     <div className="artist-evolution-photos">
+      <figure className="artist-archive-frame">
+       <img src="/images/Mr%20bow%20old%20pinrure.jpg" alt="Mr Bow nos primeiros anos da sua carreira" className="artist-archive-photo" loading="lazy" />
+       <figcaption>MR BOW <span>— OS PRIMEIROS ANOS</span></figcaption>
+      </figure>
+      <figure className="artist-now-frame">
+       <div className="artist-now-portrait"><img src="/images/Elegant%20Tuxedo%20Portrait%20Cutout.png" alt="Mr Bow numa fotografia mais recente, de fato preto" loading="lazy" /></div>
+       <figcaption>MR BOW <span>— HOJE</span></figcaption>
+      </figure>
+     </div>
     </div>
     <div className="artist-copy">
      <span className="eyebrow">04 / THE MAN BEHIND THE MUSIC</span>
