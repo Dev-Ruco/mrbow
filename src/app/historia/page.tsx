@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { LanguageSwitcher } from "../components/LocaleProvider";
 
 export const metadata: Metadata = {
  title:"A História de Mr Bow",
@@ -15,7 +16,7 @@ const paragraphs=[
 
 export default function Historia(){
  return <main className="history-page">
-  <header className="history-nav"><Link href="/#artista">← VOLTAR À LANDING PAGE</Link><Link className="history-brand" href="/">MR BOW.</Link></header>
+  <header className="history-nav"><Link href="/#artista">← VOLTAR À LANDING PAGE</Link><Link className="history-brand" href="/">MR BOW.</Link><LanguageSwitcher/></header>
   <section className="history-content">
    <div className="history-photo"><img src="/images/Elegant%20Tuxedo%20Portrait%20Cutout.png" alt="Mr Bow com fato preto e óculos escuros"/></div>
    <article className="history-text">
