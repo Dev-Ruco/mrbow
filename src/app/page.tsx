@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import { ArrowDown, ArrowRight, ArrowUpRight, ChevronLeft, ChevronRight, Disc3, Instagram, Menu, Play, X, Youtube } from "lucide-react";
+import { ArrowDown, ArrowRight, ArrowUpRight, ChevronLeft, ChevronRight, Disc3, Instagram, Menu, Music2, Pause, Play, Volume2, X, Youtube } from "lucide-react";
 import { musicLinks, upcomingShows } from "@/lib/content";
 
 const concert = "/images/Mr%20bow%20hero.jpg";
@@ -33,6 +33,44 @@ export default function Home(){
  const [open,setOpen]=useState(false);
  const [progress,setProgress]=useState(0);
  const [scrolled,setScrolled]=useState(false);
+ const audioRef=useRef<HTMLAudioElement>(null);
+ const audioOptedOut=useRef(false);
+ const [audioPlaying,setAudioPlaying]=useState(false);
+ const [audioReady,setAudioReady]=useState(false);
+ useEffect(()=>{
+  const audio=audioRef.current;
+  if(!audio)return;
+  audio.volume=.22;
+  const onPlay=()=>setAudioPlaying(true);
+  const onPause=()=>setAudioPlaying(false);
+  const onCanPlay=()=>setAudioReady(true);
+  audio.addEventListener("play",onPlay);
+  audio.addEventListener("pause",onPause);
+  audio.addEventListener("canplay",onCanPlay);
+  // Tenta reproduzir na abertura. Os browsers podem exigir um gesto do visitante.
+  audio.play().catch(()=>{});
+  const enableOnGesture=(event:Event)=>{
+   if(audioOptedOut.current||!audio.paused)return;
+   const target=event.target;
+   if(target instanceof Element&&target.closest(".site-audio-toggle"))return;
+   audio.play().catch(()=>{});
+  };
+  document.addEventListener("pointerdown",enableOnGesture);
+  document.addEventListener("keydown",enableOnGesture);
+  return()=>{
+   document.removeEventListener("pointerdown",enableOnGesture);
+   document.removeEventListener("keydown",enableOnGesture);
+   audio.removeEventListener("play",onPlay);
+   audio.removeEventListener("pause",onPause);
+   audio.removeEventListener("canplay",onCanPlay);
+  };
+ },[]);
+ const toggleSiteAudio=()=>{
+  const audio=audioRef.current;
+  if(!audio)return;
+  if(!audio.paused){audioOptedOut.current=true;audio.pause();}
+  else{audioOptedOut.current=false;audio.play().catch(()=>{});}
+ };
  const albumsRail=useRef<HTMLDivElement>(null);
  const mobileMenuRef=useRef<HTMLDivElement>(null);
  const mobileMenuButtonRef=useRef<HTMLButtonElement>(null);
@@ -139,6 +177,11 @@ export default function Home(){
   return()=>{document.body.style.overflow="";document.removeEventListener("keydown",onKeyDown);};
  },[open]);
  return <>
+  <audio ref={audioRef} src="/images/Mr.%20Bow%20-%20Txova%20Xitaduma.mp3" preload="auto" loop playsInline aria-label="Mr Bow — Txova Xitaduma"/>
+  <button type="button" className={`site-audio-toggle ${audioPlaying?"is-playing":""}`} onClick={toggleSiteAudio} aria-label={audioPlaying?"Pausar música ambiente":"Reproduzir música ambiente"} aria-pressed={audioPlaying} title={audioPlaying?"Pausar música":"Ouvir Mr Bow"}>
+   <span className="site-audio-icon">{audioPlaying?<Pause size={18} fill="currentColor"/>:<Volume2 size={19}/>}</span>
+   <span className="site-audio-info"><strong>MR BOW</strong><small>{audioPlaying?"A TOCAR · TXOVA XITADUMA":audioReady?"ACTIVAR MÚSICA":"OUVIR MÚSICA"}</small></span>
+  </button>
   <div className="reading-progress" style={{width:`${progress}%`}}/>
   <header className={`masthead ${scrolled?"masthead-scrolled":""} ${open?"masthead-menu-open":""}`}>
    <a className="brand" href="#inicio" onClick={()=>setOpen(false)} aria-label="Mr Bow — início">MR<span>BOW</span><b>®</b></a>
