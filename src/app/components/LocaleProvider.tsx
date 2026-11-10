@@ -142,6 +142,8 @@ export function LocaleProvider({children}:{children:ReactNode}){
  return <LocaleContext.Provider value={{locale,setLocale}}>{children}</LocaleContext.Provider>;
 }
 
+export function useLocale(){return useContext(LocaleContext);}
+
 export function LanguageSwitcher(){
  const {locale,setLocale}=useContext(LocaleContext);
  return <div className="site-language-switcher" role="group" aria-label="Idioma do site / Website language / Ririmi ra webusayiti">
