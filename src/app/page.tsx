@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { ArrowDown, ArrowRight, ArrowUpRight, ChevronLeft, ChevronRight, Disc3, Instagram, Menu, Pause, Play, Volume2, X, Youtube } from "lucide-react";
 import { musicLinks, upcomingShows } from "@/lib/content";
 import { getConsentChoice, CONSENT_EVENT } from "./components/CookiePreferences";
+import { LanguageSwitcher } from "./components/LocaleProvider";
 
 const concert = "/images/Mr%20bow%20hero.jpg";
 const heroSlides = [
@@ -240,6 +241,7 @@ export default function Home(){
   <header className={`masthead ${scrolled?"masthead-scrolled":""} ${open?"masthead-menu-open":""}`}>
    <a className="brand" href="#inicio" onClick={()=>setOpen(false)} aria-label="Mr Bow — início">MR<span>BOW</span><b>®</b></a>
    <nav className="desktop-links" aria-label="Menu principal">{nav.slice(0,4).map(([label,href])=><a key={href} href={href}>{label}</a>)}</nav>
+   <LanguageSwitcher/>
    <a href="#booking" className="masthead-booking">BOOKING <ArrowUpRight size={17}/></a>
    <button ref={mobileMenuButtonRef} className="mobile-trigger" type="button" aria-controls="mobile-site-menu" aria-expanded={open} aria-label={open?"Fechar menu":"Abrir menu"} onClick={()=>setOpen(v=>!v)}>{open?<X/>:<Menu/>}</button>
   </header>
