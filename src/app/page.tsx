@@ -28,11 +28,22 @@ function Reveal({children,className="",delay=0}:{children:React.ReactNode;classN
   return <div ref={ref} className={`reveal ${className}`} style={{transitionDelay:`${delay}ms`}}>{children}</div>;
 }
 const nav=[["Início","#inicio"],["Artista","#artista"],["Música","#musica"],["Ao vivo","#ao-vivo"],["Booking","#booking"]];
+const mobileNav=[["Início","#inicio"],["A História","#artista"],["Música","#musica"],["Videoclipes","#videos"],["Prémios","#premios"],["Ao Vivo","#ao-vivo"],["Agenda","#agenda"]];
 export default function Home(){
  const [open,setOpen]=useState(false);
  const [progress,setProgress]=useState(0);
  const [scrolled,setScrolled]=useState(false);
  const albumsRail=useRef<HTMLDivElement>(null);
+ const mobileMenuRef=useRef<HTMLDivElement>(null);
+ const mobileMenuButtonRef=useRef<HTMLButtonElement>(null);
+ const heroTouchStart=useRef<number|null>(null);
+ const liveTouchStart=useRef<number|null>(null);
+ const handleSwipe=(start:{current:number|null},endX:number,onSwipe:(direction:number)=>void)=>{
+  if(start.current===null)return;
+  const difference=endX-start.current;
+  start.current=null;
+  if(Math.abs(difference)>=55)onSwipe(difference<0?1:-1);
+ };
  const [heroSlide,setHeroSlide]=useState(0);
  const [heroPaused,setHeroPaused]=useState(false);
  const [heroVisible,setHeroVisible]=useState(true);
@@ -107,18 +118,40 @@ export default function Home(){
   update();window.addEventListener("scroll",update,{passive:true});window.addEventListener("resize",update);
   return()=>{cancelAnimationFrame(raf);window.removeEventListener("scroll",update);window.removeEventListener("resize",update);};
  },[]);
- useEffect(()=>{document.body.style.overflow=open?"hidden":"";return()=>{document.body.style.overflow="";};},[open]);
+ useEffect(()=>{
+  document.body.style.overflow=open?"hidden":"";
+  if(!open)return()=>{document.body.style.overflow="";};
+  const menu=mobileMenuRef.current;
+  const focusable=()=>Array.from(menu?.querySelectorAll<HTMLAnchorElement>('a[href]')??[]);
+  const first=focusable()[0];
+  first?.focus();
+  const onKeyDown=(event:KeyboardEvent)=>{
+   if(event.key==="Escape"){setOpen(false);mobileMenuButtonRef.current?.focus();return;}
+   if(event.key!=="Tab")return;
+   const links=focusable();
+   if(!links.length)return;
+   const previous=links[0],last=links[links.length-1];
+   if(event.shiftKey&&document.activeElement===previous){event.preventDefault();last.focus();}
+   else if(!event.shiftKey&&document.activeElement===last){event.preventDefault();previous.focus();}
+  };
+  document.addEventListener("keydown",onKeyDown);
+  return()=>{document.body.style.overflow="";document.removeEventListener("keydown",onKeyDown);};
+ },[open]);
  return <>
   <div className="reading-progress" style={{width:`${progress}%`}}/>
   <header className={`masthead ${scrolled?"masthead-scrolled":""} ${open?"masthead-menu-open":""}`}>
    <a className="brand" href="#inicio" onClick={()=>setOpen(false)} aria-label="Mr Bow — início">MR<span>BOW</span><b>®</b></a>
    <nav className="desktop-links" aria-label="Menu principal">{nav.slice(0,4).map(([label,href])=><a key={href} href={href}>{label}</a>)}</nav>
    <a href="#booking" className="masthead-booking">BOOKING <ArrowUpRight size={17}/></a>
-   <button className="mobile-trigger" type="button" aria-expanded={open} aria-label={open?"Fechar menu":"Abrir menu"} onClick={()=>setOpen(v=>!v)}>{open?<X/>:<Menu/>}</button>
+   <button ref={mobileMenuButtonRef} className="mobile-trigger" type="button" aria-controls="mobile-site-menu" aria-expanded={open} aria-label={open?"Fechar menu":"Abrir menu"} onClick={()=>setOpen(v=>!v)}>{open?<X/>:<Menu/>}</button>
   </header>
-  <div className={`mobile-overlay ${open?"shown":""}`} aria-hidden={!open}><nav aria-label="Menu móvel">{nav.map(([label,href],i)=><a key={href} href={href} onClick={()=>setOpen(false)}><span>0{i+1}</span>{label}<ArrowUpRight size={23}/></a>)}</nav><p>MÚSICA • IDENTIDADE • LEGADO</p></div>
+  <div id="mobile-site-menu" ref={mobileMenuRef} className={`mobile-overlay ${open?"shown":""}`} aria-hidden={!open}>
+   <nav aria-label="Menu móvel">{mobileNav.map(([label,href],i)=><a key={href} tabIndex={open?0:-1} href={href} onClick={()=>setOpen(false)}><span>{String(i+1).padStart(2,"0")}</span>{label}<ArrowUpRight size={20}/></a>)}</nav>
+   <a className="mobile-booking-cta" href="#booking" tabIndex={open?0:-1} onClick={()=>setOpen(false)}>CONTRATAR MR BOW <ArrowUpRight size={22}/></a>
+   <p>MÚSICA • IDENTIDADE • LEGADO</p>
+  </div>
   <main>
-   <section className={`hero hero-cinematic-slider ${heroPaused||!heroVisible?"is-paused":""}`} id="inicio" ref={heroPanelRef} onMouseEnter={()=>setHeroPaused(true)} onMouseLeave={()=>setHeroPaused(false)} onFocusCapture={()=>setHeroPaused(true)} onBlurCapture={()=>setHeroPaused(false)} aria-label="Destaques de Mr Bow">
+   <section className={`hero hero-cinematic-slider ${heroPaused||!heroVisible?"is-paused":""}`} id="inicio" ref={heroPanelRef} onMouseEnter={()=>setHeroPaused(true)} onMouseLeave={()=>setHeroPaused(false)} onFocusCapture={()=>setHeroPaused(true)} onBlurCapture={()=>setHeroPaused(false)} onTouchStart={e=>{heroTouchStart.current=e.touches[0]?.clientX??null;}} onTouchEnd={e=>handleSwipe(heroTouchStart,e.changedTouches[0]?.clientX??0,direction=>changeHeroSlide(heroSlide+direction))} onTouchCancel={()=>{heroTouchStart.current=null;}} aria-label="Destaques de Mr Bow">
     {heroSlides.map((slide,index)=><div key={slide.image} className={`hero-slide-photo ${heroSlide===index?"is-active":""}`} style={{backgroundImage:`url("${slide.image}")`}} aria-hidden="true"/>)}
     <div className="hero-grain" aria-hidden="true"/>
     <div className="hero-title-wrap hero-title-only">
@@ -182,7 +215,7 @@ export default function Home(){
       </div>
      </div>
      <div className="release-topline"><div><span className="release-small">DISCOGRAFIA / MR BOW</span><h3>DISCOGRAFIA <i>DE MR BOW</i></h3></div><div className="release-arrows"><button type="button" aria-label="Álbum anterior" onClick={()=>albumsRail.current?.scrollBy({left:-340,behavior:"smooth"})}><ChevronLeft size={22}/></button><button type="button" aria-label="Álbum seguinte" onClick={()=>albumsRail.current?.scrollBy({left:340,behavior:"smooth"})}><ChevronRight size={22}/></button></div></div>
-     <div className="albums-rail" ref={albumsRail}>
+     <div className="albums-rail" ref={albumsRail} aria-label="Discografia de Mr Bow — deslize para ver mais álbuns">
       {[
        {number:"01",image:"/images/Album%201.jpeg",title:"MR ROMANTIC",note:"CAPA OFICIAL"},
        {number:"02",image:"/images/Album%202.jpg",title:"STORY OF MY LIFE",note:"CAPA OFICIAL"},
@@ -196,6 +229,7 @@ export default function Home(){
         <div className="album-card-info"><div><span>{album.note}</span><h4>{album.title}</h4></div><a href="https://open.spotify.com/search/Mr%20Bow" target="_blank" rel="noopener noreferrer">OUVIR NO SPOTIFY <ArrowUpRight size={18}/></a></div>
        </Reveal>)}
      </div>
+     <span className="albums-mobile-hint" aria-hidden="true">DESLIZE PARA EXPLORAR OS ÁLBUNS <ArrowRight size={16}/></span>
      <Reveal className="music-bottom-strip"><span>O UNIVERSO MUSICAL DE MR BOW</span><a href="https://open.spotify.com/search/Mr%20Bow" target="_blank" rel="noopener noreferrer">EXPLORAR NO SPOTIFY <ArrowUpRight size={18}/></a></Reveal>
     </div>
    </section>
@@ -248,7 +282,7 @@ export default function Home(){
     </div>
    </section>
 
-   <section className={`cinema-panel cinema-slider ${livePaused||!liveVisible?"is-paused":""}`} id="ao-vivo" ref={livePanelRef} aria-label="Concertos e celebrações com Mr Bow" onMouseEnter={()=>setLivePaused(true)} onMouseLeave={()=>setLivePaused(false)} onFocusCapture={()=>setLivePaused(true)} onBlurCapture={()=>setLivePaused(false)}>
+   <section className={`cinema-panel cinema-slider ${livePaused||!liveVisible?"is-paused":""}`} id="ao-vivo" ref={livePanelRef} aria-label="Concertos e celebrações com Mr Bow" onMouseEnter={()=>setLivePaused(true)} onMouseLeave={()=>setLivePaused(false)} onFocusCapture={()=>setLivePaused(true)} onBlurCapture={()=>setLivePaused(false)} onTouchStart={e=>{liveTouchStart.current=e.touches[0]?.clientX??null;}} onTouchEnd={e=>handleSwipe(liveTouchStart,e.changedTouches[0]?.clientX??0,direction=>changeLiveSlide(liveSlide+direction))} onTouchCancel={()=>{liveTouchStart.current=null;}}>
     {liveSlides.map((slide,index)=><div key={slide.image} className={`cinema-slide-image ${index===liveSlide?"is-active":""}`} style={{backgroundImage:`url("${slide.image}")`,backgroundPosition:slide.position}} aria-hidden="true"/>)}
     <div className="cinema-shade cinema-slide-shade" aria-hidden="true"/>
     <div key={liveSlide} className="cinema-content cinema-slide-content" aria-live="polite">
@@ -269,7 +303,7 @@ export default function Home(){
     <div className="section-index"><span>03 / NEXT DATES</span><span>ENCONTRE-NOS AO VIVO</span></div>
     <Reveal><div className="agenda-head"><h2>PRÓXIMOS<br/><em>ENCONTROS.</em></h2><p>O próximo momento inesquecível pode estar mais perto do que imagina.</p></div></Reveal>
     {upcomingShows.length? <div className="dates">{upcomingShows.map(s=><div className="date-row" key={s.date+s.city}><strong>{s.date} <small>{s.month}</small></strong><span>{s.city}<small>{s.venue}</small></span>{s.ticketUrl?<a href={s.ticketUrl} target="_blank" rel="noopener noreferrer">BILHETES <ArrowUpRight size={20}/></a>:<span>EM BREVE</span>}</div>)}</div>:
-    <Reveal><div className="agenda-empty"><span className="asterisk">✳</span><div><strong>NOVAS DATAS<br/>A CAMINHO.</strong><p>Consulte esta área para conhecer os próximos espectáculos oficialmente confirmados.</p></div><a href="#booking" aria-label="Solicitar espectáculo"><ArrowUpRight size={32}/></a></div></Reveal>}
+    <Reveal><div className="agenda-empty"><span className="asterisk">✳</span><div><strong>NOVAS DATAS<br/>A CAMINHO.</strong><p>Consulte esta área para conhecer os próximos espectáculos oficialmente confirmados.</p></div><a className="agenda-booking-cta" href="#booking" aria-label="Solicitar contratação para um espectáculo">PEDIR CONTRATAÇÃO <ArrowUpRight size={25}/></a></div></Reveal>}
    </section>
 
    <section className="booking section-shell booking-photo" id="booking">
