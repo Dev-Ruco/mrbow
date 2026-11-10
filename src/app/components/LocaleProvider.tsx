@@ -47,8 +47,9 @@ function translate(source:string,locale:Locale):string {
   if(slide)translated=(locale==="en"?"Show slide ":"Komba silayidi ")+slide[2]+slide[3];
  }
  if(!translated)return source;
- const match=source.match(/^(\s*)(.*?)(\s*)$/s);
- return match?match[1]+translated+match[3]:translated;
+ const leading=source.match(/^\s*/)?.[0]??"";
+ const trailing=source.match(/\s*$/)?.[0]??"";
+ return leading+translated+trailing;
 }
 
 function translateTextNode(node:Text,locale:Locale){
