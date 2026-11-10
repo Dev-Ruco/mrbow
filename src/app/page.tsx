@@ -82,7 +82,21 @@ export default function Home(){
    <section className="music-showcase" id="musica">
     <div className="music-showcase-inner">
      <div className="music-meta"><span>01 / THE MUSIC</span><span className="music-meta-right">MR BOW — DISCOGRAFIA & VÍDEOS</span></div>
-     <Reveal className="music-heading"><div><span className="music-eyebrow"><Disc3 size={16}/> O SOM DE MR BOW</span><h2>OUVE.<br/><em>SENTE.</em><br/>VIVE.</h2></div><p>As canções que nos aproximam. Os vídeos que transformam cada melodia numa história.</p></Reveal>
+     <div className="music-hero-composition">
+      <Reveal className="music-heading"><div><span className="music-eyebrow"><Disc3 size={16}/> O SOM DE MR BOW</span><h2>OUVE.<br/><em>SENTE.</em><br/>VIVE.</h2></div><p>As canções que nos aproximam. A emoção que se transforma em memória colectiva.</p></Reveal>
+      <div className="music-mosaic" aria-label="Galeria ilustrativa da energia dos espectáculos e do público">
+       {[
+        {image:"https://images.unsplash.com/photo-1459749411175-04bf5292ceea?auto=format&fit=crop&w=1000&q=85",label:"01 / PÚBLICO EM ÊXTASE",name:"Público a vibrar",className:"music-mosaic-crowd"},
+        {image:"https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&w=750&q=85",label:"02 / EM PALCO",name:"Actuação ao vivo",className:"music-mosaic-stage"},
+        {image:"https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=750&q=85",label:"03 / A ENERGIA",name:"Fãs a celebrar",className:"music-mosaic-fans"},
+        {image:"https://images.unsplash.com/photo-1470225620780-dba8ba36b745?auto=format&fit=crop&w=1100&q=85",label:"04 / ATMOSFERA",name:"Ambiente de espectáculo",className:"music-mosaic-atmosphere"}
+       ].map((photo,i)=><Reveal key={photo.label} className={`music-mosaic-cell ${photo.className}`} delay={i*95}>
+        <img src={photo.image} alt={photo.name+" — imagem ilustrativa a substituir por fotografia oficial de Mr Bow"} loading="lazy" />
+        <span className="music-mosaic-label">{photo.label}</span>
+       </Reveal>)}
+       <span className="music-mosaic-note">IMAGENS DE REFERÊNCIA · FOTOS OFICIAIS EM BREVE</span>
+      </div>
+     </div>
      <div className="release-topline"><div><span className="release-small">01 — 03 / EM DESTAQUE</span><h3>ÁLBUNS <i>SELECCIONADOS</i></h3></div><div className="release-arrows"><button type="button" aria-label="Álbum anterior" onClick={()=>albumsRail.current?.scrollBy({left:-340,behavior:"smooth"})}><ChevronLeft size={22}/></button><button type="button" aria-label="Álbum seguinte" onClick={()=>albumsRail.current?.scrollBy({left:340,behavior:"smooth"})}><ChevronRight size={22}/></button></div></div>
      <div className="albums-rail" ref={albumsRail}>
       {[
