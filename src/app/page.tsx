@@ -1,7 +1,8 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import { ArrowDown, ArrowRight, ArrowUpRight, ChevronLeft, ChevronRight, Disc3, Instagram, Menu, Pause, Play, Volume2, X, Youtube } from "lucide-react";
+import { ArrowDown, ArrowRight, ArrowUpRight, ChevronLeft, ChevronRight, Disc3, Instagram, Menu, Mic2, Newspaper, Pause, Play, Tv2, Volume2, X, Youtube } from "lucide-react";
 import { musicLinks, upcomingShows } from "@/lib/content";
+import { mediaAppearances } from "@/lib/media";
 import { getConsentChoice, CONSENT_EVENT } from "./components/CookiePreferences";
 import { LanguageSwitcher, useLocale } from "./components/LocaleProvider";
 
@@ -29,8 +30,8 @@ function Reveal({children,className="",delay=0}:{children:React.ReactNode;classN
   },[]);
   return <div ref={ref} className={`reveal ${className}`} style={{transitionDelay:`${delay}ms`}}>{children}</div>;
 }
-const nav=[["Início","#inicio"],["Artista","#artista"],["Música","#musica"],["Ao vivo","#ao-vivo"],["Booking","#booking"]];
-const mobileNav=[["Início","#inicio"],["A História","#artista"],["Música","#musica"],["Videoclipes","#videos"],["Prémios","#premios"],["Ao Vivo","#ao-vivo"],["Agenda","#agenda"]];
+const nav=[["Início","#inicio"],["Artista","#artista"],["Música","#musica"],["Media","#entrevistas"],["Ao vivo","#ao-vivo"],["Booking","#booking"]];
+const mobileNav=[["Início","#inicio"],["A História","#artista"],["Música","#musica"],["Videoclipes","#videos"],["Prémios","#premios"],["Entrevistas","#entrevistas"],["Ao Vivo","#ao-vivo"],["Agenda","#agenda"]];
 export default function Home(){
  const {locale}=useLocale();
  const bookingMessage=locale==="en"
@@ -386,6 +387,38 @@ export default function Home(){
      </div>
      <Reveal className="awards-additional"><span>MOZAMBIQUE MUSIC AWARDS / 2015</span><div><strong>Melhor Artista Masculino</strong><strong>Música Mais Popular</strong></div><a href="https://www.mmo.co.mz/veja-a-lista-dos-vencedores-do-mma-2015/" target="_blank" rel="noopener noreferrer">VER DISTINÇÕES <ArrowUpRight size={18}/></a></Reveal>
      <p className="awards-source">Fonte: Rádio Moçambique — vencedores oficiais do Ngoma; resultados dos Mozambique Music Awards 2015.</p>
+    </div>
+   </section>
+
+   <section className="media-section" id="entrevistas" aria-labelledby="media-heading">
+    <div className="media-section-inner">
+     <div className="media-topline"><span>MR BOW / NA IMPRENSA</span><span>CONVERSAS • TELEVISÃO • NOTÍCIAS</span></div>
+     <Reveal className="media-heading">
+      <div><span className="media-kicker">PARA ALÉM DA MÚSICA</span><h2 id="media-heading">A VOZ.<br/><em>AS HISTÓRIAS.</em></h2></div>
+      <p>Entrevistas, conversas e momentos na comunicação social. Conhece as ideias, as experiências e o percurso de Mr Bow através de podcasts, televisão e notícias.</p>
+     </Reveal>
+     <div className="media-category-grid">
+      {([
+       {id:"podcast" as const,number:"01",icon:Mic2,category:"PODCASTS",headline:"CONVERSAS QUE MARCAM.",description:"Entrevistas e conversas aprofundadas em podcasts."},
+       {id:"televisao" as const,number:"02",icon:Tv2,category:"TELEVISÃO",headline:"FRENTE ÀS CÂMARAS.",description:"Participações em programas de televisão e entrevistas em vídeo."},
+       {id:"imprensa" as const,number:"03",icon:Newspaper,category:"IMPRENSA & NOTÍCIAS",headline:"MR BOW NAS NOTÍCIAS.",description:"Reportagens, entrevistas escritas e destaques nos órgãos de comunicação social."}
+      ]).map((category,index)=>{
+       const articles=mediaAppearances.filter(appearance=>appearance.category===category.id&&/^https?:\/\//.test(appearance.url));
+       const Icon=category.icon;
+       return <Reveal className={`media-category media-category-${category.id}`} key={category.id} delay={index*110}>
+        <div className="media-category-top"><span>{category.number} / {category.category}</span><Icon size={25} strokeWidth={1.4} aria-hidden="true"/></div>
+        <h3>{category.headline}</h3>
+        <p>{category.description}</p>
+        {articles.length>0?<div className="media-items">
+         {articles.map(article=><a className="media-item" key={article.id} href={article.url} target="_blank" rel="noopener noreferrer">
+          {article.image&&<img src={article.image} alt="" loading="lazy" />}
+          <span className="media-item-text"><small>{article.outlet}{article.date?` · ${article.date}`:""}</small><strong>{article.title}</strong><span>VER ENTREVISTA <ArrowUpRight size={15}/></span></span>
+         </a>)}
+        </div>:<div className="media-placeholder"><span className="media-placeholder-line" aria-hidden="true"/><span>EM ACTUALIZAÇÃO</span><small>Novas entrevistas em breve.</small></div>}
+       </Reveal>;
+      })}
+     </div>
+     <div className="media-endnote"><span>MR BOW. PARA ALÉM DO PALCO.</span><span>ENTREVISTAS & MEDIA</span></div>
     </div>
    </section>
 
