@@ -360,3 +360,53 @@ Object.assign(translations.ts,{
   "A TOCAR · XISUTI XAMINA": "KU TLANGIWA · XISUTI XAMINA",
   "O ROSTO POR DETRÁS DA MÚSICA": "WANUNA ENDZHAKA KA VUYIMBELERI"
 });
+
+// Vocabulário editorial da secção de entrevistas e imprensa.
+Object.assign(translations.en,{
+  "Entrevistas": "Interviews",
+  "Media": "Media",
+  "MR BOW / NA IMPRENSA": "MR BOW / IN THE MEDIA",
+  "CONVERSAS • TELEVISÃO • NOTÍCIAS": "CONVERSATIONS • TELEVISION • NEWS",
+  "PARA ALÉM DA MÚSICA": "BEYOND THE MUSIC",
+  "A VOZ.": "THE VOICE.",
+  "AS HISTÓRIAS.": "THE STORIES.",
+  "Entrevistas, conversas e momentos na comunicação social. Conhece as ideias, as experiências e o percurso de Mr Bow através de podcasts, televisão e notícias.": "Interviews, conversations and media appearances. Discover Mr Bow’s ideas, experiences and journey through podcasts, television and news coverage.",
+  "PODCASTS": "PODCASTS",
+  "TELEVISÃO": "TELEVISION",
+  "IMPRENSA & NOTÍCIAS": "PRESS & NEWS",
+  "CONVERSAS QUE MARCAM.": "CONVERSATIONS THAT MATTER.",
+  "FRENTE ÀS CÂMARAS.": "ON CAMERA.",
+  "MR BOW NAS NOTÍCIAS.": "MR BOW IN THE NEWS.",
+  "Entrevistas e conversas aprofundadas em podcasts.": "In-depth interviews and conversations on podcasts.",
+  "Participações em programas de televisão e entrevistas em vídeo.": "Television appearances and on-camera interviews.",
+  "Reportagens, entrevistas escritas e destaques nos órgãos de comunicação social.": "Features, written interviews and highlights in the press.",
+  "EM ACTUALIZAÇÃO": "COMING SOON",
+  "Novas entrevistas em breve.": "Interviews will be added soon.",
+  "VER ENTREVISTA": "WATCH / READ INTERVIEW",
+  "MR BOW. PARA ALÉM DO PALCO.": "MR BOW. BEYOND THE STAGE.",
+  "ENTREVISTAS & MEDIA": "INTERVIEWS & MEDIA"
+});
+Object.assign(translations.ts,{
+  "Entrevistas": "Miburisano",
+  "Media": "Mahungu",
+  "MR BOW / NA IMPRENSA": "MR BOW / EKA MAHUNGU",
+  "CONVERSAS • TELEVISÃO • NOTÍCIAS": "MIBURISANO • THELEVHIXINI • MAHUNGU",
+  "PARA ALÉM DA MÚSICA": "KU TLULA VUYIMBELERI",
+  "A VOZ.": "RITO.",
+  "AS HISTÓRIAS.": "MATIMU.",
+  "Entrevistas, conversas e momentos na comunicação social. Conhece as ideias, as experiências e o percurso de Mr Bow através de podcasts, televisão e notícias.": "Miburisano ni minkarhi ya Mr Bow eka mahungu. Tiva miehleketo ya yena, mintokoto ni riendzo ra yena hi tipodcast, thelevhixini ni mahungu.",
+  "PODCASTS": "TIPODCAST",
+  "TELEVISÃO": "THELEVHIXINI",
+  "IMPRENSA & NOTÍCIAS": "MAPHEPHA NI MAHUNGU",
+  "CONVERSAS QUE MARCAM.": "MIBURISANO LEYI KHUMBAKA.",
+  "FRENTE ÀS CÂMARAS.": "EMAHLWENI KA TIKHAMERA.",
+  "MR BOW NAS NOTÍCIAS.": "MR BOW EKA MAHUNGU.",
+  "Entrevistas e conversas aprofundadas em podcasts.": "Miburisano yo enta eka tipodcast.",
+  "Participações em programas de televisão e entrevistas em vídeo.": "Ku humelela eka minongonoko ya thelevhixini ni miburisano ya tivhidiyo.",
+  "Reportagens, entrevistas escritas e destaques nos órgãos de comunicação social.": "Swiviko, miburisano leyi tsariweke ni mahungu ya nkoka eka swihangalasamahungu.",
+  "EM ACTUALIZAÇÃO": "SWI TA TA HI KU HATLI",
+  "Novas entrevistas em breve.": "Miburisano leyintshwa yi ta engeteleriwa ku nga ri khale.",
+  "VER ENTREVISTA": "VONA KUMBE HLAYA MBURISANO",
+  "MR BOW. PARA ALÉM DO PALCO.": "MR BOW. KU TLULA XITEJI.",
+  "ENTREVISTAS & MEDIA": "MIBURISANO NI MAHUNGU"
+});
