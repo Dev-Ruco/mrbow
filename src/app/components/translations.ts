@@ -410,3 +410,41 @@ Object.assign(translations.ts,{
   "MR BOW. PARA ALÉM DO PALCO.": "MR BOW. KU TLULA XITEJI.",
   "ENTREVISTAS & MEDIA": "MIBURISANO NI MAHUNGU"
 });
+
+// Entrevistas em vídeo e concerto gravado.
+Object.assign(translations.en,{
+  "Concerto": "Concert",
+  "ENTREVISTAS EM DESTAQUE": "FEATURED INTERVIEWS",
+  "VER ENTREVISTA": "WATCH INTERVIEW",
+  "ENTREVISTA / YOUTUBE": "INTERVIEW / YOUTUBE",
+  "MR BOW / AO VIVO": "MR BOW / LIVE",
+  "CONCERTO GRAVADO": "RECORDED CONCERT",
+  "PALCO. ENERGIA. EMOÇÃO.": "STAGE. ENERGY. EMOTION.",
+  "A EXPERIÊNCIA": "THE EXPERIENCE",
+  "AO VIVO.": "LIVE.",
+  "Revive a energia de um concerto de Mr Bow. Um espectáculo gravado, disponível para assistir na íntegra.": "Relive the energy of a Mr Bow concert. Watch the full recorded live performance.",
+  "GRAVAÇÃO AO VIVO · YOUTUBE": "LIVE RECORDING · YOUTUBE",
+  "VER CONCERTO COMPLETO": "WATCH FULL CONCERT",
+  "UMA EXPERIÊNCIA PARA REVIVER.": "A MOMENT TO RELIVE.",
+  "Assistir ao concerto gravado de Mr Bow no YouTube": "Watch Mr Bow’s recorded concert on YouTube",
+  "Mr Bow em concerto ao vivo — capa do vídeo": "Mr Bow live in concert — video artwork",
+  "THE SOUND OF MR BOW.": "THE SOUND OF MR BOW."
+});
+Object.assign(translations.ts,{
+  "Concerto": "Khonsati",
+  "ENTREVISTAS EM DESTAQUE": "MIBURISANO YA NKOKA",
+  "VER ENTREVISTA": "VONA MBURISANO",
+  "ENTREVISTA / YOUTUBE": "MBURISANO / YOUTUBE",
+  "MR BOW / AO VIVO": "MR BOW / HI KU KONGOMA",
+  "CONCERTO GRAVADO": "KHONSATI LEYI RHEKHODIWEKE",
+  "PALCO. ENERGIA. EMOÇÃO.": "XITEJI. NTAMU. MINTLHAVEKO.",
+  "A EXPERIÊNCIA": "NTOKOTO",
+  "AO VIVO.": "HI KU KONGOMA.",
+  "Revive a energia de um concerto de Mr Bow. Um espectáculo gravado, disponível para assistir na íntegra.": "Tlhela u twa ntamu wa khonsati ya Mr Bow. Vona nkombiso lowu rhekhodiweke hinkwawu.",
+  "GRAVAÇÃO AO VIVO · YOUTUBE": "NKOMBISO LOWU RHEKHODIWEKE · YOUTUBE",
+  "VER CONCERTO COMPLETO": "VONA KHONSATI HINKWAYO",
+  "UMA EXPERIÊNCIA PARA REVIVER.": "NTOKOTO WO TLHELA U WU HANYA.",
+  "Assistir ao concerto gravado de Mr Bow no YouTube": "Vona khonsati ya Mr Bow leyi rhekhodiweke eka YouTube",
+  "Mr Bow em concerto ao vivo — capa do vídeo": "Mr Bow eka khonsati — xifaniso xa vhidhiyo",
+  "THE SOUND OF MR BOW.": "MUNGHANA WA MR BOW."
+});
