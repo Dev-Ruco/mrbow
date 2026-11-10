@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import { ArrowDown, ArrowRight, ArrowUpRight, ChevronLeft, ChevronRight, Disc3, Instagram, Menu, Music2, Pause, Play, Volume2, X, Youtube } from "lucide-react";
+import { ArrowDown, ArrowRight, ArrowUpRight, ChevronLeft, ChevronRight, Disc3, Instagram, Menu, Pause, Play, Volume2, X, Youtube } from "lucide-react";
 import { musicLinks, upcomingShows } from "@/lib/content";
 
 const concert = "/images/Mr%20bow%20hero.jpg";
@@ -177,7 +177,7 @@ export default function Home(){
   return()=>{document.body.style.overflow="";document.removeEventListener("keydown",onKeyDown);};
  },[open]);
  return <>
-  <audio ref={audioRef} src="/images/Mr.%20Bow%20-%20Txova%20Xitaduma.mp3" preload="auto" loop playsInline aria-label="Mr Bow — Txova Xitaduma"/>
+  <audio ref={audioRef} src="/images/Mr.%20Bow%20-%20Txova%20Xitaduma.mp3" preload="auto" loop aria-label="Mr Bow — Txova Xitaduma"/>
   <button type="button" className={`site-audio-toggle ${audioPlaying?"is-playing":""}`} onClick={toggleSiteAudio} aria-label={audioPlaying?"Pausar música ambiente":"Reproduzir música ambiente"} aria-pressed={audioPlaying} title={audioPlaying?"Pausar música":"Ouvir Mr Bow"}>
    <span className="site-audio-icon">{audioPlaying?<Pause size={18} fill="currentColor"/>:<Volume2 size={19}/>}</span>
    <span className="site-audio-info"><strong>MR BOW</strong><small>{audioPlaying?"A TOCAR · TXOVA XITADUMA":audioReady?"ACTIVAR MÚSICA":"OUVIR MÚSICA"}</small></span>
