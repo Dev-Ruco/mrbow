@@ -1387,3 +1387,77 @@
  .media-placeholder{padding-top:28px}
 }
 @media(prefers-reduced-motion:reduce){.media-category,.media-item{transition:none!important}}
+
+
+/* Entrevistas verificadas por ligação e espectáculo integral. */
+.media-feature-label{display:flex;justify-content:space-between;align-items:center;gap:20px;margin:5px 0 20px;padding-bottom:15px;border-bottom:1px solid rgba(255,255,255,.23);font:700 10px "DM Sans",sans-serif;letter-spacing:.17em;color:#d7b1bc}
+.media-featured-grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:17px;margin-bottom:57px}
+.media-featured-card{grid-column:span 2;min-width:0;overflow:hidden;background:#211a1e;border:1px solid rgba(255,255,255,.13)}
+.media-featured-card:nth-child(-n+2){grid-column:span 3}
+.media-featured-link{display:block;height:100%;color:#fff;text-decoration:none}
+.media-featured-image{position:relative;aspect-ratio:16/9;overflow:hidden;background:#2b2027}
+.media-featured-image>img{width:100%;height:100%;display:block;object-fit:cover;filter:brightness(.73) saturate(.75);transition:transform .6s ease,filter .6s ease}
+.media-featured-link:hover img{transform:scale(1.06);filter:brightness(.86) saturate(.95)}
+.media-featured-play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);display:grid;place-items:center;width:64px;height:64px;background:rgba(143,26,58,.92);border:1px solid rgba(255,255,255,.65);border-radius:50%;box-shadow:0 8px 26px rgba(0,0,0,.22)}
+.media-featured-number{position:absolute;left:16px;top:15px;font:800 10px "DM Sans",sans-serif;letter-spacing:.17em;text-shadow:0 2px 7px #000}
+.media-featured-info{padding:23px 24px 22px}
+.media-featured-info>span:first-child{font:700 10px "DM Sans",sans-serif;letter-spacing:.15em;color:#d4a7b5}
+.media-featured-info h3{font:900 clamp(27px,3vw,42px)/1 "Barlow Condensed",sans-serif;letter-spacing:.015em;margin:13px 0 23px}
+.media-featured-action{display:inline-flex;align-items:center;gap:8px;font:800 10px "DM Sans",sans-serif;letter-spacing:.13em;padding-bottom:5px;border-bottom:1px solid rgba(255,255,255,.45)}
+.concert-recorded{position:relative;background:#100d10;color:#fff;padding:107px 5vw 105px}
+.concert-recorded-inner{max-width:1600px;margin:0 auto}
+.concert-recorded-topline,.concert-recorded-foot{display:flex;justify-content:space-between;gap:16px;font:800 10px "DM Sans",sans-serif;letter-spacing:.15em}
+.concert-recorded-topline{border-bottom:1px solid rgba(255,255,255,.22);padding-bottom:23px;color:#dfbdc5}
+.concert-recorded-heading{padding:47px 0 38px;max-width:1100px}
+.concert-recorded-heading>span{display:block;color:#e6a5b8;font:700 10px "DM Sans",sans-serif;letter-spacing:.2em;margin-bottom:22px}
+.concert-recorded-heading h2{font:900 clamp(75px,10vw,162px)/.81 "Barlow Condensed",sans-serif;letter-spacing:-.045em;margin:0 0 30px}
+.concert-recorded-heading h2 em{font-family:"Italiana",serif;font-weight:400;font-size:.76em;color:#dda7b8;font-style:normal}
+.concert-recorded-heading p{font:400 15px/1.7 "DM Sans",sans-serif;color:#c4babe;max-width:550px}
+.concert-recorded-visual{height:auto}
+.concert-recorded-link{position:relative;display:block;min-height:560px;aspect-ratio:16/8;overflow:hidden;color:#fff;text-decoration:none;background:#281b24}
+.concert-recorded-link>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;filter:saturate(.8) brightness(.85);transition:transform 1.2s ease,filter .6s ease}
+.concert-recorded-link:hover>img{transform:scale(1.055);filter:saturate(1) brightness(.95)}
+.concert-recorded-scrim{position:absolute;inset:0;pointer-events:none;background:linear-gradient(0deg,rgba(7,5,8,.88) 0%,rgba(7,5,8,.18) 65%,rgba(7,5,8,.08) 100%)}
+.concert-recorded-play{position:absolute;top:44%;left:50%;transform:translate(-50%,-50%);display:grid;place-items:center;width:94px;height:94px;border:1.5px solid rgba(255,255,255,.85);border-radius:50%;background:rgba(150,30,64,.82);box-shadow:0 10px 30px rgba(0,0,0,.27);transition:transform .4s,background .4s}
+.concert-recorded-link:hover .concert-recorded-play{transform:translate(-50%,-50%) scale(1.09);background:#aa254f}
+.concert-recorded-caption{position:absolute;bottom:37px;left:46px;right:46px;display:flex;flex-direction:column;align-items:flex-start}
+.concert-recorded-caption>span:first-child{font:800 10px "DM Sans",sans-serif;letter-spacing:.17em;color:#edb9c8;margin-bottom:12px}
+.concert-recorded-caption strong{font:900 clamp(52px,7vw,102px)/.85 "Barlow Condensed",sans-serif;letter-spacing:-.035em}
+.concert-recorded-watch{display:inline-flex;align-items:center;gap:8px;margin-top:25px;padding-bottom:8px;border-bottom:1px solid rgba(255,255,255,.5);font:800 11px "DM Sans",sans-serif;letter-spacing:.12em}
+.concert-recorded-foot{padding-top:23px;color:#ab9fa4}
+@media(max-width:1050px){
+ .media-featured-grid{gap:12px}
+ .media-featured-info{padding:19px}
+ .concert-recorded-link{min-height:450px}
+}
+@media(max-width:760px){
+ .media-feature-label{font-size:9px}
+ .media-featured-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-bottom:38px}
+ .media-featured-card,.media-featured-card:nth-child(-n+2){grid-column:span 1}
+ .media-featured-card:first-child{grid-column:span 2}
+ .media-featured-card:first-child .media-featured-info h3{font-size:36px}
+ .media-featured-play{width:45px;height:45px}
+ .media-featured-play svg{width:20px}
+ .media-featured-info{padding:14px 12px}
+ .media-featured-info>span:first-child{font-size:8px}
+ .media-featured-info h3{font-size:25px;margin:10px 0 15px}
+ .media-featured-action{font-size:9px;letter-spacing:.04em}
+ .concert-recorded{padding:73px 6vw 72px}
+ .concert-recorded-topline,.concert-recorded-foot{font-size:9px}
+ .concert-recorded-heading{padding:43px 0 34px}
+ .concert-recorded-heading h2{font-size:clamp(61px,13.6vw,95px)}
+ .concert-recorded-heading h2 em{font-size:.69em}
+ .concert-recorded-heading p{font-size:13px}
+ .concert-recorded-link{min-height:440px;aspect-ratio:3/4}
+ .concert-recorded-play{width:72px;height:72px;top:40%}
+ .concert-recorded-caption{left:22px;bottom:25px;right:20px}
+ .concert-recorded-caption strong{font-size:clamp(47px,10vw,72px)}
+ .concert-recorded-watch{font-size:9px;letter-spacing:.07em}
+}
+@media(max-width:390px){
+ .media-featured-grid{grid-template-columns:1fr}
+ .media-featured-card,.media-featured-card:nth-child(-n+2),.media-featured-card:first-child{grid-column:span 1}
+ .media-featured-info h3{font-size:29px}
+ .concert-recorded-link{min-height:390px}
+}
+@media(prefers-reduced-motion:reduce){.media-featured-image>img,.concert-recorded-link>img,.concert-recorded-play{transition:none!important}}
