@@ -399,35 +399,45 @@ export default function Home(){
      </Reveal>
      <div className="media-feature-label"><span>ENTREVISTAS EM DESTAQUE</span><span>05 / YOUTUBE</span></div>
      <div className="media-featured-grid">
-      {mediaAppearances.filter(appearance=>appearance.category==="entrevista").map((appearance,index)=><Reveal className={`media-featured-card ${index===0?"media-featured-lead":""}`} key={appearance.id} delay={Math.min(index*65,250)}>
-       <a href={appearance.url} className="media-featured-link" target="_blank" rel="noopener noreferrer" aria-label={`Ver entrevista ${index+1} de Mr Bow no YouTube`}>
-        <div className="media-featured-image">
-         <img src={allowExternalMedia?appearance.image:"/images/setion%203.jpg"} loading="lazy" alt={allowExternalMedia?`Miniatura da entrevista ${index+1} de Mr Bow`:`Imagem ilustrativa de entrevista ${index+1}`}/>
-         <span className="media-featured-play"><Play size={25} fill="currentColor" aria-hidden="true"/></span>
-         <span className="media-featured-number">{String(index+1).padStart(2,"0")} / 05</span>
-        </div>
-        <div className="media-featured-info"><span>ENTREVISTA / YOUTUBE</span><h3>{locale==="en"?`MR BOW · INTERVIEW ${String(index+1).padStart(2,"0")}`:locale==="ts"?`MR BOW · MBURISANO ${String(index+1).padStart(2,"0")}`:`MR BOW · ENTREVISTA ${String(index+1).padStart(2,"0")}`}</h3><span className="media-featured-action">VER ENTREVISTA <ArrowUpRight size={17}/></span></div>
-       </a>
-      </Reveal>)}
-     </div>
-     <div className="media-category-grid">
-      {([
-       {id:"podcast" as const,number:"01",icon:Mic2,category:"PODCASTS",headline:"CONVERSAS QUE MARCAM.",description:"Entrevistas e conversas aprofundadas em podcasts."},
-       {id:"televisao" as const,number:"02",icon:Tv2,category:"TELEVISÃO",headline:"FRENTE ÀS CÂMARAS.",description:"Participações em programas de televisão e entrevistas em vídeo."},
-       {id:"imprensa" as const,number:"03",icon:Newspaper,category:"IMPRENSA & NOTÍCIAS",headline:"MR BOW NAS NOTÍCIAS.",description:"Reportagens, entrevistas escritas e destaques nos órgãos de comunicação social."}
-      ]).map((category,index)=>{
-       const articles=mediaAppearances.filter(appearance=>appearance.category===category.id&&/^https?:\/\//.test(appearance.url));
-       const Icon=category.icon;
-       return <Reveal className={`media-category media-category-${category.id}`} key={category.id} delay={index*110}>
-        <div className="media-category-top"><span>{category.number} / {category.category}</span><Icon size={25} strokeWidth={1.4} aria-hidden="true"/></div>
-        <h3>{category.headline}</h3>
-        <p>{category.description}</p>
-        {articles.length>0?<div className="media-items">
-         {articles.map(article=><a className="media-item" key={article.id} href={article.url} target="_blank" rel="noopener noreferrer">
-          {article.image&&<img src={article.image} alt="" loading="lazy" />}
-          <span className="media-item-text"><small>{article.outlet}{article.date?` · ${article.date}`:""}</small><strong>{article.title}</strong><span>VER ENTREVISTA <ArrowUpRight size={15}/></span></span>
-         </a>)}
-        </div>:<div className="media-placeholder"><span className="media-placeholder-line" aria-hidden="true"/><span>EM ACTUALIZAÇÃO</span><small>Novas entrevistas em breve.</small></div>}
+      {mediaAppearances.filter(appearance=>appearance.category==="entrevista").map((appearance,index)=>{
+       const descriptions={
+        pt:[
+         "Uma conversa no Tu Pra Tu Podcast que aproxima o público do percurso artístico e da personalidade de Mr Bow.",
+         "Mr Bow participa no MozPod, num formato de entrevista dedicado às conversas e às experiências dos convidados.",
+         "Uma participação na Rise FM, da África do Sul, que leva a presença mediática de Mr Bow além das fronteiras de Moçambique.",
+         "Um encontro de Mr Bow com o Makagui Cast, num espaço de conversa que permite conhecer outra dimensão do artista.",
+         "Mr Bow em entrevista ao TeleDiário da STV, num registo televisivo que integra o seu arquivo de aparições na comunicação social."
+        ],
+        en:[
+         "A conversation on Tu Pra Tu Podcast, offering audiences another perspective on Mr Bow’s artistic journey and personality.",
+         "Mr Bow joins MozPod for a guest interview in a format centred on conversation and personal experiences.",
+         "An appearance on South Africa’s Rise FM, extending Mr Bow’s media presence beyond Mozambique.",
+         "Mr Bow joins Makagui Cast for a conversation that offers another perspective on the artist.",
+         "Mr Bow’s interview on STV’s TeleDiário, part of the artist’s television and media archive."
+        ],
+        ts:[
+         "Mburisano eka Tu Pra Tu Podcast lowu nyikaka vanhu ndlela yin'wana yo tiva riendzo ra vutshila ni vumunhu bya Mr Bow.",
+         "Mr Bow u humelela eka MozPod, laha vaendzi va burisanaka hi mintokoto ya vona.",
+         "Mr Bow u humelela eka Rise FM eAfrika-Dzonga, leswi kombisaka ku tiveka ka yena ni le handle ka Mozambique.",
+         "Mburisano wa Mr Bow eka Makagui Cast lowu pfunaka vanhu ku tiva muyimbeleri hi ndlela yin'wana.",
+         "Mburisano wa Mr Bow eka TeleDiário ya STV, lowu nga xiphemu xa matimu ya yena eka thelevhixini."
+        ]
+       };
+       const title=locale==="en"&&index===2?"Mr Bow on Rise FM — South Africa":locale==="ts"&&index===2?"Mr Bow eka Rise FM — Afrika-Dzonga":appearance.title;
+       return <Reveal className={`media-featured-card ${index===0?"media-featured-lead":""}`} key={appearance.id} delay={Math.min(index*65,250)}>
+        <a href={appearance.url} className="media-featured-link" target="_blank" rel="noopener noreferrer" aria-label={`Ver entrevista ${index+1} de Mr Bow no YouTube`}>
+         <div className="media-featured-image">
+          <img src={allowExternalMedia?appearance.image:"/images/setion%203.jpg"} loading="lazy" alt={allowExternalMedia?`Miniatura da entrevista ${index+1} de Mr Bow`:`Imagem ilustrativa de entrevista ${index+1}`}/>
+          <span className="media-featured-play"><Play size={25} fill="currentColor" aria-hidden="true"/></span>
+          <span className="media-featured-number">{String(index+1).padStart(2,"0")} / 05</span>
+         </div>
+         <div className="media-featured-info">
+          <span>{appearance.outlet}</span>
+          <h3>{title}</h3>
+          <p className="media-featured-description">{descriptions[locale][index]}</p>
+          <span className="media-featured-action">VER ENTREVISTA <ArrowUpRight size={17}/></span>
+         </div>
+        </a>
        </Reveal>;
       })}
      </div>
