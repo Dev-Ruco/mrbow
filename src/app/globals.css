@@ -354,3 +354,57 @@
  .artist-now-frame{right:0;bottom:0;width:44%;min-width:130px}
  .artist-now-portrait{height:clamp(205px,56vw,320px)}
 }
+
+
+/* Capítulo 04: movimento subtil e permanente dos dois retratos. */
+@keyframes mrBowArchiveFloat{
+  0%,100%{transform:translate3d(0,0,0) rotate(-2deg)}
+  50%{transform:translate3d(0,-9px,0) rotate(-1.4deg)}
+}
+@keyframes mrBowModernFloat{
+  0%,100%{transform:translate3d(0,0,0) rotate(4deg)}
+  50%{transform:translate3d(0,-13px,0) rotate(3.1deg)}
+}
+.artist-evolution-photos>.artist-archive-frame{
+ animation:mrBowArchiveFloat 11s ease-in-out infinite;
+ will-change:transform;
+}
+.artist-evolution-photos>.artist-now-frame{
+ animation:mrBowModernFloat 13s ease-in-out -3s infinite;
+ will-change:transform;
+}
+/* A imagem recortada mantém-se intacta; só o cenário da moldura muda. */
+.artist-now-portrait{
+ position:relative;
+ isolation:isolate;
+ background:
+  radial-gradient(ellipse at 66% 27%,rgba(188,206,211,.31) 0%,rgba(188,206,211,0) 51%),
+  linear-gradient(145deg,#354653 0%,#1a2834 52%,#101921 100%);
+}
+.artist-now-portrait::before{
+ content:"";
+ position:absolute;
+ inset:0;
+ z-index:-1;
+ background:linear-gradient(105deg,transparent 0%,transparent 39%,rgba(231,240,240,.12) 39.2%,rgba(231,240,240,.12) 39.5%,transparent 39.7%),
+            linear-gradient(90deg,transparent 0%,transparent 79%,rgba(231,240,240,.08) 79.2%,rgba(231,240,240,.08) 79.7%,transparent 80%);
+ pointer-events:none;
+}
+.artist-now-portrait::after{
+ content:"";
+ position:absolute;
+ z-index:-1;
+ width:83%;
+ height:80%;
+ left:7%;
+ top:11%;
+ border:1px solid rgba(219,233,235,.15);
+ border-radius:50%;
+ filter:blur(.1px);
+ pointer-events:none;
+}
+.artist-now-portrait img{position:relative;z-index:1}
+@media(prefers-reduced-motion:reduce){
+ .artist-evolution-photos>.artist-archive-frame,
+ .artist-evolution-photos>.artist-now-frame{animation:none!important;will-change:auto}
+}
