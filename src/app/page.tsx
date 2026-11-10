@@ -446,7 +446,7 @@ export default function Home(){
      <Reveal className="concert-recorded-visual">
       <a href={featuredLiveConcert.url} target="_blank" rel="noopener noreferrer" className="concert-recorded-link" aria-label="Assistir ao concerto gravado de Mr Bow no YouTube">
        <img
-        src="/images/Blue-Lit%20Concert%20Stage%20Performance_Easy-Resize.com.jpg"
+        src="/images/Mr%20bow%20concert.jpg"
         alt="Mr Bow em concerto ao vivo — capa do vídeo"
         loading="lazy"
        />
