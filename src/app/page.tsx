@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import { ArrowDown, ArrowRight, ArrowUpRight, ChevronLeft, ChevronRight, Disc3, Instagram, Menu, Pause, Play, Volume2, X, Youtube } from "lucide-react";
 import { musicLinks, upcomingShows } from "@/lib/content";
 import { getConsentChoice, CONSENT_EVENT } from "./components/CookiePreferences";
-import { LanguageSwitcher } from "./components/LocaleProvider";
+import { LanguageSwitcher, useLocale } from "./components/LocaleProvider";
 
 const concert = "/images/Mr%20bow%20hero.jpg";
 const heroSlides = [
@@ -32,6 +32,13 @@ function Reveal({children,className="",delay=0}:{children:React.ReactNode;classN
 const nav=[["Início","#inicio"],["Artista","#artista"],["Música","#musica"],["Ao vivo","#ao-vivo"],["Booking","#booking"]];
 const mobileNav=[["Início","#inicio"],["A História","#artista"],["Música","#musica"],["Videoclipes","#videos"],["Prémios","#premios"],["Ao Vivo","#ao-vivo"],["Agenda","#agenda"]];
 export default function Home(){
+ const {locale}=useLocale();
+ const bookingMessage=locale==="en"
+  ?"Hello, I would like information about booking Mr Bow for an event."
+  :locale==="ts"
+   ?"Avuxeni, ndzi lava vuxokoxoko bya ku hira Mr Bow eka nkhuvo."
+   :"Olá, gostaria de solicitar informações para contratar o Mr Bow para um evento.";
+
  const [open,setOpen]=useState(false);
  const [progress,setProgress]=useState(0);
  const [scrolled,setScrolled]=useState(false);
@@ -413,7 +420,7 @@ export default function Home(){
      <Reveal>
       <span className="booking-label">O PRÓXIMO GRANDE MOMENTO COMEÇA AQUI.</span>
       <h2>FAÇAMOS<br/><em>HISTÓRIA</em><span> JUNTOS.</span></h2>
-      <a className="booking-link booking-whatsapp" href="https://wa.me/258843000002?text=Ol%C3%A1%2C%20gostaria%20de%20solicitar%20informa%C3%A7%C3%B5es%20para%20contratar%20o%20Mr%20Bow%20para%20um%20evento." target="_blank" rel="noopener noreferrer" aria-label="Solicitar contratação de Mr Bow por WhatsApp">
+      <a className="booking-link booking-whatsapp" href={`https://wa.me/258843000002?text=${encodeURIComponent(bookingMessage)}`} target="_blank" rel="noopener noreferrer" aria-label="Solicitar contratação de Mr Bow por WhatsApp">
        CONTRATAR VIA WHATSAPP <span><ArrowUpRight size={29}/></span>
       </a>
      </Reveal>
