@@ -121,6 +121,31 @@ export default function Home(){
     </div>
    </section>
 
+   <section className="awards-section" id="premios">
+    <div className="awards-inner">
+     <div className="awards-eyebrow"><span>PRÉMIOS & DISTINÇÕES</span><span>AWARDS & RECOGNITION</span></div>
+     <Reveal className="awards-heading"><div><span className="awards-kicker">O RECONHECIMENTO DE UMA TRAJECTÓRIA</span><h2>UMA CARREIRA.<br/><em>UM LEGADO.</em></h2></div><p>Canções que conquistaram o público e distinções que marcaram diferentes momentos da carreira de Mr Bow.</p></Reveal>
+     <div className="awards-feature">
+      <Reveal className="awards-stat"><strong>05<span>×</span></strong><p>Prémios de música popular<br/>no Ngoma Moçambique</p><small>2011 — 2016</small></Reveal>
+      <div className="awards-timeline">
+       {[
+        {year:"2011",award:"NGOMA MOÇAMBIQUE",category:"Música Popular",song:"Nita ti Dlhaya"},
+        {year:"2013",award:"NGOMA MOÇAMBIQUE",category:"Música Popular",song:"Male Ya Matchangana"},
+        {year:"2014",award:"NGOMA MOÇAMBIQUE",category:"Música Popular",song:"Massnguitane"},
+        {year:"2015",award:"NGOMA MOÇAMBIQUE",category:"Música Popular",song:"Number One"},
+        {year:"2016",award:"NGOMA MOÇAMBIQUE",category:"Música Popular",song:"Nitafa na wena"},
+       ].map((award,i)=><Reveal className="awards-row" key={award.year} delay={i*50}>
+        <span className="awards-year">{award.year}</span>
+        <div><small>{award.award}</small><strong>{award.category}</strong><span>{award.song}</span></div>
+        <span className="awards-cross" aria-hidden="true">✳</span>
+       </Reveal>)}
+      </div>
+     </div>
+     <Reveal className="awards-additional"><span>MOZAMBIQUE MUSIC AWARDS / 2015</span><div><strong>Melhor Artista Masculino</strong><strong>Música Mais Popular</strong></div><a href="https://www.mmo.co.mz/veja-a-lista-dos-vencedores-do-mma-2015/" target="_blank" rel="noopener noreferrer">VER DISTINÇÕES <ArrowUpRight size={18}/></a></Reveal>
+     <p className="awards-source">Fonte: Rádio Moçambique — vencedores oficiais do Ngoma; resultados dos Mozambique Music Awards 2015.</p>
+    </div>
+   </section>
+
    <section className="cinema-panel" id="ao-vivo">
     <div className="cinema-image" style={{backgroundImage:`url("${crowd}")`}} aria-hidden="true"/>
     <div className="cinema-shade" aria-hidden="true"/>
