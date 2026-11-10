@@ -31,8 +31,16 @@ export default function Home(){
  const albumsRail=useRef<HTMLDivElement>(null);
  const [liveSlide,setLiveSlide]=useState(0);
  const [livePaused,setLivePaused]=useState(false);
+ const [liveProgress,setLiveProgress]=useState(0);
+ const liveElapsed=useRef(0);
  const livePanelRef=useRef<HTMLElement>(null);
  const [liveVisible,setLiveVisible]=useState(false);
+ const liveDuration=7000;
+ const changeLiveSlide=(index:number)=>{
+  setLiveSlide((index+liveSlides.length)%liveSlides.length);
+  liveElapsed.current=0;
+  setLiveProgress(0);
+ };
  useEffect(()=>{
   const panel=livePanelRef.current;
   if(!panel)return;
@@ -42,8 +50,18 @@ export default function Home(){
  },[]);
  useEffect(()=>{
   if(!liveVisible||livePaused||window.matchMedia("(prefers-reduced-motion: reduce)").matches)return;
-  const interval=window.setInterval(()=>setLiveSlide(i=>(i+1)%liveSlides.length),8000);
-  return()=>window.clearInterval(interval);
+  let previous=performance.now();
+  const timer=window.setInterval(()=>{
+   const now=performance.now();
+   liveElapsed.current+=Math.min(now-previous,250);
+   previous=now;
+   if(liveElapsed.current>=liveDuration){
+    liveElapsed.current%=liveDuration;
+    setLiveSlide(i=>(i+1)%liveSlides.length);
+   }
+   setLiveProgress(Math.min(100,liveElapsed.current/liveDuration*100));
+  },60);
+  return()=>window.clearInterval(timer);
  },[liveVisible,livePaused]);
  useEffect(()=>{
   let raf=0;
@@ -183,7 +201,7 @@ export default function Home(){
     </div>
    </section>
 
-   <section className="cinema-panel cinema-slider" id="ao-vivo" ref={livePanelRef} aria-label="Concertos e celebrações com Mr Bow" onMouseEnter={()=>setLivePaused(true)} onMouseLeave={()=>setLivePaused(false)}>
+   <section className={`cinema-panel cinema-slider ${livePaused||!liveVisible?"is-paused":""}`} id="ao-vivo" ref={livePanelRef} aria-label="Concertos e celebrações com Mr Bow" onMouseEnter={()=>setLivePaused(true)} onMouseLeave={()=>setLivePaused(false)} onFocusCapture={()=>setLivePaused(true)} onBlurCapture={()=>setLivePaused(false)}>
     {liveSlides.map((slide,index)=><div key={slide.image} className={`cinema-slide-image ${index===liveSlide?"is-active":""}`} style={{backgroundImage:`url("${slide.image}")`,backgroundPosition:slide.position}} aria-hidden="true"/>)}
     <div className="cinema-shade cinema-slide-shade" aria-hidden="true"/>
     <div key={liveSlide} className="cinema-content cinema-slide-content" aria-live="polite">
@@ -193,9 +211,9 @@ export default function Home(){
      <a className="circle-link" href={liveSlides[liveSlide].href}>{liveSlides[liveSlide].cta} <ArrowUpRight size={20}/></a>
     </div>
     <div className="cinema-slider-controls" aria-label="Controlos dos slides">
-     <button type="button" className="cinema-slider-arrow" aria-label="Slide anterior" onClick={()=>setLiveSlide(i=>(i+liveSlides.length-1)%liveSlides.length)}><ChevronLeft size={20}/></button>
-     {liveSlides.map((slide,index)=><button key={slide.image} type="button" className={`cinema-slider-dot ${index===liveSlide?"is-active":""}`} aria-label={`Mostrar slide ${index+1}: ${slide.headline}`} aria-pressed={index===liveSlide} onClick={()=>setLiveSlide(index)}><span/></button>)}
-     <button type="button" className="cinema-slider-arrow" aria-label="Próximo slide" onClick={()=>setLiveSlide(i=>(i+1)%liveSlides.length)}><ChevronRight size={20}/></button>
+     <button type="button" className="cinema-slider-arrow" aria-label="Slide anterior" onClick={()=>changeLiveSlide(liveSlide-1)}><ChevronLeft size={20}/></button>
+     {liveSlides.map((slide,index)=><button key={slide.image} type="button" className={`cinema-slider-dot ${index===liveSlide?"is-active":""}`} aria-label={`Mostrar slide ${index+1}: ${slide.headline}`} aria-pressed={index===liveSlide} onClick={()=>changeLiveSlide(index)}><span className="cinema-slider-track"><span className="cinema-slider-fill" style={{width:index===liveSlide?`${liveProgress}%`:"0%"}}/></span></button>)}
+     <button type="button" className="cinema-slider-arrow" aria-label="Próximo slide" onClick={()=>changeLiveSlide(liveSlide+1)}><ChevronRight size={20}/></button>
     </div>
     <span className="cinema-corner">{String(liveSlide+1).padStart(2,"0")} / {String(liveSlides.length).padStart(2,"0")} — MB / LIVE</span>
    </section>
