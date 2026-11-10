@@ -51,13 +51,13 @@ export default function Home(){
    </section>
 
    <section className="artist-section artist-section-editorial" id="artista">
+    <div className="artist-portrait-stage">
+     <img src="/images/Elegant%20Tuxedo%20Portrait%20Cutout.png" alt="Mr Bow com fato preto, de óculos escuros" className="artist-cutout" loading="lazy" onError={(event) => {event.currentTarget.style.visibility="hidden";}} />
+    </div>
     <div className="artist-copy">
      <span className="eyebrow">04 / THE MAN BEHIND THE MUSIC</span>
      <Reveal><h2>A HISTÓRIA<br/>CONTINUA<span>.</span></h2></Reveal>
      <Reveal delay={100}><p className="artist-lead">Da música que marca gerações à energia que une multidões.</p><p>Mr Bow representa uma identidade musical profundamente ligada a Moçambique, à emoção e ao público. Uma trajectória construída com autenticidade e visão.</p><div className="artist-sign">MR BOW <span>— ARTISTA</span></div></Reveal>
-    </div>
-    <div className="artist-portrait-stage">
-     <img src="/images/Elegant%20Tuxedo%20Portrait%20Cutout.png" alt="Mr Bow com fato preto, de óculos escuros" className="artist-cutout" loading="lazy" onError={(event) => {event.currentTarget.style.visibility="hidden";}} />
     </div>
    </section>
 
