@@ -50,7 +50,7 @@ export default function Home(){
  const [heroProgress,setHeroProgress]=useState(0);
  const heroElapsed=useRef(0);
  const heroPanelRef=useRef<HTMLElement>(null);
- const heroDuration=7000;
+ const heroDuration=7000; // duração do slide de artista
  const changeHeroSlide=(index:number)=>{
   setHeroSlide((index+heroSlides.length)%heroSlides.length);
   heroElapsed.current=0;
@@ -68,16 +68,17 @@ export default function Home(){
   let previous=performance.now();
   const timer=window.setInterval(()=>{
    const now=performance.now();
+   const duration=heroSlide===1&&window.matchMedia("(max-width: 760px)").matches?11000:heroDuration;
    heroElapsed.current+=Math.min(now-previous,250);
    previous=now;
-   if(heroElapsed.current>=heroDuration){
-    heroElapsed.current%=heroDuration;
+   if(heroElapsed.current>=duration){
+    heroElapsed.current=0;
     setHeroSlide(i=>(i+1)%heroSlides.length);
    }
-   setHeroProgress(Math.min(100,heroElapsed.current/heroDuration*100));
+   setHeroProgress(Math.min(100,heroElapsed.current/duration*100));
   },70);
   return()=>window.clearInterval(timer);
- },[heroVisible,heroPaused]);
+ },[heroVisible,heroPaused,heroSlide]);
  const [liveSlide,setLiveSlide]=useState(0);
  const [livePaused,setLivePaused]=useState(false);
  const [liveProgress,setLiveProgress]=useState(0);
