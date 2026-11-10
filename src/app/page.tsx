@@ -57,7 +57,16 @@ export default function Home(){
     <div className="artist-copy">
      <span className="eyebrow">04 / THE MAN BEHIND THE MUSIC</span>
      <Reveal><h2>A HISTÓRIA<br/>CONTINUA<span>.</span></h2></Reveal>
-     <Reveal delay={100}><p className="artist-lead">Da música que marca gerações à energia que une multidões.</p><p>Mr Bow representa uma identidade musical profundamente ligada a Moçambique, à emoção e ao público. Uma trajectória construída com autenticidade e visão.</p><div className="artist-sign">MR BOW <span>— ARTISTA</span></div></Reveal>
+     <Reveal delay={100}>
+      <div className="artist-biography">
+       <p>Antes de se tornar Mr. Bow, Salvador Pedro Maiaze era um jovem de Manjacaze, na província de Gaza, com uma paixão pela música e a determinação de construir o seu próprio caminho.</p>
+       <p>Deixou a terra natal à procura de oportunidades e, em Maputo, conciliou diferentes trabalhos com o sonho de viver da música. Chegou a vender produtos no mercado para financiar as suas primeiras gravações, num percurso marcado por desafios, sacrifícios e decisões que moldaram a sua trajectória.</p>
+       <p>Com o tempo, encontrou na sua identidade cultural uma das maiores forças da sua expressão artística, transformando as raízes moçambicanas numa assinatura musical reconhecida dentro e fora do País.</p>
+       <p>Hoje, para além do artista, existe um homem cuja história também se constrói na família, no empreendedorismo e na vontade de abrir caminhos para outros.</p>
+       <p className="artist-conclusion">Do jovem Salvador ao King Bow, há uma história que vai muito além da música.</p>
+       <a className="artist-story-button" href="/historia">CONHECER A HISTÓRIA COMPLETA <ArrowUpRight size={19}/></a>
+      </div>
+     </Reveal>
     </div>
    </section>
 
