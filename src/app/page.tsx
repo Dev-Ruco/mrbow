@@ -96,16 +96,16 @@ export default function Home(){
        </Reveal>)}
       </div>
      </div>
-     <div className="release-topline"><div><span className="release-small">01 — 03 / EM DESTAQUE</span><h3>ÁLBUNS <i>SELECCIONADOS</i></h3></div><div className="release-arrows"><button type="button" aria-label="Álbum anterior" onClick={()=>albumsRail.current?.scrollBy({left:-340,behavior:"smooth"})}><ChevronLeft size={22}/></button><button type="button" aria-label="Álbum seguinte" onClick={()=>albumsRail.current?.scrollBy({left:340,behavior:"smooth"})}><ChevronRight size={22}/></button></div></div>
+     <div className="release-topline"><div><span className="release-small">DISCOGRAFIA / MR BOW</span><h3>DISCOGRAFIA <i>DE MR BOW</i></h3></div><div className="release-arrows"><button type="button" aria-label="Álbum anterior" onClick={()=>albumsRail.current?.scrollBy({left:-340,behavior:"smooth"})}><ChevronLeft size={22}/></button><button type="button" aria-label="Álbum seguinte" onClick={()=>albumsRail.current?.scrollBy({left:340,behavior:"smooth"})}><ChevronRight size={22}/></button></div></div>
      <div className="albums-rail" ref={albumsRail}>
       {[
-       {number:"01",image:"/images/Album%201.jpeg",title:"ÁLBUM 01",note:"CAPA OFICIAL"},
-       {number:"02",image:"/images/Album%202.jpg",title:"ÁLBUM 02",note:"CAPA OFICIAL"},
-       {number:"03",image:"/images/Album%203.jpg",title:"ÁLBUM 03",note:"CAPA OFICIAL"}
+       {number:"01",image:"/images/Album%201.jpeg",title:"MR ROMANTIC",note:"CAPA OFICIAL"},
+       {number:"02",image:"/images/Album%202.jpg",title:"STORY OF MY LIFE",note:"CAPA OFICIAL"},
+       {number:"03",image:"/images/Album%203.jpg",title:"STRONG SHANGANE",note:"CAPA OFICIAL"}
       ].map((album,index)=><Reveal className="album-card" key={album.number} delay={index*105}>
         <a className="album-artwork" href="https://open.spotify.com/search/Mr%20Bow" target="_blank" rel="noopener noreferrer" aria-label={`Procurar ${album.title} de Mr Bow no Spotify`}>
           <img src={album.image} alt={`Capa enviada para ${album.title} de Mr Bow`} loading="lazy"/>
-          <span className="album-index">{album.number} / 03</span>
+          <span className="album-index">{album.number}</span>
           <span className="album-play"><Play fill="currentColor" size={23}/></span>
         </a>
         <div className="album-card-info"><div><span>{album.note}</span><h4>{album.title}</h4></div><a href="https://open.spotify.com/search/Mr%20Bow" target="_blank" rel="noopener noreferrer">OUVIR NO SPOTIFY <ArrowUpRight size={18}/></a></div>
