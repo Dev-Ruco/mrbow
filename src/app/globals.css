@@ -121,3 +121,54 @@
 /* A secção dos videoclipes é um capítulo independente, sem alterar o espaçamento visual da galeria. */
 .music-showcase:not(.music-videos-section) .music-showcase-inner{padding-bottom:0}
 .music-videos-section .music-showcase-inner{padding-top:0}
+
+/* Editorial portrait composition — original proportions, no crop. */
+.artist-section.artist-section-editorial{
+  background:#d9d4cb;
+  color:#171514;
+  min-height:780px;
+  display:grid;
+  grid-template-columns:minmax(0,1.08fr) minmax(0,.92fr);
+  gap:0;
+  position:relative;
+  overflow:hidden;
+}
+.artist-section-editorial .artist-copy{
+  position:relative;
+  z-index:2;
+  padding:100px 4vw 92px 7vw;
+}
+.artist-section-editorial .artist-portrait-stage{
+  position:relative;
+  align-self:stretch;
+  min-height:680px;
+  overflow:hidden;
+  display:flex;
+  justify-content:center;
+  align-items:flex-end;
+}
+.artist-section-editorial .artist-cutout{
+  display:block;
+  position:absolute;
+  bottom:0;
+  left:50%;
+  width:auto;
+  height:min(95%,850px);
+  max-width:none;
+  object-fit:contain;
+  object-position:bottom center;
+  transform:translateX(-50%);
+  filter:drop-shadow(0 14px 15px rgba(32,22,17,.1));
+}
+@media(max-width:1050px){
+  .artist-section.artist-section-editorial{grid-template-columns:1fr 1fr;min-height:690px}
+  .artist-section-editorial .artist-copy{padding:85px 4vw 70px 6vw}
+  .artist-section-editorial .artist-portrait-stage{min-height:690px}
+  .artist-section-editorial .artist-cutout{height:92%}
+}
+@media(max-width:760px){
+  .artist-section.artist-section-editorial{display:flex;flex-direction:column;min-height:0}
+  .artist-section-editorial .artist-copy{padding:80px 6vw 0}
+  .artist-section-editorial .artist-portrait-stage{width:100%;min-height:450px;height:65vh;max-height:610px}
+  .artist-section-editorial .artist-cutout{height:95%}
+}
