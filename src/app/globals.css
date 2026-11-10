@@ -408,3 +408,25 @@
  .artist-evolution-photos>.artist-archive-frame,
  .artist-evolution-photos>.artist-now-frame{animation:none!important;will-change:auto}
 }
+
+
+/* Retrato actual: preencher totalmente a moldura com a foto, sem fundo gráfico. */
+.artist-now-portrait{
+ background:none;
+ isolation:auto;
+}
+.artist-now-portrait::before,
+.artist-now-portrait::after{
+ content:none;
+ display:none;
+}
+.artist-now-portrait img{
+ display:block;
+ position:relative;
+ z-index:1;
+ width:100%;
+ height:100%;
+ object-fit:cover;
+ object-position:center center;
+ max-width:none;
+}
