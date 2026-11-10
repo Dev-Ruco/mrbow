@@ -2,6 +2,7 @@
 import { useEffect, useRef, useState } from "react";
 import { ArrowDown, ArrowRight, ArrowUpRight, ChevronLeft, ChevronRight, Disc3, Instagram, Menu, Pause, Play, Volume2, X, Youtube } from "lucide-react";
 import { musicLinks, upcomingShows } from "@/lib/content";
+import { getConsentChoice, CONSENT_EVENT } from "./components/CookiePreferences";
 
 const concert = "/images/Mr%20bow%20hero.jpg";
 const heroSlides = [
@@ -33,6 +34,13 @@ export default function Home(){
  const [open,setOpen]=useState(false);
  const [progress,setProgress]=useState(0);
  const [scrolled,setScrolled]=useState(false);
+ const [allowExternalMedia,setAllowExternalMedia]=useState(false);
+ useEffect(()=>{
+  const sync=()=>setAllowExternalMedia(getConsentChoice()==="all");
+  sync();
+  window.addEventListener(CONSENT_EVENT,sync);
+  return()=>window.removeEventListener(CONSENT_EVENT,sync);
+ },[]);
  const audioRef=useRef<HTMLAudioElement>(null);
  const audioOptedOut=useRef(false);
  const [audioPlaying,setAudioPlaying]=useState(false);
@@ -289,7 +297,7 @@ export default function Home(){
         {id:"1vr_ZwnxCgg",number:"03",kind:"VIDEOCLIPE OFICIAL"}
        ].map((video,index)=><Reveal className={`video-feature video-feature-${video.number}`} key={video.id} delay={index*100}>
         <a className="video-cover video-cover-direct" href={`https://www.youtube.com/watch?v=${video.id}`} target="_blank" rel="noopener noreferrer" aria-label={`Ver videoclip ${video.number} de Mr Bow no YouTube`}>
-         <img src={`https://img.youtube.com/vi/${video.id}/hqdefault.jpg`} alt={`Miniatura oficial do videoclip ${video.number} de Mr Bow`} loading="lazy" />
+         <img src={allowExternalMedia?`https://img.youtube.com/vi/${video.id}/hqdefault.jpg`:"/images/setion%203.jpg"} alt={allowExternalMedia?`Miniatura do videoclip ${video.number} de Mr Bow`:`Imagem ilustrativa local para o videoclip ${video.number}`} loading="lazy" />
          <span className="video-big-play"><Play fill="currentColor" size={26}/></span>
          <span className="video-watermark">{video.number} / MUSIC VIDEO</span>
         </a>
@@ -365,6 +373,6 @@ export default function Home(){
     </div>
    </section>
   </main>
-  <footer className="footer"><div className="footer-upper"><a className="brand" href="#inicio">MR<span>BOW</span><b>®</b></a><div className="footer-networks"><a href={musicLinks[0].href} target="_blank" rel="noopener noreferrer" aria-label="YouTube"><Youtube/></a><a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" aria-label="Instagram — ligação provisória"><Instagram/></a></div></div><div className="footer-lower"><span>© {new Date().getFullYear()} MR BOW. TODOS OS DIREITOS RESERVADOS.</span><span>MADE IN MOZAMBIQUE. FELT EVERYWHERE.</span><a href="#inicio">VOLTAR AO TOPO ↑</a></div></footer>
+  <footer className="footer"><div className="footer-upper"><a className="brand" href="#inicio">MR<span>BOW</span><b>®</b></a><div className="footer-networks"><a href={musicLinks[0].href} target="_blank" rel="noopener noreferrer" aria-label="YouTube"><Youtube/></a><a href="https://www.instagram.com/" target="_blank" rel="noopener noreferrer" aria-label="Instagram — ligação provisória"><Instagram/></a></div></div><div className="footer-lower"><span>© {new Date().getFullYear()} MR BOW. TODOS OS DIREITOS RESERVADOS.</span><span>MADE IN MOZAMBIQUE. FELT EVERYWHERE.</span><nav className="footer-legal-nav" aria-label="Informações legais"><a href="/privacidade">PRIVACIDADE</a><a href="/cookies">COOKIES</a><a href="/termos">TERMOS</a><button type="button" onClick={()=>window.dispatchEvent(new Event("mrbow:open-cookie-settings"))}>PREFERÊNCIAS DE COOKIES</button></nav><a href="#inicio">VOLTAR AO TOPO ↑</a></div></footer>
  </>;
 }
