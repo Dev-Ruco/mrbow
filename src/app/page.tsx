@@ -446,13 +446,7 @@ export default function Home(){
      <Reveal className="concert-recorded-visual">
       <a href={featuredLiveConcert.url} target="_blank" rel="noopener noreferrer" className="concert-recorded-link" aria-label="Assistir ao concerto gravado de Mr Bow no YouTube">
        <img
-        src={allowExternalMedia?featuredLiveConcert.image:featuredLiveConcert.localImage}
-        onError={event=>{
-         const image=event.currentTarget;
-         if(!allowExternalMedia){image.onerror=null;image.src=featuredLiveConcert.localImage;return;}
-         if(image.src.includes("maxresdefault"))image.src=featuredLiveConcert.fallbackImage;
-         else{image.onerror=null;image.src=featuredLiveConcert.localImage;}
-        }}
+        src="/images/Blue-Lit%20Concert%20Stage%20Performance_Easy-Resize.com.jpg"
         alt="Mr Bow em concerto ao vivo — capa do vídeo"
         loading="lazy"
        />
