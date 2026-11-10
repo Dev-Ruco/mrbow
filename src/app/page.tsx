@@ -4,6 +4,10 @@ import { ArrowDown, ArrowRight, ArrowUpRight, ChevronLeft, ChevronRight, Disc3, 
 import { musicLinks, upcomingShows } from "@/lib/content";
 
 const concert = "/images/Mr%20bow%20hero.jpg";
+const heroSlides = [
+ {image:"/images/Mr%20bow%20hero.jpg",eyebrow:"MR BOW / THE ARTIST",line:"MÚSICA. IDENTIDADE. LEGADO.",description:"Uma voz que transforma cada palco numa experiência.",href:"#musica",cta:"DESCOBRIR A MÚSICA"},
+ {image:"/images/Golden%20Wedding%20Serenade_Easy-Resize.com.jpg",eyebrow:"MR BOW / THE MOMENTS",line:"MOMENTOS PARA SEMPRE.",description:"A emoção da música nos dias que ficam para sempre.",href:"#booking",cta:"CONTRATAR PARA UM EVENTO"}
+] as const;
 const crowd = "/images/setion%203.jpg";
 const liveSlides = [
  {image:"/images/setion%203.jpg",eyebrow:"DOS GRANDES PALCOS ÀS MULTIDÕES",headline:"O PALCO",accent:"É NOSSO.",description:"A energia dos grandes concertos. A música que aproxima milhares de pessoas e transforma cada espectáculo numa memória inesquecível.",cta:"VER PRÓXIMOS ESPECTÁCULOS",href:"#agenda",position:"center center"},
@@ -29,6 +33,40 @@ export default function Home(){
  const [progress,setProgress]=useState(0);
  const [scrolled,setScrolled]=useState(false);
  const albumsRail=useRef<HTMLDivElement>(null);
+ const [heroSlide,setHeroSlide]=useState(0);
+ const [heroPaused,setHeroPaused]=useState(false);
+ const [heroVisible,setHeroVisible]=useState(true);
+ const [heroProgress,setHeroProgress]=useState(0);
+ const heroElapsed=useRef(0);
+ const heroPanelRef=useRef<HTMLElement>(null);
+ const heroDuration=7000;
+ const changeHeroSlide=(index:number)=>{
+  setHeroSlide((index+heroSlides.length)%heroSlides.length);
+  heroElapsed.current=0;
+  setHeroProgress(0);
+ };
+ useEffect(()=>{
+  const element=heroPanelRef.current;
+  if(!element)return;
+  const observer=new IntersectionObserver(([entry])=>setHeroVisible(entry.isIntersecting),{threshold:.16});
+  observer.observe(element);
+  return()=>observer.disconnect();
+ },[]);
+ useEffect(()=>{
+  if(!heroVisible||heroPaused||window.matchMedia("(prefers-reduced-motion: reduce)").matches)return;
+  let previous=performance.now();
+  const timer=window.setInterval(()=>{
+   const now=performance.now();
+   heroElapsed.current+=Math.min(now-previous,250);
+   previous=now;
+   if(heroElapsed.current>=heroDuration){
+    heroElapsed.current%=heroDuration;
+    setHeroSlide(i=>(i+1)%heroSlides.length);
+   }
+   setHeroProgress(Math.min(100,heroElapsed.current/heroDuration*100));
+  },70);
+  return()=>window.clearInterval(timer);
+ },[heroVisible,heroPaused]);
  const [liveSlide,setLiveSlide]=useState(0);
  const [livePaused,setLivePaused]=useState(false);
  const [liveProgress,setLiveProgress]=useState(0);
@@ -80,11 +118,20 @@ export default function Home(){
   </header>
   <div className={`mobile-overlay ${open?"shown":""}`} aria-hidden={!open}><nav aria-label="Menu móvel">{nav.map(([label,href],i)=><a key={href} href={href} onClick={()=>setOpen(false)}><span>0{i+1}</span>{label}<ArrowUpRight size={23}/></a>)}</nav><p>MÚSICA • IDENTIDADE • LEGADO</p></div>
   <main>
-   <section className="hero" id="inicio">
-    <div className="hero-photo" style={{backgroundImage:`url("${concert}")`}} aria-hidden="true"/>
+   <section className={`hero hero-cinematic-slider ${heroPaused||!heroVisible?"is-paused":""}`} id="inicio" ref={heroPanelRef} onMouseEnter={()=>setHeroPaused(true)} onMouseLeave={()=>setHeroPaused(false)} onFocusCapture={()=>setHeroPaused(true)} onBlurCapture={()=>setHeroPaused(false)} aria-label="Destaques de Mr Bow">
+    {heroSlides.map((slide,index)=><div key={slide.image} className={`hero-slide-photo ${heroSlide===index?"is-active":""}`} style={{backgroundImage:`url("${slide.image}")`}} aria-hidden="true"/>)}
     <div className="hero-grain" aria-hidden="true"/>
     <div className="hero-title-wrap hero-title-only">
      <h1 className="hero-title"><span className="hero-first">MR</span><span className="hero-second">BOW<span className="hero-period">.</span></span></h1>
+    </div>
+    <div key={heroSlide} className="hero-slide-story" aria-live="polite">
+     <span className="hero-story-eyebrow">{heroSlides[heroSlide].eyebrow}</span>
+     <strong>{heroSlides[heroSlide].line}</strong>
+     <p>{heroSlides[heroSlide].description}</p>
+     <a href={heroSlides[heroSlide].href}>{heroSlides[heroSlide].cta} <ArrowUpRight size={18}/></a>
+    </div>
+    <div className="hero-slider-controls" aria-label="Navegação dos destaques">
+     {heroSlides.map((slide,index)=><button key={slide.image} type="button" className={`hero-slider-dot ${index===heroSlide?"is-active":""}`} aria-label={`Mostrar destaque ${index+1}`} aria-pressed={index===heroSlide} onClick={()=>changeHeroSlide(index)}><span className="hero-slider-track"><span className="hero-slider-fill" style={{width:index===heroSlide?`${heroProgress}%`:"0%"}}/></span></button>)}
     </div>
    </section>
 
