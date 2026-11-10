@@ -715,3 +715,91 @@
  .booking.booking-photo .booking-label{margin-top:240px}
  .booking.booking-photo h2{font-size:15vw}
 }
+
+
+/* LIVE EXPERIENCE: dois capítulos com transição cinematográfica sincronizada. */
+.cinema-panel.cinema-slider{background:#090809}
+.cinema-slide-image{
+ position:absolute;
+ inset:-2%;
+ background-size:cover;
+ background-repeat:no-repeat;
+ opacity:0;
+ transform:scale(1.09);
+ filter:saturate(.8) contrast(1.04) brightness(.72);
+ transition:opacity 1.75s ease-in-out,transform 9s linear,filter 1.75s ease-in-out;
+ will-change:opacity,transform;
+}
+.cinema-slide-image.is-active{opacity:1;transform:scale(1.005);filter:saturate(.86) contrast(1.04) brightness(.77)}
+.cinema-panel.cinema-slider .cinema-slide-shade{
+ z-index:1;
+ background:linear-gradient(90deg,rgba(3,5,8,.84) 0%,rgba(3,5,8,.67) 31%,rgba(3,5,8,.22) 66%,rgba(3,5,8,.22) 100%),
+ linear-gradient(0deg,rgba(5,5,5,.68) 0%,transparent 60%);
+}
+.cinema-panel.cinema-slider .cinema-slide-content{
+ z-index:2;
+ bottom:clamp(126px,11vw,180px);
+ max-width:850px;
+ animation:cinemaCopyReveal 1s cubic-bezier(.22,.68,0,1) both;
+}
+@keyframes cinemaCopyReveal{
+ from{opacity:0;transform:translate3d(0,34px,0);filter:blur(7px)}
+ to{opacity:1;transform:translate3d(0,0,0);filter:blur(0)}
+}
+.cinema-panel.cinema-slider .cinema-slide-content h2{
+ font-size:clamp(85px,11vw,170px);
+ max-width:920px;
+}
+.cinema-panel.cinema-slider .cinema-slide-content p{max-width:570px;font-size:clamp(15px,1.35vw,20px);line-height:1.65}
+.cinema-panel.cinema-slider .cinema-corner{z-index:3;bottom:42px;right:5vw}
+.cinema-slider-controls{
+ position:absolute;
+ z-index:4;
+ left:5vw;
+ bottom:43px;
+ display:flex;
+ align-items:center;
+ gap:15px;
+}
+.cinema-slider-arrow{
+ border:1px solid rgba(255,255,255,.58);
+ background:rgba(14,14,15,.15);
+ color:#fff;
+ width:44px;height:44px;
+ display:grid;place-items:center;
+ cursor:pointer;
+ transition:background .3s,border-color .3s;
+}
+.cinema-slider-arrow:hover{background:rgba(255,255,255,.2);border-color:#fff}
+.cinema-slider-dot{
+ padding:12px 0;
+ border:0;
+ background:none;
+ cursor:pointer;
+ width:38px;
+ display:flex;
+ align-items:center;
+}
+.cinema-slider-dot span{height:3px;width:100%;background:rgba(255,255,255,.32);transition:background .35s,transform .35s;transform-origin:left}
+.cinema-slider-dot.is-active span{background:#fff;transform:scaleY(1.5)}
+@media(max-width:760px){
+ .cinema-panel.cinema-slider{min-height:660px;height:87svh}
+ .cinema-slide-image{background-position:55% center!important}
+ .cinema-slide-image:nth-child(2){background-position:47% center!important}
+ .cinema-panel.cinema-slider .cinema-slide-shade{
+  background:linear-gradient(0deg,rgba(5,5,8,.92) 0%,rgba(5,5,8,.78) 30%,rgba(5,5,8,.19) 74%,rgba(5,5,8,.09) 100%)
+ }
+ .cinema-panel.cinema-slider .cinema-slide-content{left:6vw;right:6vw;bottom:125px}
+ .cinema-panel.cinema-slider .cinema-slide-content h2{font-size:clamp(65px,15vw,110px);margin:20px 0 22px}
+ .cinema-panel.cinema-slider .cinema-slide-content p{font-size:14px;line-height:1.6;max-width:430px;margin:20px 0}
+ .cinema-slider-controls{left:6vw;bottom:36px;gap:10px}
+ .cinema-slider-arrow{height:40px;width:40px}
+ .cinema-panel.cinema-slider .cinema-corner{right:6vw;bottom:48px;font-size:8px}
+}
+@media(max-width:390px){
+ .cinema-panel.cinema-slider .cinema-slide-content h2{font-size:15vw}
+ .cinema-panel.cinema-slider .cinema-slide-content p{font-size:13px}
+}
+@media(prefers-reduced-motion:reduce){
+ .cinema-slide-image,.cinema-slide-content{transition:none!important;animation:none!important;transform:none!important;filter:none!important}
+}
