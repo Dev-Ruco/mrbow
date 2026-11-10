@@ -482,3 +482,66 @@
  .awards-row>div span{font-size:12px}
  .awards-additional{margin-top:50px}
 }
+
+
+/* O SOM DE MR BOW — mosaico editorial temporário com 4 fotografias. */
+.music-hero-composition{
+ display:grid;
+ grid-template-columns:minmax(0,1fr) minmax(0,.94fr);
+ gap:clamp(26px,3vw,58px);
+ align-items:center;
+ padding:69px 0 85px;
+}
+.music-hero-composition .music-heading{
+ display:flex;
+ flex-direction:column;
+ justify-content:center;
+ align-items:flex-start;
+ gap:25px;
+ padding:0;
+ min-width:0;
+}
+.music-hero-composition .music-heading h2{font-size:clamp(88px,12vw,205px)}
+.music-hero-composition .music-heading>p{padding:0;font-size:clamp(14px,1.35vw,18px);max-width:310px;line-height:1.55}
+.music-hero-composition .music-eyebrow{margin-bottom:30px}
+.music-mosaic{
+ position:relative;
+ display:grid;
+ grid-template-columns:1.25fr .86fr;
+ grid-template-rows:155px 155px 130px;
+ gap:9px;
+ min-height:0;
+ padding-bottom:23px;
+}
+.music-mosaic-cell{min-width:0;min-height:0;position:relative;overflow:hidden;background:#5c5150}
+.music-mosaic-cell.reveal{height:100%}
+.music-mosaic-cell img{display:block;width:100%;height:100%;object-fit:cover;filter:saturate(.77) contrast(1.08);transition:transform 1.1s cubic-bezier(.2,.65,.3,1),filter .7s}
+.music-mosaic-cell:hover img{transform:scale(1.055);filter:saturate(.96) contrast(1.05)}
+.music-mosaic-cell::after{content:"";position:absolute;inset:42% 0 0;background:linear-gradient(transparent,rgba(0,0,0,.62));pointer-events:none}
+.music-mosaic-crowd{grid-column:1;grid-row:1/3}
+.music-mosaic-stage{grid-column:2;grid-row:1}
+.music-mosaic-fans{grid-column:2;grid-row:2}
+.music-mosaic-atmosphere{grid-column:1/3;grid-row:3}
+.music-mosaic-label{position:absolute;z-index:2;left:15px;bottom:13px;font-size:9px;font-weight:800;letter-spacing:.12em;color:#fff}
+.music-mosaic-note{position:absolute;right:0;bottom:3px;font-size:8px;font-weight:700;letter-spacing:.12em;color:#746b68}
+@media(min-width:1500px){
+ .music-mosaic{grid-template-rows:190px 190px 154px}
+}
+@media(max-width:1100px){
+ .music-hero-composition{grid-template-columns:minmax(0,.92fr) minmax(0,1fr);gap:26px}
+ .music-hero-composition .music-heading h2{font-size:clamp(80px,12vw,145px)}
+ .music-mosaic{grid-template-rows:120px 120px 115px;gap:7px}
+}
+@media(max-width:760px){
+ .music-hero-composition{grid-template-columns:1fr;gap:32px;padding:50px 0 73px}
+ .music-hero-composition .music-heading{gap:20px}
+ .music-hero-composition .music-heading h2{font-size:clamp(92px,22vw,170px)}
+ .music-hero-composition .music-heading>p{max-width:390px}
+ .music-mosaic{grid-template-rows:135px 135px 145px;gap:7px}
+}
+@media(max-width:420px){
+ .music-mosaic{grid-template-rows:117px 117px 122px;gap:6px}
+ .music-mosaic-label{font-size:8px;left:9px;bottom:9px}
+ .music-mosaic-note{font-size:7px}
+}
+@media(prefers-reduced-motion:reduce){.music-mosaic-cell img{transition:none!important}}
