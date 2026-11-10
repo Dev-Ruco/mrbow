@@ -230,3 +230,54 @@
  .history-text p{font-size:15px}
  .history-text .history-last{font-size:20px}
 }
+
+
+/* Capítulo 04 — fotografia histórica preservada no enquadramento original. */
+.artist-section-editorial .artist-portrait-stage.artist-archive-stage{
+  min-height:850px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:65px clamp(18px,4vw,72px);
+  overflow:visible;
+}
+.artist-archive-frame{
+  width:min(100%,495px);
+  margin:0;
+  padding:13px 13px 0;
+  background:#f4efe6;
+  box-shadow:0 25px 75px rgba(38,31,23,.13),0 2px 9px rgba(38,31,23,.08);
+  transform:rotate(-1.5deg);
+}
+.artist-archive-photo{
+  position:static;
+  display:block;
+  width:100%;
+  height:auto;
+  max-width:100%;
+  object-fit:contain;
+  filter:none;
+  transform:none;
+}
+.artist-archive-frame figcaption{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+  color:#302d29;
+  padding:14px 3px 16px;
+  font-size:10px;
+  font-weight:800;
+  letter-spacing:.12em;
+}
+.artist-archive-frame figcaption span{font-size:9px;font-weight:500;color:#6c655c;text-align:right}
+@media(max-width:1050px) and (min-width:761px){
+ .artist-section-editorial .artist-portrait-stage.artist-archive-stage{min-height:750px;padding:42px 18px}
+ .artist-archive-frame{transform:rotate(-1deg)}
+}
+@media(max-width:760px){
+ .artist-section-editorial .artist-portrait-stage.artist-archive-stage{
+  min-height:0;height:auto;max-height:none;padding:46px 7vw 12px;
+ }
+ .artist-archive-frame{width:min(100%,440px);transform:rotate(-1deg)}
+}
