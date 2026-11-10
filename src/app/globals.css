@@ -1067,7 +1067,8 @@
 }
 @media(max-width:760px){
  .hero.hero-cinematic-slider .hero-slide-photo:first-child{
-  background-position:20% center;
+  /* Recoloca o artista no campo visível; ligeiramente mais à direita que o enquadramento inicial de 62%. */
+  background-position:58% center;
  }
  .hero.hero-cinematic-slider .hero-slide-photo:nth-child(2){
   background-position:8% 38%;
