@@ -52,85 +52,110 @@ export default function Home(){
  },[]);
  const audioRef=useRef<HTMLAudioElement>(null);
  const fadeTimerRef=useRef<number|null>(null);
- const audioOptedOut=useRef(false);
+ const manualPlaybackRef=useRef(false);
+ const heroAudioEligibleRef=useRef(true);
+ const [heroAudioEligible,setHeroAudioEligible]=useState(true);
  const [audioPlaying,setAudioPlaying]=useState(false);
  const [audioReady,setAudioReady]=useState(false);
  const [audioInviteDismissed,setAudioInviteDismissed]=useState(false);
- const targetVolume=.60;
+ const targetVolume=.35;
+ const fadeDuration=2000;
  const clearAudioFade=()=>{
-  if(fadeTimerRef.current!==null){window.clearInterval(fadeTimerRef.current);fadeTimerRef.current=null;}
+  if(fadeTimerRef.current!==null){
+   window.clearInterval(fadeTimerRef.current);
+   fadeTimerRef.current=null;
+  }
  };
  const fadeAudio=(target:number,duration:number,after?:()=>void)=>{
   const audio=audioRef.current;
   if(!audio)return;
   clearAudioFade();
   const start=performance.now();
-  const from=audio.volume;
+  const initial=audio.volume;
   fadeTimerRef.current=window.setInterval(()=>{
-   const fraction=Math.min(1,(performance.now()-start)/duration);
-   const eased=fraction*fraction*(3-2*fraction);
-   audio.volume=Math.max(0,Math.min(1,from+(target-from)*eased));
-   if(fraction>=1){clearAudioFade();after?.();}
+   const t=Math.min(1,(performance.now()-start)/duration);
+   const eased=t*t*(3-2*t);
+   audio.volume=Math.max(0,Math.min(1,initial+(target-initial)*eased));
+   if(t>=1){clearAudioFade();after?.();}
   },50);
+ };
+ const pauseSiteAudio=()=>{
+  const audio=audioRef.current;
+  if(!audio||audio.paused)return;
+  manualPlaybackRef.current=false;
+  fadeAudio(0,fadeDuration,()=>{audio.pause();});
  };
  const playSiteAudio=async()=>{
   const audio=audioRef.current;
-  if(!audio)return;
-  audioOptedOut.current=false;
+  if(!audio||!heroAudioEligibleRef.current)return;
+  setAudioInviteDismissed(true);
+  manualPlaybackRef.current=true;
   try{
+   if(audio.ended)audio.currentTime=0;
    if(audio.paused){audio.volume=0;await audio.play();}
-   fadeAudio(targetVolume,1800);
-   setAudioInviteDismissed(true);
-  }catch{/* Os browsers podem exigir um clique explícito no controlo. */}
+   if(!heroAudioEligibleRef.current){
+    audio.pause();
+    manualPlaybackRef.current=false;
+    return;
+   }
+   fadeAudio(targetVolume,fadeDuration);
+  }catch{
+   manualPlaybackRef.current=false;
+   // O áudio requer autorização explícita do visitante.
+  }
  };
  const toggleSiteAudio=()=>{
   const audio=audioRef.current;
-  if(!audio)return;
+  if(!audio||!heroAudioEligibleRef.current)return;
   setAudioInviteDismissed(true);
   if(!audio.paused){
-   audioOptedOut.current=true;
-   fadeAudio(0,900,()=>audio.pause());
+   // Impede que um segundo clique durante o fade-out volte a activar o som.
+   if(manualPlaybackRef.current)pauseSiteAudio();
+   else{clearAudioFade();audio.pause();audio.volume=0;}
   }else{void playSiteAudio();}
  };
  useEffect(()=>{
   const audio=audioRef.current;
-  if(!audio)return;
+  const hero=heroPanelRef.current;
+  if(!audio||!hero)return;
   audio.volume=0;
-  const onPlay=()=>{setAudioPlaying(true);setAudioInviteDismissed(true);};
+  const onPlay=()=>setAudioPlaying(true);
   const onPause=()=>setAudioPlaying(false);
+  const onEnded=()=>{
+   clearAudioFade();
+   manualPlaybackRef.current=false;
+   audio.volume=0;
+   setAudioPlaying(false);
+  };
   const onCanPlay=()=>setAudioReady(true);
-  const onTimeUpdate=()=>{
-   if(!Number.isFinite(audio.duration)||audio.duration<=0||audio.paused)return;
-   const remaining=audio.duration-audio.currentTime;
-   if(remaining<2.3&&audio.volume>.1&&fadeTimerRef.current===null){
-    fadeAudio(0,1900);
+  const updateHeroAvailability=()=>{
+   const bounds=hero.getBoundingClientRect();
+   // Começa a saída suave ainda dentro do Hero, antes de surgir a secção seguinte.
+   const eligible=bounds.top<window.innerHeight*.45&&bounds.bottom>window.innerHeight*.42;
+   if(eligible===heroAudioEligibleRef.current)return;
+   heroAudioEligibleRef.current=eligible;
+   setHeroAudioEligible(eligible);
+   if(!eligible){
+    manualPlaybackRef.current=false;
+    if(!audio.paused)fadeAudio(0,fadeDuration,()=>audio.pause());
    }
-   if(audio.currentTime<.5&&audio.volume<.1&&fadeTimerRef.current===null){
-    fadeAudio(targetVolume,1500);
-   }
+   // Ao regressar ao Hero nunca se retoma a música automaticamente.
   };
   audio.addEventListener("play",onPlay);
   audio.addEventListener("pause",onPause);
+  audio.addEventListener("ended",onEnded);
   audio.addEventListener("canplay",onCanPlay);
-  audio.addEventListener("timeupdate",onTimeUpdate);
-  // Tenta iniciar o áudio, respeitando a política de reprodução do navegador.
-  audio.play().then(()=>fadeAudio(targetVolume,1800)).catch(()=>{});
-  const enableOnGesture=(event:Event)=>{
-   if(audioOptedOut.current||!audio.paused)return;
-   const target=event.target;
-   if(target instanceof Element&&target.closest(".site-audio-toggle"))return;
-   void playSiteAudio();
-  };
-  document.addEventListener("pointerdown",enableOnGesture);
-  document.addEventListener("keydown",enableOnGesture);
+  window.addEventListener("scroll",updateHeroAvailability,{passive:true});
+  window.addEventListener("resize",updateHeroAvailability);
+  updateHeroAvailability();
   return()=>{
    clearAudioFade();
-   document.removeEventListener("pointerdown",enableOnGesture);
-   document.removeEventListener("keydown",enableOnGesture);
+   window.removeEventListener("scroll",updateHeroAvailability);
+   window.removeEventListener("resize",updateHeroAvailability);
    audio.removeEventListener("play",onPlay);
    audio.removeEventListener("pause",onPause);
+   audio.removeEventListener("ended",onEnded);
    audio.removeEventListener("canplay",onCanPlay);
-   audio.removeEventListener("timeupdate",onTimeUpdate);
   };
  },[]);
  const albumsRail=useRef<HTMLDivElement>(null);
@@ -239,12 +264,14 @@ export default function Home(){
   return()=>{document.body.style.overflow="";document.removeEventListener("keydown",onKeyDown);};
  },[open]);
  return <>
-  <audio ref={audioRef} src="/images/Mr.%20Bow%20-%20Xisuti%20Xamina.mp3" preload="auto" loop aria-label="Mr Bow — Xisuti Xamina"/>
-  {!audioPlaying&&!audioInviteDismissed&&!scrolled&&<div className="audio-invite" aria-hidden="true"><span>ACTIVA A EMOÇÃO.</span><strong>OUVE MR BOW!</strong><span className="audio-invite-arrow">↘</span></div>}
-  <button type="button" className={`site-audio-toggle ${audioPlaying?"is-playing":""}`} onClick={toggleSiteAudio} aria-label={audioPlaying?"Pausar música ambiente":"Reproduzir música ambiente"} aria-pressed={audioPlaying} title={audioPlaying?"Pausar música":"Ouvir Mr Bow"}>
-   <span className="site-audio-icon">{audioPlaying?<Pause size={18} fill="currentColor"/>:<Volume2 size={19}/>}</span>
-   <span className="site-audio-info"><strong>MR BOW</strong><small>{audioPlaying?"A TOCAR · XISUTI XAMINA":audioReady?"ACTIVAR MÚSICA":"OUVIR MÚSICA"}</small></span>
-  </button>
+  <audio ref={audioRef} src="/images/Mr.%20Bow%20-%20Xisuti%20Xamina.mp3" preload="metadata" aria-label="Mr Bow — Xisuti Xamina"/>
+  {heroAudioEligible&&<>
+   {!audioPlaying&&!audioInviteDismissed&&!scrolled&&<div className="audio-invite" aria-hidden="true"><span>ACTIVA A EMOÇÃO.</span><strong>OUVE MR BOW!</strong><span className="audio-invite-arrow">↘</span></div>}
+   <button type="button" className={`site-audio-toggle ${audioPlaying?"is-playing":""}`} onClick={toggleSiteAudio} aria-label={audioPlaying?"Pausar música ambiente":"Reproduzir música ambiente"} aria-pressed={audioPlaying} title={audioPlaying?"Pausar música":"Ouvir Mr Bow"}>
+    <span className="site-audio-icon">{audioPlaying?<Pause size={18} fill="currentColor"/>:<Volume2 size={19}/>}</span>
+    <span className="site-audio-info"><strong>MR BOW</strong><small>{audioPlaying?"A TOCAR · XISUTI XAMINA":audioReady?"ACTIVAR MÚSICA":"OUVIR MÚSICA"}</small></span>
+   </button>
+  </>}
   <div className="reading-progress" style={{width:`${progress}%`}}/>
   <header className={`masthead ${scrolled?"masthead-scrolled":""} ${open?"masthead-menu-open":""}`}>
    <a className="brand" href="#inicio" onClick={()=>setOpen(false)} aria-label="Mr Bow — início">MR<span>BOW</span><b>®</b></a>
