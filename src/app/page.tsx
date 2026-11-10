@@ -5,6 +5,10 @@ import { musicLinks, upcomingShows } from "@/lib/content";
 
 const concert = "/images/Mr%20bow%20hero.jpg";
 const crowd = "/images/setion%203.jpg";
+const liveSlides = [
+ {image:"/images/setion%203.jpg",eyebrow:"DOS GRANDES PALCOS ÀS MULTIDÕES",headline:"O PALCO",accent:"É NOSSO.",description:"A energia dos grandes concertos. A música que aproxima milhares de pessoas e transforma cada espectáculo numa memória inesquecível.",cta:"VER PRÓXIMOS ESPECTÁCULOS",href:"#agenda",position:"center center"},
+ {image:"/images/Golden%20Wedding%20Serenade_Easy-Resize.com.jpg",eyebrow:"O AMOR TAMBÉM TEM BANDA SONORA",headline:"MOMENTOS",accent:"PARA SEMPRE.",description:"Há momentos que merecem ser vividos com emoção. Mr Bow dá voz aos casamentos e às celebrações que ficam para sempre.",cta:"CONTRATAR PARA CASAMENTO",href:"#booking",position:"center center"}
+] as const;
 const lights = "https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?auto=format&fit=crop&w=1600&q=85";
 
 function Reveal({children,className="",delay=0}:{children:React.ReactNode;className?:string;delay?:number}) {
@@ -25,6 +29,22 @@ export default function Home(){
  const [progress,setProgress]=useState(0);
  const [scrolled,setScrolled]=useState(false);
  const albumsRail=useRef<HTMLDivElement>(null);
+ const [liveSlide,setLiveSlide]=useState(0);
+ const [livePaused,setLivePaused]=useState(false);
+ const livePanelRef=useRef<HTMLElement>(null);
+ const [liveVisible,setLiveVisible]=useState(false);
+ useEffect(()=>{
+  const panel=livePanelRef.current;
+  if(!panel)return;
+  const observer=new IntersectionObserver(([entry])=>setLiveVisible(entry.isIntersecting),{threshold:.2});
+  observer.observe(panel);
+  return()=>observer.disconnect();
+ },[]);
+ useEffect(()=>{
+  if(!liveVisible||livePaused||window.matchMedia("(prefers-reduced-motion: reduce)").matches)return;
+  const interval=window.setInterval(()=>setLiveSlide(i=>(i+1)%liveSlides.length),8000);
+  return()=>window.clearInterval(interval);
+ },[liveVisible,livePaused]);
  useEffect(()=>{
   let raf=0;
   const update=()=>{cancelAnimationFrame(raf);raf=requestAnimationFrame(()=>{const max=document.documentElement.scrollHeight-window.innerHeight;setProgress(max>0?window.scrollY/max*100:0);setScrolled(window.scrollY>24);});};
@@ -163,12 +183,21 @@ export default function Home(){
     </div>
    </section>
 
-   <section className="cinema-panel" id="ao-vivo">
-    <div className="cinema-image" style={{backgroundImage:`url("${crowd}")`}} aria-hidden="true"/>
-    <div className="cinema-shade" aria-hidden="true"/>
-    
-    <Reveal className="cinema-content"><span className="cinema-mini">DOS GRANDES PALCOS AOS MOMENTOS MAIS ESPECIAIS</span><h2>O PALCO<br/><em>É NOSSO.</em></h2><p>Dos grandes concertos aos casamentos que marcam uma vida.<br/>Mr Bow transforma cada celebração num momento inesquecível.</p><a className="circle-link" href="#agenda">AGENDA DE ESPECTÁCULOS <ArrowUpRight size={20}/></a></Reveal>
-    <span className="cinema-corner">MB / LIVE</span>
+   <section className="cinema-panel cinema-slider" id="ao-vivo" ref={livePanelRef} aria-label="Concertos e celebrações com Mr Bow" onMouseEnter={()=>setLivePaused(true)} onMouseLeave={()=>setLivePaused(false)}>
+    {liveSlides.map((slide,index)=><div key={slide.image} className={`cinema-slide-image ${index===liveSlide?"is-active":""}`} style={{backgroundImage:`url("${slide.image}")`,backgroundPosition:slide.position}} aria-hidden="true"/>)}
+    <div className="cinema-shade cinema-slide-shade" aria-hidden="true"/>
+    <div key={liveSlide} className="cinema-content cinema-slide-content" aria-live="polite">
+     <span className="cinema-mini">{liveSlides[liveSlide].eyebrow}</span>
+     <h2>{liveSlides[liveSlide].headline}<br/><em>{liveSlides[liveSlide].accent}</em></h2>
+     <p>{liveSlides[liveSlide].description}</p>
+     <a className="circle-link" href={liveSlides[liveSlide].href}>{liveSlides[liveSlide].cta} <ArrowUpRight size={20}/></a>
+    </div>
+    <div className="cinema-slider-controls" aria-label="Controlos dos slides">
+     <button type="button" className="cinema-slider-arrow" aria-label="Slide anterior" onClick={()=>setLiveSlide(i=>(i+liveSlides.length-1)%liveSlides.length)}><ChevronLeft size={20}/></button>
+     {liveSlides.map((slide,index)=><button key={slide.image} type="button" className={`cinema-slider-dot ${index===liveSlide?"is-active":""}`} aria-label={`Mostrar slide ${index+1}: ${slide.headline}`} aria-pressed={index===liveSlide} onClick={()=>setLiveSlide(index)}><span/></button>)}
+     <button type="button" className="cinema-slider-arrow" aria-label="Próximo slide" onClick={()=>setLiveSlide(i=>(i+1)%liveSlides.length)}><ChevronRight size={20}/></button>
+    </div>
+    <span className="cinema-corner">{String(liveSlide+1).padStart(2,"0")} / {String(liveSlides.length).padStart(2,"0")} — MB / LIVE</span>
    </section>
 
    <section className="agenda section-shell" id="agenda">
