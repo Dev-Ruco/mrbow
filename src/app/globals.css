@@ -184,3 +184,49 @@
  .artist-section-editorial .artist-portrait-stage{order:1}
  .artist-section-editorial .artist-copy{order:2;padding:50px 6vw 80px}
 }
+
+
+/* Biografia editorial completa e ligação para a história. */
+.artist-section-editorial .artist-copy{justify-content:center;padding-top:78px;padding-bottom:78px}
+.artist-section-editorial .artist-copy h2{font-size:clamp(62px,6.6vw,112px);margin:22px 0 25px}
+.artist-biography{max-width:650px}
+.artist-section-editorial .artist-biography p{font-size:clamp(13px,1vw,16px);line-height:1.72;margin-bottom:13px;color:#3b3734}
+.artist-section-editorial .artist-biography p.artist-conclusion{font-size:clamp(16px,1.25vw,20px);font-weight:700;color:#171514;line-height:1.5;margin:21px 0 25px}
+.artist-story-button{display:inline-flex;align-items:center;gap:28px;background:#171514;color:#f3eee7;padding:16px 19px;font-size:10px;letter-spacing:.11em;font-weight:800;transition:transform .25s,background .25s}
+.artist-story-button:hover{transform:translateY(-3px);background:#822b44}
+.artist-section.artist-section-editorial{min-height:900px}
+.artist-section-editorial .artist-portrait-stage{min-height:850px}
+.artist-section-editorial .artist-cutout{height:min(92%,1000px)}
+.history-page{min-height:100svh;background:#d9d4cb;color:#171514}
+.history-nav{padding:26px 5vw;display:flex;align-items:center;justify-content:space-between;gap:20px;border-bottom:1px solid #b1aba3}
+.history-nav>a:first-child{font-size:10px;font-weight:800;letter-spacing:.12em}
+.history-brand{font:800 26px "Barlow Condensed",sans-serif}
+.history-content{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);align-items:stretch;min-height:800px}
+.history-photo{position:relative;overflow:hidden;min-height:750px}
+.history-photo img{display:block;position:absolute;bottom:0;left:50%;transform:translateX(-50%);height:min(95%,970px);width:auto;max-width:none;object-fit:contain;object-position:bottom center}
+.history-text{padding:90px min(7vw,120px) 105px 4vw}
+.history-text h1{font:800 clamp(70px,8vw,130px)/.85 "Barlow Condensed",sans-serif;margin:35px 0 55px;letter-spacing:-.045em}
+.history-text h1 em{font:400 .83em Italiana,serif;color:#88243e}
+.history-text p{font-size:16px;line-height:1.8;max-width:680px;color:#393633;margin:0 0 24px}
+.history-text .history-last{font-size:23px;line-height:1.5;color:#191615;font-weight:700;margin-top:35px}
+.history-return{display:inline-flex;margin-top:15px;border-bottom:1px solid currentColor;padding-bottom:10px;font-size:11px;font-weight:800;letter-spacing:.12em}
+@media(max-width:1050px) and (min-width:761px){
+ .artist-section-editorial .artist-copy{padding:55px 4vw}
+ .artist-section-editorial .artist-copy h2{font-size:clamp(55px,6vw,85px)}
+ .artist-section-editorial .artist-biography p{font-size:13px;line-height:1.58}
+ .history-text{padding:70px 5vw 85px 3vw}
+}
+@media(max-width:760px){
+ .artist-section.artist-section-editorial{min-height:0}
+ .artist-section-editorial .artist-portrait-stage{min-height:450px}
+ .artist-section-editorial .artist-copy{padding:48px 6vw 80px}
+ .artist-section-editorial .artist-copy h2{font-size:15vw}
+ .artist-section-editorial .artist-biography p{font-size:15px;line-height:1.75}
+ .artist-story-button{width:100%;justify-content:space-between}
+ .history-content{display:flex;flex-direction:column}
+ .history-photo{min-height:480px;height:63svh;max-height:620px}
+ .history-text{padding:50px 6vw 90px}
+ .history-text h1{font-size:15vw;margin:28px 0 40px}
+ .history-text p{font-size:15px}
+ .history-text .history-last{font-size:20px}
+}
