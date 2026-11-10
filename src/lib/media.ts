@@ -30,5 +30,5 @@ export const featuredLiveConcert={
  url:"https://www.youtube.com/watch?v=g60bxgViQHE",
  image:"https://img.youtube.com/vi/g60bxgViQHE/maxresdefault.jpg",
  fallbackImage:"https://img.youtube.com/vi/g60bxgViQHE/hqdefault.jpg",
- localImage:"/images/Blue-Lit%20Concert%20Stage%20Performance_Easy-Resize.com.jpg"
+ localImage:"/images/Mr%20bow%20concert.jpg"
 };
