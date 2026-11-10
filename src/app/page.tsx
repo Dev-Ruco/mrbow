@@ -51,8 +51,11 @@ export default function Home(){
    </section>
 
    <section className="artist-section artist-section-editorial" id="artista">
-    <div className="artist-portrait-stage">
-     <img src="/images/Elegant%20Tuxedo%20Portrait%20Cutout.png" alt="Mr Bow com fato preto, de óculos escuros" className="artist-cutout" loading="lazy" onError={(event) => {event.currentTarget.style.visibility="hidden";}} />
+    <div className="artist-portrait-stage artist-archive-stage">
+     <figure className="artist-archive-frame">
+      <img src="/images/Mr%20bow%20old%20pinrure.jpg" alt="Fotografia histórica de Mr Bow nos primeiros anos da sua carreira" className="artist-archive-photo" loading="lazy" />
+      <figcaption>MR BOW <span>— ARQUIVO / OS PRIMEIROS ANOS</span></figcaption>
+     </figure>
     </div>
     <div className="artist-copy">
      <span className="eyebrow">04 / THE MAN BEHIND THE MUSIC</span>
