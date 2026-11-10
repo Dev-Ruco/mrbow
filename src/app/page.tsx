@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import { ArrowDown, ArrowRight, ArrowUpRight, ChevronLeft, ChevronRight, Disc3, Instagram, Menu, Mic2, Newspaper, Pause, Play, Tv2, Volume2, X, Youtube } from "lucide-react";
+import { ArrowDown, ArrowRight, ArrowUpRight, ChevronLeft, ChevronRight, Disc3, Instagram, Menu, Pause, Play, Volume2, X, Youtube } from "lucide-react";
 import { musicLinks, upcomingShows } from "@/lib/content";
 import { mediaAppearances, featuredLiveConcert } from "@/lib/media";
 import { getConsentChoice, CONSENT_EVENT } from "./components/CookiePreferences";
