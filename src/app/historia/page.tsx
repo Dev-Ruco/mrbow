@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { LanguageSwitcher } from "../components/LocaleProvider";
+import SiteHeader from "../components/SiteHeader";
 
 export const metadata: Metadata = {
  title: "Biografia e História de Mr Bow — Salvador Pedro Maiaze",
@@ -23,8 +23,7 @@ const paragraphs=[
 ];
 
 export default function Historia(){
- return <main className="history-page">
-  <header className="history-nav"><Link href="/#artista">← VOLTAR À LANDING PAGE</Link><Link className="history-brand" href="/">MR BOW.</Link><LanguageSwitcher/></header>
+ return <><SiteHeader/><main className="history-page">
   <section className="history-content">
    <div className="history-photo"><img src="/images/Elegant%20Tuxedo%20Portrait%20Cutout.png" alt="Mr Bow com fato preto e óculos escuros"/></div>
    <article className="history-text">
@@ -35,5 +34,5 @@ export default function Historia(){
     <Link className="history-return" href="/#musica">EXPLORAR A MÚSICA ↗</Link>
    </article>
   </section>
- </main>
+ </main></>
 }
