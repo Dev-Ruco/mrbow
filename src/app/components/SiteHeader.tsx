@@ -17,7 +17,6 @@ const discographyLinks = [
   ["Álbuns", "/discografia#albuns"],
   ["Videoclipes", "/discografia#videoclipes"],
   ["Concertos", "/discografia#concertos"],
-  ["Entrevistas", "/discografia#entrevistas"],
 ] as const;
 
 export default function SiteHeader({
@@ -35,6 +34,7 @@ export default function SiteHeader({
 
   const homeHref = home ? "#inicio" : "/";
   const awardsHref = home ? "#premios" : "/#premios";
+  const interviewsHref = home ? "#entrevistas" : "/#entrevistas";
   const eventsHref = home ? "#agenda" : "/#agenda";
   const bookingHref = home ? "#booking" : "/#booking";
 
@@ -43,6 +43,7 @@ export default function SiteHeader({
     ["História", "/historia"],
     ["Discografia", "/discografia"],
     ...discographyLinks,
+    ["Entrevistas", interviewsHref],
     ["Prémios", awardsHref],
     ["Agenda de espectáculos", eventsHref],
     ["Contratações", bookingHref],
@@ -61,6 +62,7 @@ export default function SiteHeader({
               {discographyLinks.map(([label, href]) => <a key={href} href={href} onClick={close}>{label}</a>)}
             </div>
           </div>
+          <a href={interviewsHref} onClick={close}>Entrevistas</a>
           <a href={awardsHref} onClick={close}>Prémios</a>
           <a href={eventsHref} onClick={close}>Espectáculos</a>
         </nav>
