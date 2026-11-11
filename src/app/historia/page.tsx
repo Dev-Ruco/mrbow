@@ -3,8 +3,16 @@ import Link from "next/link";
 import { LanguageSwitcher } from "../components/LocaleProvider";
 
 export const metadata: Metadata = {
- title:"A História de Mr Bow",
- description:"Das origens em Manjacaze ao percurso artístico de Mr Bow. Conheça a história de Salvador Pedro Maiaze.",
+ title: "Biografia e História de Mr Bow — Salvador Pedro Maiaze",
+ description: "Conheça a história de Mr Bow, Salvador Pedro Maiaze: das origens em Manjacaze, Gaza, ao percurso na música moçambicana e aos grandes palcos.",
+ alternates: { canonical: "/historia" },
+ openGraph: {
+  type: "article",
+  url: "https://mrbow.co.mz/historia",
+  title: "A História de Mr Bow — Salvador Pedro Maiaze",
+  description: "Das origens em Manjacaze ao percurso de Mr Bow na música moçambicana.",
+  images: [{ url: "/images/Elegant%20Tuxedo%20Portrait%20Cutout.png", alt: "Retrato do artista Mr Bow" }],
+ },
 };
 
 const paragraphs=[
