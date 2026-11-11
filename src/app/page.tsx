@@ -7,13 +7,13 @@ import { useLocale } from "./components/LocaleProvider";
 import SiteHeader from "./components/SiteHeader";
 
 const heroSlides = [
- {image:"/images/Mr%20bow%20hero.jpg",eyebrow:"MR BOW / THE ARTIST",line:"MÚSICA. IDENTIDADE. LEGADO.",description:"Uma voz que transforma cada palco numa experiência.",href:"#musica",cta:"DESCOBRIR A MÚSICA"},
- {image:"/images/Golden%20Wedding%20Serenade_Easy-Resize.com.jpg",eyebrow:"MR BOW / THE MOMENTS",line:"MOMENTOS PARA SEMPRE.",description:"A emoção da música nos dias que ficam para sempre.",href:"#booking",cta:"CONTRATAR PARA UM EVENTO"}
+ {image:"/images/Mr%20bow%20hero.jpg",eyebrow:"MR. BOW / THE ARTIST",line:"MÚSICA. IDENTIDADE. LEGADO.",description:"Uma voz que transforma cada palco numa experiência.",href:"#musica",cta:"DESCOBRIR A MÚSICA"},
+ {image:"/images/Golden%20Wedding%20Serenade_Easy-Resize.com.jpg",eyebrow:"MR. BOW / THE MOMENTS",line:"MOMENTOS PARA SEMPRE.",description:"A emoção da música nos dias que ficam para sempre.",href:"#booking",cta:"CONTRATAR PARA UM EVENTO"}
 ] as const;
 const crowd = "/images/setion%203.jpg";
 const liveSlides = [
  {image:"/images/setion%203.jpg",eyebrow:"DOS GRANDES PALCOS ÀS MULTIDÕES",headline:"O PALCO",accent:"É NOSSO.",description:"A energia dos grandes concertos. A música que aproxima milhares de pessoas e transforma cada espectáculo numa memória inesquecível.",cta:"VER PRÓXIMOS ESPECTÁCULOS",href:"#agenda",position:"center center"},
- {image:"/images/Golden%20Wedding%20Serenade_Easy-Resize.com.jpg",eyebrow:"O AMOR TAMBÉM TEM BANDA SONORA",headline:"MOMENTOS",accent:"PARA SEMPRE.",description:"Há momentos que merecem ser vividos com emoção. Mr Bow dá voz aos casamentos e às celebrações que ficam para sempre.",cta:"CONTRATAR PARA CASAMENTO",href:"#booking",position:"center center"}
+ {image:"/images/Golden%20Wedding%20Serenade_Easy-Resize.com.jpg",eyebrow:"O AMOR TAMBÉM TEM BANDA SONORA",headline:"MOMENTOS",accent:"PARA SEMPRE.",description:"Há momentos que merecem ser vividos com emoção. Mr. Bow dá voz aos casamentos e às celebrações que ficam para sempre.",cta:"CONTRATAR PARA CASAMENTO",href:"#booking",position:"center center"}
 ] as const;
 
 function Reveal({children,className="",delay=0}:{children:React.ReactNode;className?:string;delay?:number}) {
@@ -31,10 +31,10 @@ function Reveal({children,className="",delay=0}:{children:React.ReactNode;classN
 export default function Home(){
  const {locale}=useLocale();
  const bookingMessage=locale==="en"
-  ?"Hello, I would like information about booking Mr Bow for an event."
+  ?"Hello, I would like information about booking Mr. Bow for an event."
   :locale==="ts"
-   ?"Avuxeni, ndzi lava vuxokoxoko bya ku hira Mr Bow eka nkhuvo."
-   :"Olá, gostaria de solicitar informações para contratar o Mr Bow para um evento.";
+   ?"Avuxeni, ndzi lava vuxokoxoko bya ku hira Mr. Bow eka nkhuvo."
+   :"Olá, gostaria de solicitar informações para contratar o Mr. Bow para um evento.";
 
  const [open,setOpen]=useState(false);
  const [progress,setProgress]=useState(0);
@@ -252,22 +252,22 @@ export default function Home(){
   return()=>{document.body.style.overflow="";document.removeEventListener("keydown",onKeyDown);};
  },[open]);
  return <>
-  <audio ref={audioRef} src="/images/Mr.%20Bow%20-%20Xisuti%20Xamina.mp3" preload="metadata" aria-label="Mr Bow — Xisuti Xamina"/>
+  <audio ref={audioRef} src="/images/Mr.%20Bow%20-%20Xisuti%20Xamina.mp3" preload="metadata" aria-label="Mr. Bow — Xisuti Xamina"/>
   {heroAudioEligible&&<>
-   {!audioPlaying&&!audioInviteDismissed&&!scrolled&&<div className="audio-invite" aria-hidden="true"><span>ACTIVA A EMOÇÃO.</span><strong>OUVE MR BOW!</strong><span className="audio-invite-arrow">↘</span></div>}
-   <button type="button" className={`site-audio-toggle ${audioPlaying?"is-playing":""}`} onClick={toggleSiteAudio} aria-label={audioPlaying?"Pausar música ambiente":"Reproduzir música ambiente"} aria-pressed={audioPlaying} title={audioPlaying?"Pausar música":"Ouvir Mr Bow"}>
+   {!audioPlaying&&!audioInviteDismissed&&!scrolled&&<div className="audio-invite" aria-hidden="true"><span>ACTIVA A EMOÇÃO.</span><strong>OUVE MR. BOW!</strong><span className="audio-invite-arrow">↘</span></div>}
+   <button type="button" className={`site-audio-toggle ${audioPlaying?"is-playing":""}`} onClick={toggleSiteAudio} aria-label={audioPlaying?"Pausar música ambiente":"Reproduzir música ambiente"} aria-pressed={audioPlaying} title={audioPlaying?"Pausar música":"Ouvir Mr. Bow"}>
     <span className="site-audio-icon">{audioPlaying?<Pause size={18} fill="currentColor"/>:<Volume2 size={19}/>}</span>
-    <span className="site-audio-info"><strong>MR BOW</strong><small>{audioPlaying?"A TOCAR · XISUTI XAMINA":audioReady?"ACTIVAR MÚSICA":"OUVIR MÚSICA"}</small></span>
+    <span className="site-audio-info"><strong>MR. BOW</strong><small>{audioPlaying?"A TOCAR · XISUTI XAMINA":audioReady?"ACTIVAR MÚSICA":"OUVIR MÚSICA"}</small></span>
    </button>
   </>}
   <div className="reading-progress" style={{width:`${progress}%`}}/>
   <SiteHeader home scrolled={scrolled} menuOpen={open} onMenuChange={setOpen} menuRef={mobileMenuRef} menuButtonRef={mobileMenuButtonRef}/>
   <main>
-   <section className={`hero hero-cinematic-slider ${heroPaused||!heroVisible?"is-paused":""}`} id="inicio" ref={heroPanelRef} onMouseEnter={()=>setHeroPaused(true)} onMouseLeave={()=>setHeroPaused(false)} onFocusCapture={()=>setHeroPaused(true)} onBlurCapture={()=>setHeroPaused(false)} onTouchStart={e=>{heroTouchStart.current=e.touches[0]?.clientX??null;}} onTouchEnd={e=>handleSwipe(heroTouchStart,e.changedTouches[0]?.clientX??0,direction=>changeHeroSlide(heroSlide+direction))} onTouchCancel={()=>{heroTouchStart.current=null;}} aria-label="Destaques de Mr Bow">
+   <section className={`hero hero-cinematic-slider ${heroPaused||!heroVisible?"is-paused":""}`} id="inicio" ref={heroPanelRef} onMouseEnter={()=>setHeroPaused(true)} onMouseLeave={()=>setHeroPaused(false)} onFocusCapture={()=>setHeroPaused(true)} onBlurCapture={()=>setHeroPaused(false)} onTouchStart={e=>{heroTouchStart.current=e.touches[0]?.clientX??null;}} onTouchEnd={e=>handleSwipe(heroTouchStart,e.changedTouches[0]?.clientX??0,direction=>changeHeroSlide(heroSlide+direction))} onTouchCancel={()=>{heroTouchStart.current=null;}} aria-label="Destaques de Mr. Bow">
     {heroSlides.map((slide,index)=><div key={slide.image} className={`hero-slide-photo ${heroSlide===index?"is-active":""}`} style={{backgroundImage:`url("${slide.image}")`}} aria-hidden="true"/>)}
     <div className="hero-grain" aria-hidden="true"/>
     <div className="hero-title-wrap hero-title-only">
-     <h1 className="hero-title"><span className="hero-first">MR</span><span className="hero-second">BOW<span className="hero-period">.</span></span></h1>
+     <h1 className="hero-title"><span className="hero-first">MR<span className="hero-period">.</span></span><span className="hero-second">BOW</span></h1>
     </div>
     <div key={heroSlide} className="hero-slide-story" aria-live="polite">
      <span className="hero-story-eyebrow">{heroSlides[heroSlide].eyebrow}</span>
@@ -284,12 +284,12 @@ export default function Home(){
     <div className="artist-portrait-stage artist-archive-stage">
      <div className="artist-evolution-photos">
       <figure className="artist-archive-frame">
-       <img src="/images/Mr%20bow%20old%20pinrure.jpg" alt="Mr Bow nos primeiros anos da sua carreira" className="artist-archive-photo" loading="lazy" />
-       <figcaption>MR BOW <span>— OS PRIMEIROS ANOS</span></figcaption>
+       <img src="/images/Mr%20bow%20old%20pinrure.jpg" alt="Mr. Bow nos primeiros anos da sua carreira" className="artist-archive-photo" loading="lazy" />
+       <figcaption>MR. BOW <span>— OS PRIMEIROS ANOS</span></figcaption>
       </figure>
       <figure className="artist-now-frame">
-       <div className="artist-now-portrait"><img src="/images/Mr%20bow%2003.jpg" alt="Fotografia mais recente de Mr Bow" loading="lazy" /></div>
-       <figcaption>MR BOW <span>— HOJE</span></figcaption>
+       <div className="artist-now-portrait"><img src="/images/Mr%20bow%2003.jpg" alt="Fotografia mais recente de Mr. Bow" loading="lazy" /></div>
+       <figcaption>MR. BOW <span>— HOJE</span></figcaption>
       </figure>
      </div>
     </div>
@@ -311,22 +311,22 @@ export default function Home(){
 
    <section className="music-showcase" id="musica">
     <div className="music-showcase-inner">
-     <div className="music-meta"><span>01 / THE MUSIC</span><span className="music-meta-right">MR BOW — DESTAQUES DA DISCOGRAFIA</span></div>
+     <div className="music-meta"><span>01 / THE MUSIC</span><span className="music-meta-right">MR. BOW — DESTAQUES DA DISCOGRAFIA</span></div>
      <div className="music-hero-composition">
-      <Reveal className="music-heading"><div><span className="music-eyebrow"><Disc3 size={16}/> O SOM DE MR BOW</span><h2>OUVE.<br/><em>SENTE.</em><br/>VIVE.</h2></div><p>As canções que nos aproximam. A emoção que se transforma em memória colectiva.</p></Reveal>
-      <div className="music-mosaic" aria-label="Galeria de fotografias dos espectáculos de Mr Bow">
+      <Reveal className="music-heading"><div><span className="music-eyebrow"><Disc3 size={16}/> O SOM DE MR. BOW</span><h2>OUVE.<br/><em>SENTE.</em><br/>VIVE.</h2></div><p>As canções que nos aproximam. A emoção que se transforma em memória colectiva.</p></Reveal>
+      <div className="music-mosaic" aria-label="Galeria de fotografias dos espectáculos de Mr. Bow">
        {[
         {image:"/images/01%20%3A%20PU%CC%81BLICO%20EM%20E%CC%82XTASE.jpeg",label:"01 / PÚBLICO EM ÊXTASE",name:"Público a vibrar",className:"music-mosaic-crowd"},
         {image:"/images/02%20%3A%20EM%20PALCO.jpeg",label:"02 / EM PALCO",name:"Actuação ao vivo",className:"music-mosaic-stage"},
         {image:"/images/03%20%3A%20A%20ENERGIA.jpeg",label:"03 / A ENERGIA",name:"Fãs a celebrar",className:"music-mosaic-fans"},
         {image:"/images/04%20_%20ATMOSFERA_Easy-Resize.com.jpg",label:"04 / ATMOSFERA",name:"Ambiente de espectáculo",className:"music-mosaic-atmosphere"}
        ].map((photo,i)=><Reveal key={photo.label} className={`music-mosaic-cell ${photo.className}`} delay={i*95}>
-        <img src={photo.image} alt={photo.name+" nos espectáculos de Mr Bow"} loading="lazy" />
+        <img src={photo.image} alt={photo.name+" nos espectáculos de Mr. Bow"} loading="lazy" />
         <span className="music-mosaic-label">{photo.label}</span>
        </Reveal>)}
       </div>
      </div>
-     <div className="release-topline"><div><span className="release-small">ÁLBUNS EM DESTAQUE</span><h3>DISCOGRAFIA <i>DE MR BOW</i></h3></div><a className="home-feature-button" href="/discografia">VER DISCOGRAFIA COMPLETA <ArrowUpRight size={18}/></a></div>
+     <div className="release-topline"><div><span className="release-small">ÁLBUNS EM DESTAQUE</span><h3>DISCOGRAFIA <i>DE MR. BOW</i></h3></div><a className="home-feature-button" href="/discografia">VER DISCOGRAFIA COMPLETA <ArrowUpRight size={18}/></a></div>
      <div className="albums-rail" aria-label="Três álbuns em destaque">
       {[
        {number:"01",image:"/images/Album%201.jpeg",title:"MR ROMANTIC",url:"https://open.spotify.com/album/1yVE3BEW9Zq49flWW4qQA9"},
@@ -334,21 +334,21 @@ export default function Home(){
        {number:"03",image:"/images/Album%203.jpg",title:"STRONG SHANGANE",url:"https://open.spotify.com/album/58X9KqhtuVPTp1sJgMiSdK"}
       ].map((album,index)=><Reveal className="album-card" key={album.number} delay={index*105}>
         <a className="album-artwork" href={album.url} target="_blank" rel="noopener noreferrer" aria-label={`Ouvir ${album.title} no Spotify`}>
-          <img src={album.image} alt={`Capa do álbum ${album.title}, de Mr Bow`} loading="lazy"/>
+          <img src={album.image} alt={`Capa do álbum ${album.title}, de Mr. Bow`} loading="lazy"/>
           <span className="album-index">{album.number}</span>
           <span className="album-play"><Play fill="currentColor" size={23}/></span>
         </a>
-        <div className="album-card-info"><div><span>ÁLBUM / MR BOW</span><h4>{album.title}</h4></div><a href={album.url} target="_blank" rel="noopener noreferrer">OUVIR NO SPOTIFY <ArrowUpRight size={18}/></a></div>
+        <div className="album-card-info"><div><span>ÁLBUM / MR. BOW</span><h4>{album.title}</h4></div><a href={album.url} target="_blank" rel="noopener noreferrer">OUVIR NO SPOTIFY <ArrowUpRight size={18}/></a></div>
       </Reveal>)}
      </div>
-     <Reveal className="music-bottom-strip"><span>EXPLORA A OBRA MUSICAL DE MR BOW</span><a href="/discografia">VER TODOS OS ÁLBUNS <ArrowUpRight size={18}/></a></Reveal>
+     <Reveal className="music-bottom-strip"><span>EXPLORA A OBRA MUSICAL DE MR. BOW</span><a href="/discografia">VER TODOS OS ÁLBUNS <ArrowUpRight size={18}/></a></Reveal>
     </div>
    </section>
 
    <section className="awards-section" id="premios">
     <div className="awards-inner">
      <div className="awards-eyebrow"><span>PRÉMIOS & DISTINÇÕES</span><span>AWARDS & RECOGNITION</span></div>
-     <Reveal className="awards-heading"><div><span className="awards-kicker">O RECONHECIMENTO DE UMA TRAJECTÓRIA</span><h2>UMA CARREIRA.<br/><em>UM LEGADO.</em></h2></div><p>Canções que conquistaram o público e distinções que marcaram diferentes momentos da carreira de Mr Bow.</p></Reveal>
+     <Reveal className="awards-heading"><div><span className="awards-kicker">O RECONHECIMENTO DE UMA TRAJECTÓRIA</span><h2>UMA CARREIRA.<br/><em>UM LEGADO.</em></h2></div><p>Canções que conquistaram o público e distinções que marcaram diferentes momentos da carreira de Mr. Bow.</p></Reveal>
      <div className="awards-feature">
       <Reveal className="awards-stat"><strong>05<span>×</span></strong><p>Prémios de música popular<br/>no Ngoma Moçambique</p><small>2011 — 2016</small></Reveal>
       <div className="awards-timeline">
@@ -372,40 +372,40 @@ export default function Home(){
 
    <section className="media-section" id="entrevistas" aria-labelledby="media-heading">
     <div className="media-section-inner">
-     <div className="media-topline"><span>MR BOW / NA IMPRENSA</span><span>CONVERSAS • TELEVISÃO • NOTÍCIAS</span></div>
+     <div className="media-topline"><span>MR. BOW / NA IMPRENSA</span><span>CONVERSAS • TELEVISÃO • NOTÍCIAS</span></div>
      <Reveal className="media-heading">
       <div><span className="media-kicker">PARA ALÉM DA MÚSICA</span><h2 id="media-heading">ENTREVISTAS<br/><em>E CONVERSAS.</em></h2></div>
-      <p>Entrevistas, conversas e momentos na comunicação social. Conhece as ideias, as experiências e o percurso de Mr Bow através de podcasts, televisão e notícias.</p>
+      <p>Entrevistas, conversas e momentos na comunicação social. Conhece as ideias, as experiências e o percurso de Mr. Bow através de podcasts, televisão e notícias.</p>
      </Reveal>
      <div className="media-feature-label"><span>ENTREVISTAS EM DESTAQUE</span><span>05 / YOUTUBE</span></div>
      <div className="media-featured-grid">
       {mediaAppearances.filter(appearance=>appearance.category==="entrevista").map((appearance,index)=>{
        const descriptions={
         pt:[
-         "Uma conversa no Tu Pra Tu Podcast que aproxima o público do percurso artístico e da personalidade de Mr Bow.",
-         "Mr Bow participa no MozPod, num formato de entrevista dedicado às conversas e às experiências dos convidados.",
-         "Uma participação na Rise FM, da África do Sul, que leva a presença mediática de Mr Bow além das fronteiras de Moçambique.",
-         "Um encontro de Mr Bow com o Makagui Cast, num espaço de conversa que permite conhecer outra dimensão do artista.",
-         "Mr Bow em entrevista ao TeleDiário da STV, num registo televisivo que integra o seu arquivo de aparições na comunicação social."
+         "Uma conversa no Tu Pra Tu Podcast que aproxima o público do percurso artístico e da personalidade de Mr. Bow.",
+         "Mr. Bow participa no MozPod, num formato de entrevista dedicado às conversas e às experiências dos convidados.",
+         "Uma participação na Rise FM, da África do Sul, que leva a presença mediática de Mr. Bow além das fronteiras de Moçambique.",
+         "Um encontro de Mr. Bow com o Makagui Cast, num espaço de conversa que permite conhecer outra dimensão do artista.",
+         "Mr. Bow em entrevista ao TeleDiário da STV, num registo televisivo que integra o seu arquivo de aparições na comunicação social."
         ],
         en:[
-         "A conversation on Tu Pra Tu Podcast, offering audiences another perspective on Mr Bow’s artistic journey and personality.",
-         "Mr Bow joins MozPod for a guest interview in a format centred on conversation and personal experiences.",
-         "An appearance on South Africa’s Rise FM, extending Mr Bow’s media presence beyond Mozambique.",
-         "Mr Bow joins Makagui Cast for a conversation that offers another perspective on the artist.",
-         "Mr Bow’s interview on STV’s TeleDiário, part of the artist’s television and media archive."
+         "A conversation on Tu Pra Tu Podcast, offering audiences another perspective on Mr. Bow’s artistic journey and personality.",
+         "Mr. Bow joins MozPod for a guest interview in a format centred on conversation and personal experiences.",
+         "An appearance on South Africa’s Rise FM, extending Mr. Bow’s media presence beyond Mozambique.",
+         "Mr. Bow joins Makagui Cast for a conversation that offers another perspective on the artist.",
+         "Mr. Bow’s interview on STV’s TeleDiário, part of the artist’s television and media archive."
         ],
         ts:[
-         "Mburisano eka Tu Pra Tu Podcast lowu nyikaka vanhu ndlela yin'wana yo tiva riendzo ra vutshila ni vumunhu bya Mr Bow.",
-         "Mr Bow u humelela eka MozPod, laha vaendzi va burisanaka hi mintokoto ya vona.",
-         "Mr Bow u humelela eka Rise FM eAfrika-Dzonga, leswi kombisaka ku tiveka ka yena ni le handle ka Mozambique.",
-         "Mburisano wa Mr Bow eka Makagui Cast lowu pfunaka vanhu ku tiva muyimbeleri hi ndlela yin'wana.",
-         "Mburisano wa Mr Bow eka TeleDiário ya STV, lowu nga xiphemu xa matimu ya yena eka thelevhixini."
+         "Mburisano eka Tu Pra Tu Podcast lowu nyikaka vanhu ndlela yin'wana yo tiva riendzo ra vutshila ni vumunhu bya Mr. Bow.",
+         "Mr. Bow u humelela eka MozPod, laha vaendzi va burisanaka hi mintokoto ya vona.",
+         "Mr. Bow u humelela eka Rise FM eAfrika-Dzonga, leswi kombisaka ku tiveka ka yena ni le handle ka Mozambique.",
+         "Mburisano wa Mr. Bow eka Makagui Cast lowu pfunaka vanhu ku tiva muyimbeleri hi ndlela yin'wana.",
+         "Mburisano wa Mr. Bow eka TeleDiário ya STV, lowu nga xiphemu xa matimu ya yena eka thelevhixini."
         ]
        };
-       const title=locale==="en"&&index===2?"Mr Bow on Rise FM — South Africa":locale==="ts"&&index===2?"Mr Bow eka Rise FM — Afrika-Dzonga":appearance.title;
+       const title=locale==="en"&&index===2?"Mr. Bow on Rise FM — South Africa":locale==="ts"&&index===2?"Mr. Bow eka Rise FM — Afrika-Dzonga":appearance.title;
        return <Reveal className={`media-featured-card ${index===0?"media-featured-lead":""}`} key={appearance.id} delay={Math.min(index*65,250)}>
-        <a href={appearance.url} className="media-featured-link" target="_blank" rel="noopener noreferrer" aria-label={`Ver entrevista ${index+1} de Mr Bow no YouTube`}>
+        <a href={appearance.url} className="media-featured-link" target="_blank" rel="noopener noreferrer" aria-label={`Ver entrevista ${index+1} de Mr. Bow no YouTube`}>
          <div className="media-featured-image">
           <img src={`/api/video-thumbnail/${appearance.url.split("v=")[1]}`} loading="lazy" alt={`Capa original da entrevista ${appearance.title} no YouTube`}/>
           <span className="media-featured-play"><Play size={25} fill="currentColor" aria-hidden="true"/></span>
@@ -421,11 +421,11 @@ export default function Home(){
        </Reveal>;
       })}
      </div>
-     <div className="media-endnote"><span>MR BOW. PARA ALÉM DO PALCO.</span><span>ENTREVISTAS & MEDIA</span></div>
+     <div className="media-endnote"><span>MR. BOW — PARA ALÉM DO PALCO.</span><span>ENTREVISTAS & MEDIA</span></div>
     </div>
    </section>
 
-   <section className={`cinema-panel cinema-slider ${livePaused||!liveVisible?"is-paused":""}`} id="ao-vivo" ref={livePanelRef} aria-label="Concertos e celebrações com Mr Bow" onMouseEnter={()=>setLivePaused(true)} onMouseLeave={()=>setLivePaused(false)} onFocusCapture={()=>setLivePaused(true)} onBlurCapture={()=>setLivePaused(false)} onTouchStart={e=>{liveTouchStart.current=e.touches[0]?.clientX??null;}} onTouchEnd={e=>handleSwipe(liveTouchStart,e.changedTouches[0]?.clientX??0,direction=>changeLiveSlide(liveSlide+direction))} onTouchCancel={()=>{liveTouchStart.current=null;}}>
+   <section className={`cinema-panel cinema-slider ${livePaused||!liveVisible?"is-paused":""}`} id="ao-vivo" ref={livePanelRef} aria-label="Concertos e celebrações com Mr. Bow" onMouseEnter={()=>setLivePaused(true)} onMouseLeave={()=>setLivePaused(false)} onFocusCapture={()=>setLivePaused(true)} onBlurCapture={()=>setLivePaused(false)} onTouchStart={e=>{liveTouchStart.current=e.touches[0]?.clientX??null;}} onTouchEnd={e=>handleSwipe(liveTouchStart,e.changedTouches[0]?.clientX??0,direction=>changeLiveSlide(liveSlide+direction))} onTouchCancel={()=>{liveTouchStart.current=null;}}>
     {liveSlides.map((slide,index)=><div key={slide.image} className={`cinema-slide-image ${index===liveSlide?"is-active":""}`} style={{backgroundImage:`url("${slide.image}")`,backgroundPosition:slide.position}} aria-hidden="true"/>)}
     <div className="cinema-shade cinema-slide-shade" aria-hidden="true"/>
     <div key={liveSlide} className="cinema-content cinema-slide-content" aria-live="polite">
@@ -456,13 +456,13 @@ export default function Home(){
      <Reveal>
       <span className="booking-label">O PRÓXIMO GRANDE MOMENTO COMEÇA AQUI.</span>
       <h2>FAÇAMOS<br/><em>HISTÓRIA</em><span> JUNTOS.</span></h2>
-      <a className="booking-link booking-whatsapp" href={`https://wa.me/258843000002?text=${encodeURIComponent(bookingMessage)}`} target="_blank" rel="noopener noreferrer" aria-label="Solicitar contratação de Mr Bow por WhatsApp">
+      <a className="booking-link booking-whatsapp" href={`https://wa.me/258843000002?text=${encodeURIComponent(bookingMessage)}`} target="_blank" rel="noopener noreferrer" aria-label="Solicitar contratação de Mr. Bow por WhatsApp">
        CONTRATAR VIA WHATSAPP <span><ArrowUpRight size={29}/></span>
       </a>
      </Reveal>
     </div>
    </section>
   </main>
-  <footer className="footer"><div className="footer-upper"><a className="brand" href="#inicio">MR<span>BOW</span><b>®</b></a><div className="footer-networks"><a href={musicLinks[0].href} target="_blank" rel="noopener noreferrer" aria-label="YouTube"><Youtube/></a><a href="https://www.instagram.com/mrbowofficial/" target="_blank" rel="noopener noreferrer" aria-label="Instagram oficial de Mr Bow"><Instagram/></a></div></div><div className="footer-lower"><span>© {new Date().getFullYear()} MR BOW. TODOS OS DIREITOS RESERVADOS.</span><span>MADE IN MOZAMBIQUE. FELT EVERYWHERE.</span><nav className="footer-legal-nav" aria-label="Páginas do artista e informações legais"><a href="/historia">HISTÓRIA</a><a href="/discografia">DISCOGRAFIA</a><a href="/discografia#videoclipes">VÍDEOS</a><a href="/espectaculos">ESPECTÁCULOS</a><a href="/privacidade">PRIVACIDADE</a><a href="/cookies">COOKIES</a><a href="/termos">TERMOS</a><button type="button" onClick={()=>window.dispatchEvent(new Event("mrbow:open-cookie-settings"))}>PREFERÊNCIAS DE COOKIES</button></nav><a href="#inicio">VOLTAR AO TOPO ↑</a></div></footer>
+  <footer className="footer"><div className="footer-upper"><a className="brand" href="#inicio">MR.<span>BOW</span><b>®</b></a><div className="footer-networks"><a href={musicLinks[0].href} target="_blank" rel="noopener noreferrer" aria-label="YouTube"><Youtube/></a><a href="https://www.instagram.com/mrbowofficial/" target="_blank" rel="noopener noreferrer" aria-label="Instagram oficial de Mr. Bow"><Instagram/></a></div></div><div className="footer-lower"><span>© {new Date().getFullYear()} MR. BOW. TODOS OS DIREITOS RESERVADOS.</span><span>MADE IN MOZAMBIQUE. FELT EVERYWHERE.</span><nav className="footer-legal-nav" aria-label="Páginas do artista e informações legais"><a href="/historia">HISTÓRIA</a><a href="/discografia">DISCOGRAFIA</a><a href="/discografia#videoclipes">VÍDEOS</a><a href="/espectaculos">ESPECTÁCULOS</a><a href="/privacidade">PRIVACIDADE</a><a href="/cookies">COOKIES</a><a href="/termos">TERMOS</a><button type="button" onClick={()=>window.dispatchEvent(new Event("mrbow:open-cookie-settings"))}>PREFERÊNCIAS DE COOKIES</button></nav><a href="#inicio">VOLTAR AO TOPO ↑</a></div></footer>
  </>;
 }
