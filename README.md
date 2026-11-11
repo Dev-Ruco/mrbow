@@ -55,7 +55,7 @@ Não é necessário efectuar qualquer operação no Vercel. O deploy do servidor
 
 O arquivo de entrevistas em `src/lib/media.ts` inclui os vídeos fornecidos para: Tu Pra Tu Podcast, MozPod, Rise FM South Africa, Makagui Cast e TeleDiário da STV. O concerto gravado tem ligação própria e usa a fotografia **Mr bow concert.jpg** como pré-visualização.
 
-A secção de videoclipes tem três ligações individuais para o YouTube em `src/app/page.tsx`. As miniaturas remotas aparecem apenas quando o visitante autoriza conteúdo externo; caso contrário são utilizadas imagens locais de substituição. As ligações aos vídeos mantêm-se activas independentemente da escolha.
+A secção de videoclipes tem três ligações individuais para o YouTube em `src/app/page.tsx`. As capas correspondentes a cada vídeo são obtidas pelo servidor através de `/api/video-thumbnail/[id]` e servidas a partir do domínio do site, sem pedido directo do navegador ao YouTube. São apresentadas mesmo quando o visitante recusa cookies opcionais. As ligações abrem o YouTube apenas depois do clique. O servidor necessita de acesso HTTP(S) a `i.ytimg.com` para obter as capas; as respostas ficam em cache.
 
 ### Música de abertura
 
