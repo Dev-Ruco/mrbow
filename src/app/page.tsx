@@ -2,6 +2,7 @@
 import { useEffect, useRef, useState } from "react";
 import { ArrowDown, ArrowUpRight, ChevronLeft, ChevronRight, Disc3, Instagram, Menu, Pause, Play, Volume2, X, Youtube } from "lucide-react";
 import { musicLinks, upcomingShows } from "@/lib/content";
+import { mediaAppearances } from "@/lib/media";
 import { useLocale } from "./components/LocaleProvider";
 import SiteHeader from "./components/SiteHeader";
 
@@ -366,6 +367,61 @@ export default function Home(){
      </div>
      <Reveal className="awards-additional"><span>MOZAMBIQUE MUSIC AWARDS / 2015</span><div><strong>Melhor Artista Masculino</strong><strong>Música Mais Popular</strong></div><a href="https://www.mmo.co.mz/veja-a-lista-dos-vencedores-do-mma-2015/" target="_blank" rel="noopener noreferrer">VER DISTINÇÕES <ArrowUpRight size={18}/></a></Reveal>
      <p className="awards-source">Fonte: Rádio Moçambique — vencedores oficiais do Ngoma; resultados dos Mozambique Music Awards 2015.</p>
+    </div>
+   </section>
+
+   <section className="media-section" id="entrevistas" aria-labelledby="media-heading">
+    <div className="media-section-inner">
+     <div className="media-topline"><span>MR BOW / NA IMPRENSA</span><span>CONVERSAS • TELEVISÃO • NOTÍCIAS</span></div>
+     <Reveal className="media-heading">
+      <div><span className="media-kicker">PARA ALÉM DA MÚSICA</span><h2 id="media-heading">ENTREVISTAS<br/><em>E CONVERSAS.</em></h2></div>
+      <p>Entrevistas, conversas e momentos na comunicação social. Conhece as ideias, as experiências e o percurso de Mr Bow através de podcasts, televisão e notícias.</p>
+     </Reveal>
+     <div className="media-feature-label"><span>ENTREVISTAS EM DESTAQUE</span><span>05 / YOUTUBE</span></div>
+     <div className="media-featured-grid">
+      {mediaAppearances.filter(appearance=>appearance.category==="entrevista").map((appearance,index)=>{
+       const descriptions={
+        pt:[
+         "Uma conversa no Tu Pra Tu Podcast que aproxima o público do percurso artístico e da personalidade de Mr Bow.",
+         "Mr Bow participa no MozPod, num formato de entrevista dedicado às conversas e às experiências dos convidados.",
+         "Uma participação na Rise FM, da África do Sul, que leva a presença mediática de Mr Bow além das fronteiras de Moçambique.",
+         "Um encontro de Mr Bow com o Makagui Cast, num espaço de conversa que permite conhecer outra dimensão do artista.",
+         "Mr Bow em entrevista ao TeleDiário da STV, num registo televisivo que integra o seu arquivo de aparições na comunicação social."
+        ],
+        en:[
+         "A conversation on Tu Pra Tu Podcast, offering audiences another perspective on Mr Bow’s artistic journey and personality.",
+         "Mr Bow joins MozPod for a guest interview in a format centred on conversation and personal experiences.",
+         "An appearance on South Africa’s Rise FM, extending Mr Bow’s media presence beyond Mozambique.",
+         "Mr Bow joins Makagui Cast for a conversation that offers another perspective on the artist.",
+         "Mr Bow’s interview on STV’s TeleDiário, part of the artist’s television and media archive."
+        ],
+        ts:[
+         "Mburisano eka Tu Pra Tu Podcast lowu nyikaka vanhu ndlela yin'wana yo tiva riendzo ra vutshila ni vumunhu bya Mr Bow.",
+         "Mr Bow u humelela eka MozPod, laha vaendzi va burisanaka hi mintokoto ya vona.",
+         "Mr Bow u humelela eka Rise FM eAfrika-Dzonga, leswi kombisaka ku tiveka ka yena ni le handle ka Mozambique.",
+         "Mburisano wa Mr Bow eka Makagui Cast lowu pfunaka vanhu ku tiva muyimbeleri hi ndlela yin'wana.",
+         "Mburisano wa Mr Bow eka TeleDiário ya STV, lowu nga xiphemu xa matimu ya yena eka thelevhixini."
+        ]
+       };
+       const title=locale==="en"&&index===2?"Mr Bow on Rise FM — South Africa":locale==="ts"&&index===2?"Mr Bow eka Rise FM — Afrika-Dzonga":appearance.title;
+       return <Reveal className={`media-featured-card ${index===0?"media-featured-lead":""}`} key={appearance.id} delay={Math.min(index*65,250)}>
+        <a href={appearance.url} className="media-featured-link" target="_blank" rel="noopener noreferrer" aria-label={`Ver entrevista ${index+1} de Mr Bow no YouTube`}>
+         <div className="media-featured-image">
+          <img src={`/api/video-thumbnail/${appearance.url.split("v=")[1]}`} loading="lazy" alt={`Capa original da entrevista ${appearance.title} no YouTube`}/>
+          <span className="media-featured-play"><Play size={25} fill="currentColor" aria-hidden="true"/></span>
+          <span className="media-featured-number">{String(index+1).padStart(2,"0")} / 05</span>
+         </div>
+         <div className="media-featured-info">
+          <span>{appearance.outlet}</span>
+          <h3>{title}</h3>
+          <p className="media-featured-description">{descriptions[locale][index]}</p>
+          <span className="media-featured-action">VER ENTREVISTA <ArrowUpRight size={17}/></span>
+         </div>
+        </a>
+       </Reveal>;
+      })}
+     </div>
+     <div className="media-endnote"><span>MR BOW. PARA ALÉM DO PALCO.</span><span>ENTREVISTAS & MEDIA</span></div>
     </div>
    </section>
 
