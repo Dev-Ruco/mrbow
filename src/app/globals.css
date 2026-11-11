@@ -1474,3 +1474,80 @@
  .media-featured-description{font-size:12px;line-height:1.6;margin-bottom:18px}
  .media-featured-info h3{font-size:clamp(25px,5.7vw,34px)}
 }
+
+
+/* Artist archives: dedicated music and audiovisual pages */
+.artist-archive{background:#090909;color:#f5f2eb;min-height:100vh;overflow:hidden}
+.archive-nav{min-height:88px;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:20px clamp(22px,6vw,100px);border-bottom:1px solid rgba(255,255,255,.13)}
+.archive-logo{text-decoration:none;color:#f6f2e9;font-size:clamp(23px,3vw,34px);font-weight:900;letter-spacing:-.075em;white-space:nowrap}
+.archive-logo span{color:#d3b38f}
+.archive-nav nav{display:flex;align-items:center;flex-wrap:wrap;gap:clamp(15px,2.5vw,34px)}
+.archive-nav nav a,.archive-footer a{font-size:11px;letter-spacing:.13em;text-decoration:none;color:#e7ded0;font-weight:700}
+.archive-nav a:hover,.archive-footer a:hover{color:#fff}
+.archive-hero{min-height:510px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,.95fr);align-items:center;position:relative;border-bottom:1px solid rgba(255,255,255,.12)}
+.archive-hero>div{position:relative;z-index:2;padding:85px clamp(22px,6vw,100px)}
+.archive-eyebrow{font-size:11px;letter-spacing:.23em;text-transform:uppercase;color:#ceb28f;display:block;font-weight:700}
+.archive-hero h1{font-size:clamp(54px,8vw,126px);font-weight:900;letter-spacing:-.09em;line-height:.91;margin:29px 0 26px}
+.archive-hero h1 em,.archive-section h2 em{color:#c7a780;font-style:normal}
+.archive-hero p{max-width:560px;color:#bdb8b1;font-size:clamp(15px,1.3vw,19px);line-height:1.75}
+.archive-hero>img{width:100%;height:100%;min-height:510px;object-fit:cover;object-position:center;filter:brightness(.75)}
+.archive-hero-action,.home-feature-button{display:inline-flex;gap:18px;align-items:center;justify-content:center;padding:16px 22px;margin-top:24px;border:1px solid rgba(218,183,139,.65);font-weight:800;color:#f2e9da;text-decoration:none;letter-spacing:.1em;font-size:11px;transition:background .2s,color .2s}
+.archive-hero-action:hover,.home-feature-button:hover{background:#c9a983;color:#141110}
+.archive-section{padding:clamp(65px,7vw,115px) clamp(22px,6vw,100px);border-bottom:1px solid rgba(255,255,255,.1)}
+.archive-section-heading{display:flex;justify-content:space-between;align-items:end;gap:32px;margin-bottom:38px}
+.archive-section-heading h2,.archive-platforms h2{font-size:clamp(35px,5vw,72px);letter-spacing:-.06em;line-height:1.05;margin:18px 0 0;font-weight:900}
+.archive-section-heading p{max-width:340px;color:#aaa39b;font-size:14px;line-height:1.75}
+.archive-album-grid,.archive-video-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(14px,2.2vw,34px)}
+.archive-album>a,.archive-video>a{display:block;position:relative;overflow:hidden;background:#1e1a17}
+.archive-album>a img{width:100%;aspect-ratio:1;object-fit:cover;display:block;transition:transform .4s}
+.archive-video>a img{width:100%;aspect-ratio:16/10;object-fit:cover;display:block;transition:transform .4s}
+.archive-album>a:hover img,.archive-video>a:hover img{transform:scale(1.045)}
+.archive-album-info,.archive-video-info{padding:24px 0 8px}
+.archive-album-info>span,.archive-video-info>span{font-size:11px;letter-spacing:.17em;color:#bda88e}
+.archive-album-info h3,.archive-video-info h3{font-size:clamp(19px,2.1vw,29px);letter-spacing:-.035em;margin:11px 0 19px;line-height:1.2}
+.archive-album-info>a,.archive-video-info>a{font-size:11px;color:#ead5bb;text-decoration:none;letter-spacing:.1em;font-weight:800}
+.archive-album-info>a:hover,.archive-video-info>a:hover{text-decoration:underline}
+.archive-secondary{background:#11100f}
+.archive-release-list{list-style:none;margin:0;padding:0}
+.archive-release-list li{display:grid;grid-template-columns:60px minmax(0,1fr) auto;gap:20px;align-items:center;border-top:1px solid rgba(255,255,255,.15);padding:24px 0}
+.archive-release-list li:last-child{border-bottom:1px solid rgba(255,255,255,.15)}
+.archive-release-list li span,.archive-release-list li small{font-size:11px;color:#b9a38c;letter-spacing:.13em}
+.archive-release-list li strong{font-size:clamp(21px,3vw,39px);letter-spacing:-.04em;font-weight:750}
+.archive-platforms{background:#191713}
+.archive-platform-links{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px}
+.archive-platform-links a{padding:17px 23px;border:1px solid #82725f;text-decoration:none;color:#f2e7d7;font-size:12px;font-weight:750;letter-spacing:.1em}
+.archive-platform-links a:hover{background:#c9a983;color:#111}
+.archive-video-play{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);display:grid;place-items:center;width:62px;height:62px;border-radius:50%;background:rgba(250,244,232,.94);color:#101010;font-size:20px}
+.archive-concert{display:grid;grid-template-columns:1.25fr 1fr;gap:clamp(25px,5vw,80px);align-items:center}
+.archive-concert>a{display:block;position:relative}
+.archive-concert>a img{width:100%;display:block;aspect-ratio:16/10;object-fit:cover}
+.archive-concert h3{font-size:clamp(42px,6vw,76px);line-height:.96;letter-spacing:-.065em;margin:22px 0}
+.archive-concert p{color:#b9b0a3}
+.archive-footer{padding:36px clamp(22px,6vw,100px);display:flex;flex-wrap:wrap;justify-content:space-between;gap:20px;font-size:11px;letter-spacing:.13em;color:#a99a88}
+.home-feature-shortcut{background:#161311;padding:clamp(65px,6vw,110px) clamp(22px,6vw,100px);display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:clamp(24px,5vw,100px)}
+.home-feature-content h2{font-size:clamp(48px,7vw,105px);font-weight:900;letter-spacing:-.08em;line-height:.94;margin:26px 0;color:#f5ede2}
+.home-feature-content h2 em{font-style:normal;color:#c9a983}
+.home-feature-content p{color:#b7a99c;line-height:1.7;max-width:480px}
+.home-feature-image{display:block;overflow:hidden}
+.home-feature-image img{width:100%;height:100%;max-height:470px;aspect-ratio:4/3;object-fit:cover;transition:transform .4s}
+.home-feature-image:hover img{transform:scale(1.03)}
+@media(max-width:800px){
+ .archive-nav{align-items:flex-start;flex-direction:column}
+ .archive-nav nav{gap:14px}
+ .archive-nav nav a{font-size:10px}
+ .archive-hero{grid-template-columns:1fr}
+ .archive-hero>div{padding:70px 22px 55px}
+ .archive-hero>img{height:290px;min-height:0}
+ .archive-section-heading{display:block}
+ .archive-section-heading p{max-width:540px;margin-top:18px}
+ .archive-album-grid,.archive-video-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .archive-concert,.home-feature-shortcut{grid-template-columns:1fr}
+ .home-feature-shortcut{padding:65px 22px}
+}
+@media(max-width:520px){
+ .archive-album-grid,.archive-video-grid{grid-template-columns:1fr}
+ .archive-release-list li{grid-template-columns:34px 1fr;gap:12px}
+ .archive-release-list li small{grid-column:2}
+ .archive-hero h1{font-size:clamp(53px,14vw,75px)}
+ .archive-footer{flex-direction:column}
+}
