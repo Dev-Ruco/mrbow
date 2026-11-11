@@ -15,6 +15,7 @@ type SiteHeaderProps = {
 
 const discographyLinks = [
   ["Álbuns", "/discografia#albuns"],
+  ["Mais Populares", "/discografia#populares"],
   ["Videoclipes", "/discografia#videoclipes"],
   ["Concertos", "/discografia#concertos"],
 ] as const;
