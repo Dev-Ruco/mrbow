@@ -53,12 +53,12 @@ export default function CookiePreferences() {
             <div className="cookie-copy">
               <span className="cookie-eyebrow">PRIVACIDADE & PREFERÊNCIAS</span>
               <h2 id="cookie-title">A SUA EXPERIÊNCIA. A SUA ESCOLHA.</h2>
-              <p id="cookie-description">Utilizamos armazenamento local para guardar a sua escolha. Com autorização, também apresentamos miniaturas de vídeos alojadas pelo YouTube, que poderá recolher dados técnicos da visita. Pode recusar sem perder acesso ao conteúdo principal.</p>
+              <p id="cookie-description">Guardamos localmente as suas preferências. As capas dos vídeos são disponibilizadas através do nosso servidor, sem ligação directa do seu navegador ao YouTube. Ao escolher assistir a um vídeo, será encaminhado para o YouTube. Pode recusar conteúdos opcionais sem perder acesso ao site.</p>
               <div className="cookie-legal-links"><Link href="/privacidade">Privacidade</Link><Link href="/cookies">Política de cookies</Link><Link href="/termos">Termos</Link></div>
               {customizing && (
                 <div className="cookie-categories">
                   <div><strong>Essenciais</strong><span>Preferências de privacidade e funcionamento da página.</span><b>Sempre activos</b></div>
-                  <label><span><strong>Conteúdo externo</strong><small>Miniaturas de videoclipes fornecidas pelo YouTube.</small></span><input type="checkbox" checked={mediaAllowed} onChange={e => setMediaAllowed(e.target.checked)} aria-label="Permitir miniaturas externas do YouTube"/></label>
+                  <label><span><strong>Conteúdo externo</strong><small>Permissão para eventuais conteúdos externos adicionais; as capas dos vídeos não dependem desta opção.</small></span><input type="checkbox" checked={mediaAllowed} onChange={e => setMediaAllowed(e.target.checked)} aria-label="Permitir miniaturas externas do YouTube"/></label>
                 </div>
               )}
             </div>
