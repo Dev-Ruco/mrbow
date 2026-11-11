@@ -1722,3 +1722,21 @@
  .popular-open{font-size:21px}
  .popular-bottom{align-items:flex-start;flex-direction:column}
 }
+
+
+/* Video titles: keep track names readable, not oversized editorial headings. */
+.music-library .archive-video-info h3{
+ font-family:"DM Sans",Arial,sans-serif;
+ font-size:clamp(20px,2vw,29px);
+ font-weight:700;
+ line-height:1.25;
+ letter-spacing:-.035em;
+ margin:12px 0 13px;
+}
+.music-library .archive-video-artist{
+ font-family:"DM Sans",Arial,sans-serif;
+ font-size:13px;
+ color:#514947;
+ line-height:1.5;
+ margin-bottom:16px;
+}
