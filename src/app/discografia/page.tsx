@@ -70,21 +70,9 @@ export default function DiscografiaPage() {
           </div>
         </section>
 
-        <section className="archive-section archive-secondary" id="arquivo">
-          <div className="archive-section-heading">
-            <div><span className="archive-eyebrow">02 / MEMÓRIA MUSICAL</span><h2>OUTROS <em>LANÇAMENTOS.</em></h2></div>
-            <p>Outros títulos associados ao percurso de Mr Bow. As ligações individuais serão incluídas depois de confirmadas.</p>
-          </div>
-          <ul className="archive-release-list">
-            {archiveAlbums.map((title, index) => (
-              <li key={title}><span>{String(index+4).padStart(2,"0")}</span><strong>{title}</strong><small>ARQUIVO MUSICAL</small></li>
-            ))}
-          </ul>
-        </section>
-
         <section className="archive-section" id="videoclipes">
           <div className="archive-section-heading">
-            <div><span className="archive-eyebrow">03 / AUDIOVISUAL</span><h2>VIDEOCLIPES <em>OFICIAIS.</em></h2></div>
+            <div><span className="archive-eyebrow">02 / AUDIOVISUAL</span><h2>VIDEOCLIPES <em>OFICIAIS.</em></h2></div>
             <p>Os videoclipes de Mr Bow, com acesso às gravações originais no YouTube.</p>
           </div>
           <div className="archive-video-grid">
@@ -105,7 +93,7 @@ export default function DiscografiaPage() {
 
         <section className="archive-section archive-secondary" id="concertos">
           <div className="archive-section-heading">
-            <div><span className="archive-eyebrow">04 / AO VIVO</span><h2>O PALCO <em>É NOSSO.</em></h2></div>
+            <div><span className="archive-eyebrow">03 / AO VIVO</span><h2>O PALCO <em>É NOSSO.</em></h2></div>
             <p>Reviva a energia dos grandes concertos através de uma gravação seleccionada.</p>
           </div>
           <div className="archive-concert">
@@ -123,7 +111,7 @@ export default function DiscografiaPage() {
         </section>
 
         <section className="archive-section archive-platforms" id="plataformas">
-          <span className="archive-eyebrow">05 / OUVIR MAIS</span>
+          <span className="archive-eyebrow">04 / OUVIR MAIS</span>
           <h2>MR BOW <em>NAS PLATAFORMAS.</em></h2>
           <div className="archive-platform-links">
             {musicLinks.map(link => <a key={link.label} href={link.href} target="_blank" rel="noopener noreferrer">{link.label} ↗</a>)}
