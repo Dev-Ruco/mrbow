@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     title: "Música, Videoclipes e Concertos | Mr Bow",
     description: "Discografia completa em destaque, videoclipes, concertos e entrevistas do artista moçambicano.",
     url: "https://mrbow.co.mz/discografia",
-    images: [{ url: "/images/Album%201.jpeg", alt: "Discografia de Mr Bow" }],
+    images: [{ url: "/images/Mr%20bow%20previwm.jpg", alt: "Mr Bow — site oficial" }],
   },
 };
 
