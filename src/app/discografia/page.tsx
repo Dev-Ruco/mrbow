@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import SiteHeader from "../components/SiteHeader";
 import { musicLinks } from "@/lib/content";
-import { featuredLiveConcert, mediaAppearances } from "@/lib/media";
+import { featuredLiveConcert } from "@/lib/media";
 
 export const metadata: Metadata = {
   title: "Discografia, Videoclipes e Concertos de Mr Bow",
@@ -39,12 +39,12 @@ export default function DiscografiaPage() {
           <div className="music-library-intro-row">
             <h1>A OBRA<br/><em>DE MR BOW.</em></h1>
             <div>
-              <p>Álbuns, videoclipes, concertos e entrevistas. Todo o universo musical de Mr Bow, reunido num único espaço.</p>
+              <p>Álbuns, videoclipes e concertos de Mr Bow num único arquivo musical. As entrevistas podem ser exploradas na página inicial.</p>
               <nav className="music-library-jump" aria-label="Navegar pela discografia">
                 <a href="#albuns">ÁLBUNS ↓</a>
                 <a href="#videoclipes">VIDEOCLIPES ↓</a>
                 <a href="#concertos">CONCERTOS ↓</a>
-                <a href="#entrevistas">ENTREVISTAS ↓</a>
+                <a href="/#entrevistas">ENTREVISTAS ↗</a>
               </nav>
             </div>
           </div>
@@ -122,29 +122,8 @@ export default function DiscografiaPage() {
           </div>
         </section>
 
-        <section className="archive-section" id="entrevistas">
-          <div className="archive-section-heading">
-            <div><span className="archive-eyebrow">05 / PARA ALÉM DA MÚSICA</span><h2>ENTREVISTAS <em>E CONVERSAS.</em></h2></div>
-            <p>Podcasts, rádio e televisão. Conheça a voz e a história por detrás do artista.</p>
-          </div>
-          <div className="archive-video-grid">
-            {mediaAppearances.map(appearance => (
-              <article className="archive-video" key={appearance.id}>
-                <a href={appearance.url} target="_blank" rel="noopener noreferrer" aria-label={`Ver ${appearance.title}`}>
-                  <img src={`/api/video-thumbnail/${new URL(appearance.url).searchParams.get("v")}`} alt={`Capa da entrevista ${appearance.title}`} loading="lazy"/>
-                  <span className="archive-video-play" aria-hidden="true">▶</span>
-                </a>
-                <div className="archive-video-info">
-                  <span>{appearance.outlet}</span><h3>{appearance.title}</h3>
-                  <a href={appearance.url} target="_blank" rel="noopener noreferrer">VER ENTREVISTA ↗</a>
-                </div>
-              </article>
-            ))}
-          </div>
-        </section>
-
         <section className="archive-section archive-platforms" id="plataformas">
-          <span className="archive-eyebrow">06 / OUVIR MAIS</span>
+          <span className="archive-eyebrow">05 / OUVIR MAIS</span>
           <h2>MR BOW <em>NAS PLATAFORMAS.</em></h2>
           <div className="archive-platform-links">
             {musicLinks.map(link => <a key={link.label} href={link.href} target="_blank" rel="noopener noreferrer">{link.label} ↗</a>)}
