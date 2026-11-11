@@ -1,11 +1,9 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import { ArrowDown, ArrowRight, ArrowUpRight, ChevronLeft, ChevronRight, Disc3, Instagram, Menu, Pause, Play, Volume2, X, Youtube } from "lucide-react";
+import { ArrowDown, ArrowUpRight, ChevronLeft, ChevronRight, Disc3, Instagram, Menu, Pause, Play, Volume2, X, Youtube } from "lucide-react";
 import { musicLinks, upcomingShows } from "@/lib/content";
-import { mediaAppearances, featuredLiveConcert } from "@/lib/media";
 import { LanguageSwitcher, useLocale } from "./components/LocaleProvider";
 
-const concert = "/images/Mr%20bow%20hero.jpg";
 const heroSlides = [
  {image:"/images/Mr%20bow%20hero.jpg",eyebrow:"MR BOW / THE ARTIST",line:"MÚSICA. IDENTIDADE. LEGADO.",description:"Uma voz que transforma cada palco numa experiência.",href:"#musica",cta:"DESCOBRIR A MÚSICA"},
  {image:"/images/Golden%20Wedding%20Serenade_Easy-Resize.com.jpg",eyebrow:"MR BOW / THE MOMENTS",line:"MOMENTOS PARA SEMPRE.",description:"A emoção da música nos dias que ficam para sempre.",href:"#booking",cta:"CONTRATAR PARA UM EVENTO"}
@@ -15,7 +13,6 @@ const liveSlides = [
  {image:"/images/setion%203.jpg",eyebrow:"DOS GRANDES PALCOS ÀS MULTIDÕES",headline:"O PALCO",accent:"É NOSSO.",description:"A energia dos grandes concertos. A música que aproxima milhares de pessoas e transforma cada espectáculo numa memória inesquecível.",cta:"VER PRÓXIMOS ESPECTÁCULOS",href:"#agenda",position:"center center"},
  {image:"/images/Golden%20Wedding%20Serenade_Easy-Resize.com.jpg",eyebrow:"O AMOR TAMBÉM TEM BANDA SONORA",headline:"MOMENTOS",accent:"PARA SEMPRE.",description:"Há momentos que merecem ser vividos com emoção. Mr Bow dá voz aos casamentos e às celebrações que ficam para sempre.",cta:"CONTRATAR PARA CASAMENTO",href:"#booking",position:"center center"}
 ] as const;
-const lights = "https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?auto=format&fit=crop&w=1600&q=85";
 
 function Reveal({children,className="",delay=0}:{children:React.ReactNode;className?:string;delay?:number}) {
   const ref=useRef<HTMLDivElement>(null);
@@ -150,8 +147,7 @@ export default function Home(){
    audio.removeEventListener("canplay",onCanPlay);
   };
  },[]);
- const albumsRail=useRef<HTMLDivElement>(null);
- const mobileMenuRef=useRef<HTMLDivElement>(null);
+  const mobileMenuRef=useRef<HTMLDivElement>(null);
  const mobileMenuButtonRef=useRef<HTMLButtonElement>(null);
  const heroTouchStart=useRef<number|null>(null);
  const liveTouchStart=useRef<number|null>(null);
@@ -342,7 +338,7 @@ export default function Home(){
       </div>
      </div>
      <div className="release-topline"><div><span className="release-small">ÁLBUNS EM DESTAQUE</span><h3>DISCOGRAFIA <i>DE MR BOW</i></h3></div><a className="home-feature-button" href="/discografia">VER DISCOGRAFIA COMPLETA <ArrowUpRight size={18}/></a></div>
-     <div className="albums-rail" ref={albumsRail} aria-label="Três álbuns em destaque">
+     <div className="albums-rail" aria-label="Três álbuns em destaque">
       {[
        {number:"01",image:"/images/Album%201.jpeg",title:"MR ROMANTIC",url:"https://open.spotify.com/album/1yVE3BEW9Zq49flWW4qQA9"},
        {number:"02",image:"/images/Album%202.jpg",title:"STORY OF MY LIFE",url:"https://open.spotify.com/album/3Q8MgnqfJXtUMwsQazxaHu"},
