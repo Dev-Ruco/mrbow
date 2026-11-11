@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   title: "Espectáculos e Contratações — Mr Bow",
   description: "Agenda oficial e pedidos de contratação de Mr Bow.",
   url: "https://mrbow.co.mz/espectaculos",
-  images: [{ url: "/images/Booking.jpg", alt: "Mr Bow — espectáculos e contratações" }],
+  images: [{ url: "/images/Mr%20bow%20previwm.jpg", alt: "Mr Bow — site oficial" }],
  },
 };
 
