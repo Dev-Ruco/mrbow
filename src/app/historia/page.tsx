@@ -3,15 +3,15 @@ import Link from "next/link";
 import SiteHeader from "../components/SiteHeader";
 
 export const metadata: Metadata = {
- title: "Biografia e História de Mr Bow — Salvador Pedro Maiaze",
- description: "Conheça a história de Mr Bow, Salvador Pedro Maiaze: das origens em Manjacaze, Gaza, ao percurso na música moçambicana e aos grandes palcos.",
+ title: "Biografia e História de Mr. Bow — Salvador Pedro Maiaze",
+ description: "Conheça a história de Mr. Bow, Salvador Pedro Maiaze: das origens em Manjacaze, Gaza, ao percurso na música moçambicana e aos grandes palcos.",
  alternates: { canonical: "/historia" },
  openGraph: {
   type: "article",
   url: "https://mrbow.co.mz/historia",
-  title: "A História de Mr Bow — Salvador Pedro Maiaze",
-  description: "Das origens em Manjacaze ao percurso de Mr Bow na música moçambicana.",
-  images: [{ url: "/images/Mr%20bow%20previwm.jpg", alt: "Mr Bow — site oficial" }],
+  title: "A História de Mr. Bow — Salvador Pedro Maiaze",
+  description: "Das origens em Manjacaze ao percurso de Mr. Bow na música moçambicana.",
+  images: [{ url: "/images/Mr%20bow%20previwm.jpg", alt: "Mr. Bow — site oficial" }],
  },
 };
 
@@ -25,7 +25,7 @@ const paragraphs=[
 export default function Historia(){
  return <><SiteHeader/><main className="history-page">
   <section className="history-content">
-   <div className="history-photo"><img src="/images/Elegant%20Tuxedo%20Portrait%20Cutout.png" alt="Mr Bow com fato preto e óculos escuros"/></div>
+   <div className="history-photo"><img src="/images/Elegant%20Tuxedo%20Portrait%20Cutout.png" alt="Mr. Bow com fato preto e óculos escuros"/></div>
    <article className="history-text">
     <span className="eyebrow">THE MAN BEHIND THE MUSIC</span>
     <h1>DO SALVADOR<br/>AO <em>KING BOW.</em></h1>
