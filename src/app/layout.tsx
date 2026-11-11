@@ -75,6 +75,12 @@ const structuredData = {
       url: siteUrl,
       image: `${siteUrl}/images/Mr%20bow%20hero.jpg`,
       mainEntityOfPage: siteUrl,
+      sameAs: [
+        "https://www.youtube.com/@mrbowofficial",
+        "https://www.instagram.com/mrbowofficial/",
+        "https://open.spotify.com/artist/71E7QReRzpOhL5RJnAE9FT",
+        "https://music.apple.com/artist/mr-bow/1534202763",
+      ],
     },
     {
       "@type": "WebSite",
