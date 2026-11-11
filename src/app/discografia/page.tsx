@@ -23,6 +23,16 @@ const albums = [
 
 const archiveAlbums = ["O Melhor de Mim", "Sinal de Vitória", "Kota de Família", "Meu Sonho"];
 
+const spotifyArtistUrl = "https://open.spotify.com/artist/3fodDFLQDXX8hpG8T1tDUx";
+
+const popularTracks = [
+  { title: "Safadinha", artists: "Mr Bow, Ziqo", duration: "4:12", artwork: "/images/Album%203.jpg", url: spotifyArtistUrl },
+  { title: "My Number One", artists: "Mr Bow, Liloca", duration: "4:51", artwork: "/images/Album%201.jpeg", url: "https://open.spotify.com/track/67EAThxi9DXYmaTlbCrlFf" },
+  { title: "Dlhana Mutxangana", artists: "Ta Basilly, Mr Bow", duration: "4:33", artwork: null, url: spotifyArtistUrl },
+  { title: "Hiwena", artists: "Mr Bow", duration: "4:45", artwork: null, url: "https://open.spotify.com/track/21uTaCJbrAIMBczSr8xH6q" },
+  { title: "Xisuti Xamina", artists: "Mr Bow, Ximanganine", duration: "4:18", artwork: "/images/Album%203.jpg", url: spotifyArtistUrl },
+];
+
 const videoclipes = [
   { id: "gUj6XUuaNfw", number: "01", title: "Videoclipe oficial — Selecção 01" },
   { id: "_crVajIlmYk", number: "02", title: "Videoclipe oficial — Selecção 02" },
@@ -42,6 +52,7 @@ export default function DiscografiaPage() {
               <p>Álbuns, videoclipes e concertos de Mr Bow num único arquivo musical. As entrevistas podem ser exploradas na página inicial.</p>
               <nav className="music-library-jump" aria-label="Navegar pela discografia">
                 <a href="#albuns">ÁLBUNS ↓</a>
+                <a href="#populares">MAIS POPULARES ↓</a>
                 <a href="#videoclipes">VIDEOCLIPES ↓</a>
                 <a href="#concertos">CONCERTOS ↓</a>
                 <a href="/#entrevistas">ENTREVISTAS ↗</a>
@@ -70,9 +81,43 @@ export default function DiscografiaPage() {
           </div>
         </section>
 
+        <section className="archive-section archive-popular" id="populares" aria-labelledby="popular-heading">
+          <div className="archive-section-heading">
+            <div><span className="archive-eyebrow">02 / MAIS OUVIDAS</span><h2 id="popular-heading">MAIS <em>POPULARES.</em></h2></div>
+            <p>Uma selecção das músicas mais ouvidas de Mr Bow, com acesso directo ao Spotify.</p>
+          </div>
+          <div className="popular-tracklist" role="list" aria-label="Músicas populares de Mr Bow">
+            {popularTracks.map((track, index) => (
+              <a
+                className="popular-track"
+                role="listitem"
+                key={track.title}
+                href={track.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`Ouvir ${track.title} no Spotify`}
+              >
+                <span className="popular-number">{String(index + 1).padStart(2, "0")}</span>
+                <span className="popular-cover">
+                  {track.artwork
+                    ? <img src={track.artwork} alt="" loading="lazy"/>
+                    : <span aria-hidden="true">MB</span>}
+                </span>
+                <span className="popular-song"><strong>{track.title}</strong><small>{track.artists}</small></span>
+                <span className="popular-duration">{track.duration}</span>
+                <span className="popular-open" aria-hidden="true">↗</span>
+              </a>
+            ))}
+          </div>
+          <div className="popular-bottom">
+            <span>MR BOW / SPOTIFY</span>
+            <a href={spotifyArtistUrl} target="_blank" rel="noopener noreferrer">OUVIR MAIS NO SPOTIFY ↗</a>
+          </div>
+        </section>
+
         <section className="archive-section" id="videoclipes">
           <div className="archive-section-heading">
-            <div><span className="archive-eyebrow">02 / AUDIOVISUAL</span><h2>VIDEOCLIPES <em>OFICIAIS.</em></h2></div>
+            <div><span className="archive-eyebrow">03 / AUDIOVISUAL</span><h2>VIDEOCLIPES <em>OFICIAIS.</em></h2></div>
             <p>Os videoclipes de Mr Bow, com acesso às gravações originais no YouTube.</p>
           </div>
           <div className="archive-video-grid">
@@ -93,7 +138,7 @@ export default function DiscografiaPage() {
 
         <section className="archive-section archive-secondary" id="concertos">
           <div className="archive-section-heading">
-            <div><span className="archive-eyebrow">03 / AO VIVO</span><h2>O PALCO <em>É NOSSO.</em></h2></div>
+            <div><span className="archive-eyebrow">04 / AO VIVO</span><h2>O PALCO <em>É NOSSO.</em></h2></div>
             <p>Reviva a energia dos grandes concertos através de uma gravação seleccionada.</p>
           </div>
           <div className="archive-concert">
@@ -111,7 +156,7 @@ export default function DiscografiaPage() {
         </section>
 
         <section className="archive-section archive-platforms" id="plataformas">
-          <span className="archive-eyebrow">04 / OUVIR MAIS</span>
+          <span className="archive-eyebrow">05 / OUVIR MAIS</span>
           <h2>MR BOW <em>NAS PLATAFORMAS.</em></h2>
           <div className="archive-platform-links">
             {musicLinks.map(link => <a key={link.label} href={link.href} target="_blank" rel="noopener noreferrer">{link.label} ↗</a>)}
