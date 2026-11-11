@@ -34,9 +34,9 @@ const popularTracks = [
 ];
 
 const videoclipes = [
-  { id: "gUj6XUuaNfw", number: "01", title: "Videoclipe oficial — Selecção 01" },
-  { id: "_crVajIlmYk", number: "02", title: "Videoclipe oficial — Selecção 02" },
-  { id: "1vr_ZwnxCgg", number: "03", title: "Videoclipe oficial — Selecção 03" },
+  { id: "gUj6XUuaNfw", number: "01", title: "I'll Be Waiting" },
+  { id: "_crVajIlmYk", number: "02", title: "Moçambique Anima", artist: "Mr Bow feat. Awilo Longomba" },
+  { id: "1vr_ZwnxCgg", number: "03", title: "Safadinha", artist: "Mr Bow feat. Ziqo" },
 ];
 
 export default function DiscografiaPage() {
@@ -128,7 +128,7 @@ export default function DiscografiaPage() {
                   <span className="archive-video-play" aria-hidden="true">▶</span>
                 </a>
                 <div className="archive-video-info">
-                  <span>{video.number} / VIDEOCLIPE</span><h3>{video.title}</h3>
+                  <span>{video.number} / VIDEOCLIPE</span><h3>{video.title}</h3>{"artist" in video && video.artist ? <p className="archive-video-artist">{video.artist}</p> : null}
                   <a href={`https://www.youtube.com/watch?v=${video.id}`} target="_blank" rel="noopener noreferrer">VER VIDEOCLIPE ↗</a>
                 </div>
               </article>
