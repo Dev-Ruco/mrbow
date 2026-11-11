@@ -3,14 +3,109 @@ import "./globals.css";
 import CookiePreferences from "./components/CookiePreferences";
 import { LocaleProvider } from "./components/LocaleProvider";
 
+const siteUrl = "https://mrbow.co.mz";
+const description =
+  "Site oficial de Mr Bow, artista moçambicano. Conheça a sua história, música, videoclipes, espectáculos, entrevistas e contactos para contratação.";
+
 export const metadata: Metadata = {
-  metadataBase: new URL("https://mrbow.co.mz"),
-  title: { default: "Mr Bow | Site Oficial", template: "%s | Mr Bow" },
-  description: "O universo oficial de Mr Bow. Música, vídeos, espectáculos, história e contratações.",
-  openGraph: { type: "website", locale: "pt_MZ", siteName: "Mr Bow", title: "Mr Bow | Site Oficial", description: "Música. Identidade. Legado." },
-  robots: { index: true, follow: true },
+  metadataBase: new URL(siteUrl),
+  title: {
+    default: "Mr Bow | Site Oficial — Música, Biografia e Espectáculos",
+    template: "%s | Mr Bow",
+  },
+  description,
+  applicationName: "Mr Bow — Site Oficial",
+  keywords: [
+    "Mr Bow",
+    "Mr Bow Moçambique",
+    "Mr Bow músico",
+    "Mr Bow biografia",
+    "Mr Bow músicas",
+    "Mr Bow espectáculos",
+    "Mr Bow contratação",
+    "Salvador Pedro Maiaze",
+  ],
+  alternates: {
+    canonical: "/",
+  },
+  openGraph: {
+    type: "website",
+    locale: "pt_MZ",
+    siteName: "Mr Bow",
+    url: siteUrl,
+    title: "Mr Bow | Site Oficial — Música, Biografia e Espectáculos",
+    description,
+    images: [
+      {
+        url: "/images/Mr%20bow%20hero.jpg",
+        alt: "Mr Bow — site oficial do artista moçambicano",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Mr Bow | Site Oficial",
+    description,
+    images: ["/images/Mr%20bow%20hero.jpg"],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
 };
 
-export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return <html lang="pt-MZ"><body><LocaleProvider>{children}<CookiePreferences/></LocaleProvider></body></html>;
+const structuredData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "@id": `${siteUrl}/#artist`,
+      name: "Mr Bow",
+      alternateName: "King Bow",
+      birthName: "Salvador Pedro Maiaze",
+      jobTitle: "Cantor e músico",
+      description: "Artista musical moçambicano, natural de Manjacaze, Gaza.",
+      url: siteUrl,
+      image: `${siteUrl}/images/Mr%20bow%20hero.jpg`,
+      mainEntityOfPage: siteUrl,
+    },
+    {
+      "@type": "WebSite",
+      "@id": `${siteUrl}/#website`,
+      url: siteUrl,
+      name: "Mr Bow — Site Oficial",
+      description,
+      inLanguage: "pt-MZ",
+      about: { "@id": `${siteUrl}/#artist` },
+      publisher: { "@id": `${siteUrl}/#artist` },
+    },
+  ],
+};
+
+export default function RootLayout({
+  children,
+}: Readonly<{ children: React.ReactNode }>) {
+  return (
+    <html lang="pt-MZ">
+      <body>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(structuredData).replace(/</g, "\\u003c"),
+          }}
+        />
+        <LocaleProvider>
+          {children}
+          <CookiePreferences />
+        </LocaleProvider>
+      </body>
+    </html>
+  );
 }
