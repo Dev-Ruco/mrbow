@@ -10,9 +10,9 @@ export const metadata: Metadata = {
 };
 
 const albums = [
- { title: "Strong Shangane", year: "2025" },
- { title: "Story of My Life", year: "2020" },
- { title: "Mr. Romantic", year: "2017" },
+ { title: "Strong Shangane", year: "2025", spotifyUrl: "https://open.spotify.com/album/58X9KqhtuVPTp1sJgMiSdK" },
+ { title: "Story of My Life", year: "2020", spotifyUrl: "https://open.spotify.com/album/3Q8MgnqfJXtUMwsQazxaHu" },
+ { title: "Mr. Romantic", year: "2017", spotifyUrl: "https://open.spotify.com/album/1yVE3BEW9Zq49flWW4qQA9" },
  { title: "O Melhor de Mim", year: "2013" },
  { title: "Sinal de Vitória", year: "2012" },
  { title: "Kota de Família", year: "2010" },
@@ -26,7 +26,7 @@ export default function DiscografiaPage() {
   <article className="legal-content">
    <h2>Álbuns</h2>
    <p>Conheça alguns dos lançamentos que marcaram o percurso de Mr Bow. As datas referem-se aos anos associados aos álbuns nas fontes discográficas disponíveis.</p>
-   <ul>{albums.map(album=><li key={album.title}><strong>{album.title}</strong> — {album.year}</li>)}</ul>
+   <ul>{albums.map(album=><li key={album.title}><strong>{album.title}</strong> — {album.year} {"spotifyUrl" in album && album.spotifyUrl ? <a href={album.spotifyUrl} target="_blank" rel="noopener noreferrer" aria-label={`Ouvir o álbum ${album.title} no Spotify`}> · Ouvir álbum no Spotify ↗</a> : null}</li>)}</ul>
    <h2>Ouvir Mr Bow</h2>
    <p>Acompanhe a música de Mr Bow nas plataformas digitais:</p>
    <ul>{musicLinks.map(item=><li key={item.label}><a href={item.href} target="_blank" rel="noopener noreferrer">{item.label} ↗</a></li>)}</ul>
