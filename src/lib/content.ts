@@ -8,7 +8,7 @@ export const artist = {
 
 export const musicLinks = [
   { label: "YouTube", href: "https://www.youtube.com/@mrbowofficial" },
-  { label: "Spotify", href: "https://open.spotify.com/artist/71E7QReRzpOhL5RJnAE9FT" },
+  { label: "Spotify", href: "https://open.spotify.com/artist/3fodDFLQDXX8hpG8T1tDUx" },
   { label: "Apple Music", href: "https://music.apple.com/artist/mr-bow/1534202763" },
 ];
 
