@@ -17,9 +17,13 @@ export const upcomingShows: { date: string; month: string; city: string; venue: 
 
 export const navigation = [
   { label: "Início", href: "#inicio" },
+  { label: "Artista", href: "#artista" },
   { label: "Música", href: "#musica" },
+  { label: "Videoclipes", href: "#videos" },
+  { label: "Prémios", href: "#premios" },
+  { label: "Entrevistas", href: "#entrevistas" },
+  { label: "Concerto Gravado", href: "#concerto-gravado" },
+  { label: "Ao Vivo", href: "#ao-vivo" },
   { label: "Agenda", href: "#agenda" },
-  { label: "Biografia", href: "#biografia" },
-  { label: "Media", href: "#media" },
-  { label: "Contratações", href: "#contratacoes" },
+  { label: "Contratações", href: "#booking" },
 ];
