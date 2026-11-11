@@ -5,29 +5,29 @@ import { LocaleProvider } from "./components/LocaleProvider";
 
 const siteUrl = "https://mrbow.co.mz";
 const description =
-  "Site oficial de Mr Bow, artista moçambicano. Conheça a sua história, música, videoclipes, espectáculos, entrevistas e contactos para contratação.";
+  "Site oficial de Mr. Bow, artista moçambicano. Conheça a sua história, música, videoclipes, espectáculos, entrevistas e contactos para contratação.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "Mr Bow | Site Oficial — Música, Biografia e Espectáculos",
-    template: "%s | Mr Bow",
+    default: "Mr. Bow | Site Oficial — Música, Biografia e Espectáculos",
+    template: "%s | Mr. Bow",
   },
   description,
-  applicationName: "Mr Bow — Site Oficial",
+  applicationName: "Mr. Bow — Site Oficial",
   icons: {
     icon: [{ url: "/images/Mr%20bow%20icon.jpg", type: "image/jpeg" }],
     shortcut: "/images/Mr%20bow%20icon.jpg",
     apple: "/images/Mr%20bow%20icon.jpg",
   },
   keywords: [
-    "Mr Bow",
-    "Mr Bow Moçambique",
-    "Mr Bow músico",
-    "Mr Bow biografia",
-    "Mr Bow músicas",
-    "Mr Bow espectáculos",
-    "Mr Bow contratação",
+    "Mr. Bow",
+    "Mr. Bow Moçambique",
+    "Mr. Bow músico",
+    "Mr. Bow biografia",
+    "Mr. Bow músicas",
+    "Mr. Bow espectáculos",
+    "Mr. Bow contratação",
     "Salvador Pedro Maiaze",
   ],
   alternates: {
@@ -36,20 +36,20 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "pt_MZ",
-    siteName: "Mr Bow",
+    siteName: "Mr. Bow",
     url: siteUrl,
-    title: "Mr Bow | Site Oficial — Música, Biografia e Espectáculos",
+    title: "Mr. Bow | Site Oficial — Música, Biografia e Espectáculos",
     description,
     images: [
       {
         url: "/images/Mr%20bow%20previwm.jpg",
-        alt: "Mr Bow — imagem oficial de apresentação do artista",
+        alt: "Mr. Bow — imagem oficial de apresentação do artista",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Mr Bow | Site Oficial",
+    title: "Mr. Bow | Site Oficial",
     description,
     images: ["/images/Mr%20bow%20previwm.jpg"],
   },
@@ -72,7 +72,7 @@ const structuredData = {
     {
       "@type": "Person",
       "@id": `${siteUrl}/#artist`,
-      name: "Mr Bow",
+      name: "Mr. Bow",
       alternateName: "King Bow",
       birthName: "Salvador Pedro Maiaze",
       jobTitle: "Cantor e músico",
@@ -91,7 +91,7 @@ const structuredData = {
       "@type": "WebSite",
       "@id": `${siteUrl}/#website`,
       url: siteUrl,
-      name: "Mr Bow — Site Oficial",
+      name: "Mr. Bow — Site Oficial",
       description,
       inLanguage: "pt-MZ",
       about: { "@id": `${siteUrl}/#artist` },
