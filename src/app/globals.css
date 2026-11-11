@@ -1551,3 +1551,8 @@
  .archive-hero h1{font-size:clamp(53px,14vw,75px)}
  .archive-footer{flex-direction:column}
 }
+
+
+.archive-empty-state{padding:clamp(30px,5vw,70px);border:1px solid rgba(218,183,139,.25);background:linear-gradient(135deg,#231e19,#100f0e)}
+.archive-empty-state h3{font-size:clamp(34px,5vw,65px);letter-spacing:-.06em;line-height:1.04;margin:0 0 20px}
+.archive-empty-state p,.archive-booking-description{max-width:650px;color:#bcb4aa;line-height:1.75;font-size:16px}
