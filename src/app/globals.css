@@ -1687,3 +1687,38 @@
   .music-library .archive-section-heading{gap:18px}
   .music-library .archive-concert h3{font-size:clamp(32px,8vw,46px)}
 }
+
+
+/* Most popular: editorial Spotify-inspired track list in the established visual language. */
+.music-library .archive-popular{background:#111011;color:var(--ivory)}
+.music-library .archive-popular .archive-section-heading{border-color:rgba(255,255,255,.35)}
+.music-library .archive-popular .archive-eyebrow{color:#d36c80}
+.music-library .archive-popular .archive-section-heading h2 em{color:#d36c80}
+.music-library .archive-popular .archive-section-heading p{color:#bfb7b5}
+.popular-tracklist{border-top:1px solid rgba(255,255,255,.22)}
+.popular-track{display:grid;grid-template-columns:42px 66px minmax(0,1fr) 72px 40px;align-items:center;gap:clamp(12px,2vw,28px);padding:14px 14px;border-bottom:1px solid rgba(255,255,255,.12);color:var(--ivory);transition:background .22s}
+.popular-track:hover,.popular-track:focus-visible{background:rgba(255,255,255,.08)}
+.popular-number{font:700 12px/1 "DM Sans",sans-serif;color:#aaa2a1;letter-spacing:.08em;text-align:center}
+.popular-cover{display:grid;place-items:center;width:66px;height:66px;overflow:hidden;background:#62273b;color:#e9d8df}
+.popular-cover img{display:block;width:100%;height:100%;object-fit:cover}
+.popular-cover>span{font:800 24px/1 "Barlow Condensed",Impact,sans-serif;letter-spacing:-.06em}
+.popular-song{display:flex;flex-direction:column;gap:5px;min-width:0}
+.popular-song strong{font:600 clamp(16px,1.6vw,23px)/1.2 "DM Sans",Arial,sans-serif;overflow-wrap:anywhere}
+.popular-song small{font:400 clamp(12px,1vw,15px)/1.35 "DM Sans",Arial,sans-serif;color:#ada7a6;overflow-wrap:anywhere}
+.popular-duration{font:500 14px/1.2 "DM Sans",Arial,sans-serif;letter-spacing:.02em;color:#c7c0c0;text-align:right;font-variant-numeric:tabular-nums}
+.popular-open{font:400 25px/1 "DM Sans",sans-serif;text-align:right;color:#e7d8db;transition:transform .2s}
+.popular-track:hover .popular-open{transform:translate(3px,-3px);color:#fff}
+.popular-bottom{display:flex;align-items:center;justify-content:space-between;gap:15px;padding-top:26px}
+.popular-bottom>span{font:700 10px "DM Sans",sans-serif;letter-spacing:.18em;color:#b8abad}
+.popular-bottom a{font:800 11px "DM Sans",sans-serif;letter-spacing:.14em;padding:14px 0;border-bottom:1px solid currentColor}
+.popular-bottom a:hover{color:#efa4b5}
+@media(max-width:640px){
+ .popular-track{grid-template-columns:24px 52px minmax(0,1fr) 38px;gap:10px;padding:13px 0}
+ .popular-cover{width:52px;height:52px}
+ .popular-cover>span{font-size:19px}
+ .popular-duration{display:none}
+ .popular-song strong{font-size:16px}
+ .popular-song small{font-size:12px}
+ .popular-open{font-size:21px}
+ .popular-bottom{align-items:flex-start;flex-direction:column}
+}
