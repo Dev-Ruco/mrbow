@@ -3,7 +3,6 @@ import { useEffect, useRef, useState } from "react";
 import { ArrowDown, ArrowRight, ArrowUpRight, ChevronLeft, ChevronRight, Disc3, Instagram, Menu, Pause, Play, Volume2, X, Youtube } from "lucide-react";
 import { musicLinks, upcomingShows } from "@/lib/content";
 import { mediaAppearances, featuredLiveConcert } from "@/lib/media";
-import { getConsentChoice, CONSENT_EVENT } from "./components/CookiePreferences";
 import { LanguageSwitcher, useLocale } from "./components/LocaleProvider";
 
 const concert = "/images/Mr%20bow%20hero.jpg";
@@ -43,13 +42,6 @@ export default function Home(){
  const [open,setOpen]=useState(false);
  const [progress,setProgress]=useState(0);
  const [scrolled,setScrolled]=useState(false);
- const [allowExternalMedia,setAllowExternalMedia]=useState(false);
- useEffect(()=>{
-  const sync=()=>setAllowExternalMedia(getConsentChoice()==="all");
-  sync();
-  window.addEventListener(CONSENT_EVENT,sync);
-  return()=>window.removeEventListener(CONSENT_EVENT,sync);
- },[]);
  const audioRef=useRef<HTMLAudioElement>(null);
  const fadeTimerRef=useRef<number|null>(null);
  const manualPlaybackRef=useRef(false);
@@ -380,7 +372,7 @@ export default function Home(){
         {id:"1vr_ZwnxCgg",number:"03",kind:"VIDEOCLIPE OFICIAL"}
        ].map((video,index)=><Reveal className={`video-feature video-feature-${video.number}`} key={video.id} delay={index*100}>
         <a className="video-cover video-cover-direct" href={`https://www.youtube.com/watch?v=${video.id}`} target="_blank" rel="noopener noreferrer" aria-label={`Ver videoclip ${video.number} de Mr Bow no YouTube`}>
-         <img src={allowExternalMedia?`https://img.youtube.com/vi/${video.id}/hqdefault.jpg`:"/images/setion%203.jpg"} alt={allowExternalMedia?`Miniatura do videoclip ${video.number} de Mr Bow`:`Imagem ilustrativa local para o videoclip ${video.number}`} loading="lazy" />
+         <img src={`/api/video-thumbnail/${video.id}`} alt={`Capa original do videoclip ${video.number} de Mr Bow no YouTube`} loading="lazy" />
          <span className="video-big-play"><Play fill="currentColor" size={26}/></span>
          <span className="video-watermark">{video.number} / MUSIC VIDEO</span>
         </a>
@@ -454,7 +446,7 @@ export default function Home(){
        return <Reveal className={`media-featured-card ${index===0?"media-featured-lead":""}`} key={appearance.id} delay={Math.min(index*65,250)}>
         <a href={appearance.url} className="media-featured-link" target="_blank" rel="noopener noreferrer" aria-label={`Ver entrevista ${index+1} de Mr Bow no YouTube`}>
          <div className="media-featured-image">
-          <img src={allowExternalMedia?appearance.image:"/images/setion%203.jpg"} loading="lazy" alt={allowExternalMedia?`Miniatura da entrevista ${index+1} de Mr Bow`:`Imagem ilustrativa de entrevista ${index+1}`}/>
+          <img src={`/api/video-thumbnail/${appearance.url.split("v=")[1]}`} loading="lazy" alt={`Capa original da entrevista ${appearance.title} no YouTube`}/>
           <span className="media-featured-play"><Play size={25} fill="currentColor" aria-hidden="true"/></span>
           <span className="media-featured-number">{String(index+1).padStart(2,"0")} / 05</span>
          </div>
