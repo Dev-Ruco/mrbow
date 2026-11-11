@@ -15,6 +15,11 @@ export const metadata: Metadata = {
   },
   description,
   applicationName: "Mr Bow — Site Oficial",
+  icons: {
+    icon: [{ url: "/images/Mr%20bow%20icon.jpg", type: "image/jpeg" }],
+    shortcut: "/images/Mr%20bow%20icon.jpg",
+    apple: "/images/Mr%20bow%20icon.jpg",
+  },
   keywords: [
     "Mr Bow",
     "Mr Bow Moçambique",
