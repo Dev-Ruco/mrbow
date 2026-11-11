@@ -4,14 +4,14 @@ import { musicLinks } from "@/lib/content";
 import { featuredLiveConcert } from "@/lib/media";
 
 export const metadata: Metadata = {
-  title: "Discografia, Videoclipes e Concertos de Mr Bow",
-  description: "Explore os álbuns de Mr Bow, videoclipes, concertos ao vivo e entrevistas. Ouça Mr. Romantic, Story of My Life e Strong Shangane no Spotify.",
+  title: "Discografia, Videoclipes e Concertos de Mr. Bow",
+  description: "Explore os álbuns de Mr. Bow, videoclipes, concertos ao vivo e entrevistas. Ouça Mr. Romantic, Story of My Life e Strong Shangane no Spotify.",
   alternates: { canonical: "/discografia" },
   openGraph: {
-    title: "Música, Videoclipes e Concertos | Mr Bow",
+    title: "Música, Videoclipes e Concertos | Mr. Bow",
     description: "Discografia completa em destaque, videoclipes, concertos e entrevistas do artista moçambicano.",
     url: "https://mrbow.co.mz/discografia",
-    images: [{ url: "/images/Mr%20bow%20previwm.jpg", alt: "Mr Bow — site oficial" }],
+    images: [{ url: "/images/Mr%20bow%20previwm.jpg", alt: "Mr. Bow — site oficial" }],
   },
 };
 
@@ -26,17 +26,17 @@ const archiveAlbums = ["O Melhor de Mim", "Sinal de Vitória", "Kota de Família
 const spotifyArtistUrl = "https://open.spotify.com/artist/3fodDFLQDXX8hpG8T1tDUx";
 
 const popularTracks = [
-  { title: "Safadinha", artists: "Mr Bow, Ziqo", duration: "4:12", artwork: "/images/Album%203.jpg", url: spotifyArtistUrl },
-  { title: "My Number One", artists: "Mr Bow, Liloca", duration: "4:51", artwork: "/images/Album%201.jpeg", url: "https://open.spotify.com/track/67EAThxi9DXYmaTlbCrlFf" },
-  { title: "Dlhana Mutxangana", artists: "Ta Basilly, Mr Bow", duration: "4:33", artwork: null, url: spotifyArtistUrl },
-  { title: "Hiwena", artists: "Mr Bow", duration: "4:45", artwork: null, url: "https://open.spotify.com/track/21uTaCJbrAIMBczSr8xH6q" },
-  { title: "Xisuti Xamina", artists: "Mr Bow, Ximanganine", duration: "4:18", artwork: "/images/Album%203.jpg", url: spotifyArtistUrl },
+  { title: "Safadinha", artists: "Mr. Bow, Ziqo", duration: "4:12", artwork: "/images/Album%203.jpg", url: spotifyArtistUrl },
+  { title: "My Number One", artists: "Mr. Bow, Liloca", duration: "4:51", artwork: "/images/Album%201.jpeg", url: "https://open.spotify.com/track/67EAThxi9DXYmaTlbCrlFf" },
+  { title: "Dlhana Mutxangana", artists: "Ta Basilly, Mr. Bow", duration: "4:33", artwork: null, url: spotifyArtistUrl },
+  { title: "Hiwena", artists: "Mr. Bow", duration: "4:45", artwork: null, url: "https://open.spotify.com/track/21uTaCJbrAIMBczSr8xH6q" },
+  { title: "Xisuti Xamina", artists: "Mr. Bow, Ximanganine", duration: "4:18", artwork: "/images/Album%203.jpg", url: spotifyArtistUrl },
 ];
 
 const videoclipes = [
   { id: "gUj6XUuaNfw", number: "01", title: "I'll Be Waiting" },
-  { id: "_crVajIlmYk", number: "02", title: "Moçambique Anima", artist: "Mr Bow feat. Awilo Longomba" },
-  { id: "1vr_ZwnxCgg", number: "03", title: "Safadinha", artist: "Mr Bow feat. Ziqo" },
+  { id: "_crVajIlmYk", number: "02", title: "Moçambique Anima", artist: "Mr. Bow feat. Awilo Longomba" },
+  { id: "1vr_ZwnxCgg", number: "03", title: "Safadinha", artist: "Mr. Bow feat. Ziqo" },
 ];
 
 export default function DiscografiaPage() {
@@ -45,11 +45,11 @@ export default function DiscografiaPage() {
       <SiteHeader/>
       <main className="artist-archive music-library">
         <div className="music-library-intro">
-          <div className="section-index"><span>MR BOW / ARQUIVO MUSICAL</span><span>MÚSICA • IMAGEM • PALCO</span></div>
+          <div className="section-index"><span>MR. BOW / ARQUIVO MUSICAL</span><span>MÚSICA • IMAGEM • PALCO</span></div>
           <div className="music-library-intro-row">
-            <h1>A OBRA<br/><em>DE MR BOW.</em></h1>
+            <h1>A OBRA<br/><em>DE MR. BOW.</em></h1>
             <div>
-              <p>Álbuns, videoclipes e concertos de Mr Bow num único arquivo musical. As entrevistas podem ser exploradas na página inicial.</p>
+              <p>Álbuns, videoclipes e concertos de Mr. Bow num único arquivo musical. As entrevistas podem ser exploradas na página inicial.</p>
               <nav className="music-library-jump" aria-label="Navegar pela discografia">
                 <a href="#albuns">ÁLBUNS ↓</a>
                 <a href="#populares">MAIS POPULARES ↓</a>
@@ -69,8 +69,8 @@ export default function DiscografiaPage() {
           <div className="archive-album-grid">
             {albums.map(album => (
               <article className="archive-album" key={album.title}>
-                <a href={album.url} target="_blank" rel="noopener noreferrer" aria-label={`Ouvir o álbum ${album.title} de Mr Bow no Spotify`}>
-                  <img src={album.image} alt={`Capa do álbum ${album.title} de Mr Bow`} loading="lazy"/>
+                <a href={album.url} target="_blank" rel="noopener noreferrer" aria-label={`Ouvir o álbum ${album.title} de Mr. Bow no Spotify`}>
+                  <img src={album.image} alt={`Capa do álbum ${album.title} de Mr. Bow`} loading="lazy"/>
                 </a>
                 <div className="archive-album-info">
                   <span>{album.number} / ÁLBUM</span><h3>{album.title}</h3>
@@ -84,9 +84,9 @@ export default function DiscografiaPage() {
         <section className="archive-section archive-popular" id="populares" aria-labelledby="popular-heading">
           <div className="archive-section-heading">
             <div><span className="archive-eyebrow">02 / MAIS OUVIDAS</span><h2 id="popular-heading">MAIS <em>POPULARES.</em></h2></div>
-            <p>Uma selecção das músicas mais ouvidas de Mr Bow, com acesso directo ao Spotify.</p>
+            <p>Uma selecção das músicas mais ouvidas de Mr. Bow, com acesso directo ao Spotify.</p>
           </div>
-          <div className="popular-tracklist" role="list" aria-label="Músicas populares de Mr Bow">
+          <div className="popular-tracklist" role="list" aria-label="Músicas populares de Mr. Bow">
             {popularTracks.map((track, index) => (
               <a
                 className="popular-track"
@@ -110,7 +110,7 @@ export default function DiscografiaPage() {
             ))}
           </div>
           <div className="popular-bottom">
-            <span>MR BOW / SPOTIFY</span>
+            <span>MR. BOW / SPOTIFY</span>
             <a href={spotifyArtistUrl} target="_blank" rel="noopener noreferrer">OUVIR MAIS NO SPOTIFY ↗</a>
           </div>
         </section>
@@ -118,7 +118,7 @@ export default function DiscografiaPage() {
         <section className="archive-section" id="videoclipes">
           <div className="archive-section-heading">
             <div><span className="archive-eyebrow">03 / AUDIOVISUAL</span><h2>VIDEOCLIPES <em>OFICIAIS.</em></h2></div>
-            <p>Os videoclipes de Mr Bow, com acesso às gravações originais no YouTube.</p>
+            <p>Os videoclipes de Mr. Bow, com acesso às gravações originais no YouTube.</p>
           </div>
           <div className="archive-video-grid">
             {videoclipes.map(video => (
@@ -142,13 +142,13 @@ export default function DiscografiaPage() {
             <p>Reviva a energia dos grandes concertos através de uma gravação seleccionada.</p>
           </div>
           <div className="archive-concert">
-            <a href={featuredLiveConcert.url} target="_blank" rel="noopener noreferrer" aria-label="Ver concerto gravado de Mr Bow no YouTube">
-              <img src="/images/Mr%20bow%20concert.jpg" alt="Mr Bow em concerto ao vivo" loading="lazy"/>
+            <a href={featuredLiveConcert.url} target="_blank" rel="noopener noreferrer" aria-label="Ver concerto gravado de Mr. Bow no YouTube">
+              <img src="/images/Mr%20bow%20concert.jpg" alt="Mr. Bow em concerto ao vivo" loading="lazy"/>
               <span className="archive-video-play" aria-hidden="true">▶</span>
             </a>
             <div>
               <span className="archive-eyebrow">CONCERTO GRAVADO</span>
-              <h3>MR BOW<br/>AO VIVO.</h3>
+              <h3>MR. BOW<br/>AO VIVO.</h3>
               <p>Uma experiência musical para reviver na íntegra.</p>
               <a className="archive-hero-action" href={featuredLiveConcert.url} target="_blank" rel="noopener noreferrer">VER CONCERTO COMPLETO ↗</a>
             </div>
@@ -157,13 +157,13 @@ export default function DiscografiaPage() {
 
         <section className="archive-section archive-platforms" id="plataformas">
           <span className="archive-eyebrow">05 / OUVIR MAIS</span>
-          <h2>MR BOW <em>NAS PLATAFORMAS.</em></h2>
+          <h2>MR. BOW <em>NAS PLATAFORMAS.</em></h2>
           <div className="archive-platform-links">
             {musicLinks.map(link => <a key={link.label} href={link.href} target="_blank" rel="noopener noreferrer">{link.label} ↗</a>)}
             <a href="https://www.youtube.com/@mrbowofficial/videos" target="_blank" rel="noopener noreferrer">VÍDEOS NO YOUTUBE ↗</a>
           </div>
         </section>
-        <footer className="archive-footer"><span>MR BOW / MÚSICA • IDENTIDADE • LEGADO</span><a href="/">VOLTAR À PÁGINA INICIAL ↑</a></footer>
+        <footer className="archive-footer"><span>MR. BOW / MÚSICA • IDENTIDADE • LEGADO</span><a href="/">VOLTAR À PÁGINA INICIAL ↑</a></footer>
       </main>
     </>
   );
