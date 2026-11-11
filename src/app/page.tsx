@@ -445,7 +445,7 @@ export default function Home(){
    <section className="agenda section-shell" id="agenda">
     <div className="section-index"><span>03 / NEXT DATES</span><span>ENCONTRE-NOS AO VIVO</span></div>
     <Reveal><div className="agenda-head"><h2>PRÓXIMOS<br/><em>ENCONTROS.</em></h2><p>O próximo momento inesquecível pode estar mais perto do que imagina.</p></div></Reveal>
-    {upcomingShows.length? <div className="dates">{upcomingShows.map(s=><div className="date-row" key={s.date+s.city}><strong>{s.date} <small>{s.month}</small></strong><span>{s.city}<small>{s.venue}</small></span>{s.ticketUrl?<a href={s.ticketUrl} target="_blank" rel="noopener noreferrer">BILHETES <ArrowUpRight size={20}/></a>:<span>EM BREVE</span>}</div>)}</div>:
+    {upcomingShows.length? <div className="dates">{upcomingShows.map(s=><div className="date-row" key={s.date+s.city}><strong>{s.date} <small>{s.month}</small></strong><span>{s.city}<small>{s.venue}</small></span>{s.ticketUrl?<a href={s.ticketUrl} target="_blank" rel="noopener noreferrer">BILHETES <ArrowUpRight size={20}/></a>:<span>INFORMAÇÕES</span>}</div>)}</div>:
     <Reveal><div className="agenda-empty"><span className="asterisk">✳</span><div><strong>NOVAS DATAS<br/>A CAMINHO.</strong><p>Consulte esta área para conhecer os próximos espectáculos oficialmente confirmados.</p></div><a className="agenda-booking-cta" href="#booking" aria-label="Solicitar contratação para um espectáculo">PEDIR CONTRATAÇÃO <ArrowUpRight size={25}/></a></div></Reveal>}
    </section>
 
@@ -460,7 +460,6 @@ export default function Home(){
        CONTRATAR VIA WHATSAPP <span><ArrowUpRight size={29}/></span>
       </a>
      </Reveal>
-     <p className="booking-disclaimer">Contacto público da equipa de contratações. Confirmação pendente.</p>
     </div>
    </section>
   </main>
