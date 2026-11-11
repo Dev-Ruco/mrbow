@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   url: "https://mrbow.co.mz/historia",
   title: "A História de Mr Bow — Salvador Pedro Maiaze",
   description: "Das origens em Manjacaze ao percurso de Mr Bow na música moçambicana.",
-  images: [{ url: "/images/Elegant%20Tuxedo%20Portrait%20Cutout.png", alt: "Retrato do artista Mr Bow" }],
+  images: [{ url: "/images/Mr%20bow%20previwm.jpg", alt: "Mr Bow — site oficial" }],
  },
 };
 
