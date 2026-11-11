@@ -356,16 +356,6 @@ export default function Home(){
     </div>
    </section>
 
-   <section className="home-feature-shortcut" id="videos" aria-labelledby="home-videos-title">
-    <div className="home-feature-content">
-      <span className="release-small">MR BOW / AUDIOVISUAL</span>
-      <h2 id="home-videos-title">A MÚSICA<br/><em>EM IMAGENS.</em></h2>
-      <p>Videoclipes oficiais, entrevistas e concertos reunidos num só lugar. Descobre o universo audiovisual de Mr Bow.</p>
-      <a className="home-feature-button" href="/videos">EXPLORAR VÍDEOS E ENTREVISTAS <ArrowUpRight size={20}/></a>
-    </div>
-    <a href="/videos" className="home-feature-image" aria-label="Conhecer os videoclipes de Mr Bow"><img src="/images/Mr%20bow%20concert.jpg" loading="lazy" alt="Mr Bow em concerto ao vivo" /></a>
-   </section>
-
    <section className="awards-section" id="premios">
     <div className="awards-inner">
      <div className="awards-eyebrow"><span>PRÉMIOS & DISTINÇÕES</span><span>AWARDS & RECOGNITION</span></div>
