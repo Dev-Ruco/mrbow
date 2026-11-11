@@ -29,8 +29,8 @@ function Reveal({children,className="",delay=0}:{children:React.ReactNode;classN
   },[]);
   return <div ref={ref} className={`reveal ${className}`} style={{transitionDelay:`${delay}ms`}}>{children}</div>;
 }
-const nav=[["Início","#inicio"],["Artista","#artista"],["Música","#musica"],["Media","#entrevistas"],["Concerto","#concerto-gravado"],["Ao vivo","#ao-vivo"],["Booking","#booking"]];
-const mobileNav=[["Início","#inicio"],["A História","#artista"],["Música","#musica"],["Videoclipes","#videos"],["Prémios","#premios"],["Entrevistas","#entrevistas"],["Concerto","#concerto-gravado"],["Ao Vivo","#ao-vivo"],["Agenda","#agenda"]];
+const nav=[["Início","#inicio"],["Artista","#artista"],["Discografia","/discografia"],["Vídeos","/videos"],["Espectáculos","/espectaculos"],["Booking","#booking"]];
+const mobileNav=[["Início","#inicio"],["A História","/historia"],["Discografia","/discografia"],["Vídeos e Entrevistas","/videos"],["Prémios","#premios"],["Ao Vivo","#ao-vivo"],["Espectáculos","/espectaculos"],["Booking","#booking"]];
 export default function Home(){
  const {locale}=useLocale();
  const bookingMessage=locale==="en"
@@ -326,7 +326,7 @@ export default function Home(){
 
    <section className="music-showcase" id="musica">
     <div className="music-showcase-inner">
-     <div className="music-meta"><span>01 / THE MUSIC</span><span className="music-meta-right">MR BOW — DISCOGRAFIA & VÍDEOS</span></div>
+     <div className="music-meta"><span>01 / THE MUSIC</span><span className="music-meta-right">MR BOW — DESTAQUES DA DISCOGRAFIA</span></div>
      <div className="music-hero-composition">
       <Reveal className="music-heading"><div><span className="music-eyebrow"><Disc3 size={16}/> O SOM DE MR BOW</span><h2>OUVE.<br/><em>SENTE.</em><br/>VIVE.</h2></div><p>As canções que nos aproximam. A emoção que se transforma em memória colectiva.</p></Reveal>
       <div className="music-mosaic" aria-label="Galeria de fotografias dos espectáculos de Mr Bow">
@@ -341,47 +341,33 @@ export default function Home(){
        </Reveal>)}
       </div>
      </div>
-     <div className="release-topline"><div><span className="release-small">DISCOGRAFIA / MR BOW</span><h3>DISCOGRAFIA <i>DE MR BOW</i></h3></div><div className="release-arrows"><button type="button" aria-label="Álbum anterior" onClick={()=>albumsRail.current?.scrollBy({left:-340,behavior:"smooth"})}><ChevronLeft size={22}/></button><button type="button" aria-label="Álbum seguinte" onClick={()=>albumsRail.current?.scrollBy({left:340,behavior:"smooth"})}><ChevronRight size={22}/></button></div></div>
-     <div className="albums-rail" ref={albumsRail} aria-label="Discografia de Mr Bow — deslize para ver mais álbuns">
+     <div className="release-topline"><div><span className="release-small">ÁLBUNS EM DESTAQUE</span><h3>DISCOGRAFIA <i>DE MR BOW</i></h3></div><a className="home-feature-button" href="/discografia">VER DISCOGRAFIA COMPLETA <ArrowUpRight size={18}/></a></div>
+     <div className="albums-rail" ref={albumsRail} aria-label="Três álbuns em destaque">
       {[
-       {number:"01",image:"/images/Album%201.jpeg",title:"MR ROMANTIC",note:"CAPA OFICIAL"},
-       {number:"02",image:"/images/Album%202.jpg",title:"STORY OF MY LIFE",note:"CAPA OFICIAL"},
-       {number:"03",image:"/images/Album%203.jpg",title:"STRONG SHANGANE",note:"CAPA OFICIAL"}
+       {number:"01",image:"/images/Album%201.jpeg",title:"MR ROMANTIC",url:"https://open.spotify.com/album/1yVE3BEW9Zq49flWW4qQA9"},
+       {number:"02",image:"/images/Album%202.jpg",title:"STORY OF MY LIFE",url:"https://open.spotify.com/album/3Q8MgnqfJXtUMwsQazxaHu"},
+       {number:"03",image:"/images/Album%203.jpg",title:"STRONG SHANGANE",url:"https://open.spotify.com/album/58X9KqhtuVPTp1sJgMiSdK"}
       ].map((album,index)=><Reveal className="album-card" key={album.number} delay={index*105}>
-        <a className="album-artwork" href="https://open.spotify.com/search/Mr%20Bow" target="_blank" rel="noopener noreferrer" aria-label={`Procurar ${album.title} de Mr Bow no Spotify`}>
-          <img src={album.image} alt={`Capa enviada para ${album.title} de Mr Bow`} loading="lazy"/>
+        <a className="album-artwork" href={album.url} target="_blank" rel="noopener noreferrer" aria-label={`Ouvir ${album.title} no Spotify`}>
+          <img src={album.image} alt={`Capa do álbum ${album.title}, de Mr Bow`} loading="lazy"/>
           <span className="album-index">{album.number}</span>
           <span className="album-play"><Play fill="currentColor" size={23}/></span>
         </a>
-        <div className="album-card-info"><div><span>{album.note}</span><h4>{album.title}</h4></div><a href="https://open.spotify.com/search/Mr%20Bow" target="_blank" rel="noopener noreferrer">OUVIR NO SPOTIFY <ArrowUpRight size={18}/></a></div>
-       </Reveal>)}
+        <div className="album-card-info"><div><span>ÁLBUM / MR BOW</span><h4>{album.title}</h4></div><a href={album.url} target="_blank" rel="noopener noreferrer">OUVIR NO SPOTIFY <ArrowUpRight size={18}/></a></div>
+      </Reveal>)}
      </div>
-     <span className="albums-mobile-hint" aria-hidden="true">DESLIZE PARA EXPLORAR OS ÁLBUNS <ArrowRight size={16}/></span>
-     <Reveal className="music-bottom-strip"><span>O UNIVERSO MUSICAL DE MR BOW</span><a href="https://open.spotify.com/search/Mr%20Bow" target="_blank" rel="noopener noreferrer">EXPLORAR NO SPOTIFY <ArrowUpRight size={18}/></a></Reveal>
+     <Reveal className="music-bottom-strip"><span>EXPLORA A OBRA MUSICAL DE MR BOW</span><a href="/discografia">VER TODOS OS ÁLBUNS <ArrowUpRight size={18}/></a></Reveal>
     </div>
    </section>
 
-   <section className="music-showcase music-videos-section" id="videos">
-    <div className="music-showcase-inner">
-     <div className="video-showcase">
-      <Reveal className="videos-heading"><div><span className="release-small">PARA VER E SENTIR</span><h3>VISUAL <em>STORIES.</em></h3></div><p>Videoclipes, energia e identidade em movimento. Descobre as mais recentes histórias visuais de Mr Bow.</p></Reveal>
-      <div className="videos-grid videos-grid-three">
-       {[
-        {id:"gUj6XUuaNfw",number:"01",kind:"VIDEOCLIPE PRINCIPAL"},
-        {id:"_crVajIlmYk",number:"02",kind:"VIDEOCLIPE OFICIAL"},
-        {id:"1vr_ZwnxCgg",number:"03",kind:"VIDEOCLIPE OFICIAL"}
-       ].map((video,index)=><Reveal className={`video-feature video-feature-${video.number}`} key={video.id} delay={index*100}>
-        <a className="video-cover video-cover-direct" href={`https://www.youtube.com/watch?v=${video.id}`} target="_blank" rel="noopener noreferrer" aria-label={`Ver videoclip ${video.number} de Mr Bow no YouTube`}>
-         <img src={`/api/video-thumbnail/${video.id}`} alt={`Capa original do videoclip ${video.number} de Mr Bow no YouTube`} loading="lazy" />
-         <span className="video-big-play"><Play fill="currentColor" size={26}/></span>
-         <span className="video-watermark">{video.number} / MUSIC VIDEO</span>
-        </a>
-        <div className="video-detail"><span>{video.kind}</span><a href={`https://www.youtube.com/watch?v=${video.id}`} target="_blank" rel="noopener noreferrer">VER VIDEOCLIPE {video.number} <ArrowUpRight size={23}/></a></div>
-       </Reveal>)}
-      </div>
-      <Reveal className="video-footer"><span>TRÊS VIDEOCLIPES DE MR BOW · VER NO YOUTUBE.</span><a href="https://www.youtube.com/@mrbowofficial/videos" target="_blank" rel="noopener noreferrer">VER TODOS OS VÍDEOS <ArrowUpRight size={19}/></a></Reveal>
-     </div>
+   <section className="home-feature-shortcut" id="videos" aria-labelledby="home-videos-title">
+    <div className="home-feature-content">
+      <span className="release-small">MR BOW / AUDIOVISUAL</span>
+      <h2 id="home-videos-title">A MÚSICA<br/><em>EM IMAGENS.</em></h2>
+      <p>Videoclipes oficiais, entrevistas e concertos reunidos num só lugar. Descobre o universo audiovisual de Mr Bow.</p>
+      <a className="home-feature-button" href="/videos">EXPLORAR VÍDEOS E ENTREVISTAS <ArrowUpRight size={20}/></a>
     </div>
+    <a href="/videos" className="home-feature-image" aria-label="Conhecer os videoclipes de Mr Bow"><img src="/images/Mr%20bow%20concert.jpg" loading="lazy" alt="Mr Bow em concerto ao vivo" /></a>
    </section>
 
    <section className="awards-section" id="premios">
@@ -406,89 +392,6 @@ export default function Home(){
      </div>
      <Reveal className="awards-additional"><span>MOZAMBIQUE MUSIC AWARDS / 2015</span><div><strong>Melhor Artista Masculino</strong><strong>Música Mais Popular</strong></div><a href="https://www.mmo.co.mz/veja-a-lista-dos-vencedores-do-mma-2015/" target="_blank" rel="noopener noreferrer">VER DISTINÇÕES <ArrowUpRight size={18}/></a></Reveal>
      <p className="awards-source">Fonte: Rádio Moçambique — vencedores oficiais do Ngoma; resultados dos Mozambique Music Awards 2015.</p>
-    </div>
-   </section>
-
-   <section className="media-section" id="entrevistas" aria-labelledby="media-heading">
-    <div className="media-section-inner">
-     <div className="media-topline"><span>MR BOW / NA IMPRENSA</span><span>CONVERSAS • TELEVISÃO • NOTÍCIAS</span></div>
-     <Reveal className="media-heading">
-      <div><span className="media-kicker">PARA ALÉM DA MÚSICA</span><h2 id="media-heading">A VOZ.<br/><em>AS HISTÓRIAS.</em></h2></div>
-      <p>Entrevistas, conversas e momentos na comunicação social. Conhece as ideias, as experiências e o percurso de Mr Bow através de podcasts, televisão e notícias.</p>
-     </Reveal>
-     <div className="media-feature-label"><span>ENTREVISTAS EM DESTAQUE</span><span>05 / YOUTUBE</span></div>
-     <div className="media-featured-grid">
-      {mediaAppearances.filter(appearance=>appearance.category==="entrevista").map((appearance,index)=>{
-       const descriptions={
-        pt:[
-         "Uma conversa no Tu Pra Tu Podcast que aproxima o público do percurso artístico e da personalidade de Mr Bow.",
-         "Mr Bow participa no MozPod, num formato de entrevista dedicado às conversas e às experiências dos convidados.",
-         "Uma participação na Rise FM, da África do Sul, que leva a presença mediática de Mr Bow além das fronteiras de Moçambique.",
-         "Um encontro de Mr Bow com o Makagui Cast, num espaço de conversa que permite conhecer outra dimensão do artista.",
-         "Mr Bow em entrevista ao TeleDiário da STV, num registo televisivo que integra o seu arquivo de aparições na comunicação social."
-        ],
-        en:[
-         "A conversation on Tu Pra Tu Podcast, offering audiences another perspective on Mr Bow’s artistic journey and personality.",
-         "Mr Bow joins MozPod for a guest interview in a format centred on conversation and personal experiences.",
-         "An appearance on South Africa’s Rise FM, extending Mr Bow’s media presence beyond Mozambique.",
-         "Mr Bow joins Makagui Cast for a conversation that offers another perspective on the artist.",
-         "Mr Bow’s interview on STV’s TeleDiário, part of the artist’s television and media archive."
-        ],
-        ts:[
-         "Mburisano eka Tu Pra Tu Podcast lowu nyikaka vanhu ndlela yin'wana yo tiva riendzo ra vutshila ni vumunhu bya Mr Bow.",
-         "Mr Bow u humelela eka MozPod, laha vaendzi va burisanaka hi mintokoto ya vona.",
-         "Mr Bow u humelela eka Rise FM eAfrika-Dzonga, leswi kombisaka ku tiveka ka yena ni le handle ka Mozambique.",
-         "Mburisano wa Mr Bow eka Makagui Cast lowu pfunaka vanhu ku tiva muyimbeleri hi ndlela yin'wana.",
-         "Mburisano wa Mr Bow eka TeleDiário ya STV, lowu nga xiphemu xa matimu ya yena eka thelevhixini."
-        ]
-       };
-       const title=locale==="en"&&index===2?"Mr Bow on Rise FM — South Africa":locale==="ts"&&index===2?"Mr Bow eka Rise FM — Afrika-Dzonga":appearance.title;
-       return <Reveal className={`media-featured-card ${index===0?"media-featured-lead":""}`} key={appearance.id} delay={Math.min(index*65,250)}>
-        <a href={appearance.url} className="media-featured-link" target="_blank" rel="noopener noreferrer" aria-label={`Ver entrevista ${index+1} de Mr Bow no YouTube`}>
-         <div className="media-featured-image">
-          <img src={`/api/video-thumbnail/${appearance.url.split("v=")[1]}`} loading="lazy" alt={`Capa original da entrevista ${appearance.title} no YouTube`}/>
-          <span className="media-featured-play"><Play size={25} fill="currentColor" aria-hidden="true"/></span>
-          <span className="media-featured-number">{String(index+1).padStart(2,"0")} / 05</span>
-         </div>
-         <div className="media-featured-info">
-          <span>{appearance.outlet}</span>
-          <h3>{title}</h3>
-          <p className="media-featured-description">{descriptions[locale][index]}</p>
-          <span className="media-featured-action">VER ENTREVISTA <ArrowUpRight size={17}/></span>
-         </div>
-        </a>
-       </Reveal>;
-      })}
-     </div>
-     <div className="media-endnote"><span>MR BOW. PARA ALÉM DO PALCO.</span><span>ENTREVISTAS & MEDIA</span></div>
-    </div>
-   </section>
-
-   <section className="concert-recorded" id="concerto-gravado" aria-labelledby="concert-recorded-title">
-    <div className="concert-recorded-inner">
-     <div className="concert-recorded-topline"><span>MR BOW / AO VIVO</span><span>CONCERTO GRAVADO</span></div>
-     <Reveal className="concert-recorded-heading">
-      <span>PALCO. ENERGIA. EMOÇÃO.</span>
-      <h2 id="concert-recorded-title">A EXPERIÊNCIA<br/><em>AO VIVO.</em></h2>
-      <p>Revive a energia de um concerto de Mr Bow. Um espectáculo gravado, disponível para assistir na íntegra.</p>
-     </Reveal>
-     <Reveal className="concert-recorded-visual">
-      <a href={featuredLiveConcert.url} target="_blank" rel="noopener noreferrer" className="concert-recorded-link" aria-label="Assistir ao concerto gravado de Mr Bow no YouTube">
-       <img
-        src="/images/Mr%20bow%20concert.jpg"
-        alt="Mr Bow em concerto ao vivo — capa do vídeo"
-        loading="lazy"
-       />
-       <span className="concert-recorded-scrim"/>
-       <span className="concert-recorded-play"><Play size={34} fill="currentColor" aria-hidden="true"/></span>
-       <span className="concert-recorded-caption">
-        <span>GRAVAÇÃO AO VIVO · YOUTUBE</span>
-        <strong>MR BOW<br/>LIVE IN CONCERT</strong>
-        <span className="concert-recorded-watch">VER CONCERTO COMPLETO <ArrowUpRight size={20}/></span>
-       </span>
-      </a>
-     </Reveal>
-     <div className="concert-recorded-foot"><span>UMA EXPERIÊNCIA PARA REVIVER.</span><span>THE SOUND OF MR BOW.</span></div>
     </div>
    </section>
 
