@@ -2,7 +2,8 @@
 import { useEffect, useRef, useState } from "react";
 import { ArrowDown, ArrowUpRight, ChevronLeft, ChevronRight, Disc3, Instagram, Menu, Pause, Play, Volume2, X, Youtube } from "lucide-react";
 import { musicLinks, upcomingShows } from "@/lib/content";
-import { LanguageSwitcher, useLocale } from "./components/LocaleProvider";
+import { useLocale } from "./components/LocaleProvider";
+import SiteHeader from "./components/SiteHeader";
 
 const heroSlides = [
  {image:"/images/Mr%20bow%20hero.jpg",eyebrow:"MR BOW / THE ARTIST",line:"MÚSICA. IDENTIDADE. LEGADO.",description:"Uma voz que transforma cada palco numa experiência.",href:"#musica",cta:"DESCOBRIR A MÚSICA"},
@@ -26,8 +27,6 @@ function Reveal({children,className="",delay=0}:{children:React.ReactNode;classN
   },[]);
   return <div ref={ref} className={`reveal ${className}`} style={{transitionDelay:`${delay}ms`}}>{children}</div>;
 }
-const nav=[["Início","#inicio"],["Artista","#artista"],["Discografia","/discografia"],["Vídeos","/videos"],["Espectáculos","/espectaculos"],["Booking","#booking"]];
-const mobileNav=[["Início","#inicio"],["A História","/historia"],["Discografia","/discografia"],["Vídeos e Entrevistas","/videos"],["Prémios","#premios"],["Ao Vivo","#ao-vivo"],["Espectáculos","/espectaculos"],["Booking","#booking"]];
 export default function Home(){
  const {locale}=useLocale();
  const bookingMessage=locale==="en"
@@ -261,18 +260,7 @@ export default function Home(){
    </button>
   </>}
   <div className="reading-progress" style={{width:`${progress}%`}}/>
-  <header className={`masthead ${scrolled?"masthead-scrolled":""} ${open?"masthead-menu-open":""}`}>
-   <a className="brand" href="#inicio" onClick={()=>setOpen(false)} aria-label="Mr Bow — início">MR<span>BOW</span><b>®</b></a>
-   <nav className="desktop-links" aria-label="Menu principal">{nav.slice(0,4).map(([label,href])=><a key={href} href={href}>{label}</a>)}</nav>
-   <LanguageSwitcher/>
-   <a href="#booking" className="masthead-booking">BOOKING <ArrowUpRight size={17}/></a>
-   <button ref={mobileMenuButtonRef} className="mobile-trigger" type="button" aria-controls="mobile-site-menu" aria-expanded={open} aria-label={open?"Fechar menu":"Abrir menu"} onClick={()=>setOpen(v=>!v)}>{open?<X/>:<Menu/>}</button>
-  </header>
-  <div id="mobile-site-menu" ref={mobileMenuRef} className={`mobile-overlay ${open?"shown":""}`} aria-hidden={!open}>
-   <nav aria-label="Menu móvel">{mobileNav.map(([label,href],i)=><a key={href} tabIndex={open?0:-1} href={href} onClick={()=>setOpen(false)}><span>{String(i+1).padStart(2,"0")}</span>{label}<ArrowUpRight size={20}/></a>)}</nav>
-   <a className="mobile-booking-cta" href="#booking" tabIndex={open?0:-1} onClick={()=>setOpen(false)}>CONTRATAR MR BOW <ArrowUpRight size={22}/></a>
-   <p>MÚSICA • IDENTIDADE • LEGADO</p>
-  </div>
+  <SiteHeader home scrolled={scrolled} menuOpen={open} onMenuChange={setOpen} menuRef={mobileMenuRef} menuButtonRef={mobileMenuButtonRef}/>
   <main>
    <section className={`hero hero-cinematic-slider ${heroPaused||!heroVisible?"is-paused":""}`} id="inicio" ref={heroPanelRef} onMouseEnter={()=>setHeroPaused(true)} onMouseLeave={()=>setHeroPaused(false)} onFocusCapture={()=>setHeroPaused(true)} onBlurCapture={()=>setHeroPaused(false)} onTouchStart={e=>{heroTouchStart.current=e.touches[0]?.clientX??null;}} onTouchEnd={e=>handleSwipe(heroTouchStart,e.changedTouches[0]?.clientX??0,direction=>changeHeroSlide(heroSlide+direction))} onTouchCancel={()=>{heroTouchStart.current=null;}} aria-label="Destaques de Mr Bow">
     {heroSlides.map((slide,index)=><div key={slide.image} className={`hero-slide-photo ${heroSlide===index?"is-active":""}`} style={{backgroundImage:`url("${slide.image}")`}} aria-hidden="true"/>)}
