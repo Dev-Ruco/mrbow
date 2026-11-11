@@ -20,11 +20,11 @@ export default function EspectaculosPage() {
   <><SiteHeader/><main className="artist-archive music-library">
    <div className="music-library-intro">
     <div className="section-index"><span>MR BOW / AO VIVO</span><span>AGENDA & CONTRATAÇÕES</span></div>
-    <div className="music-library-intro-row"><h1>ESPECTÁCULOS<br/><em>E EVENTOS.</em></h1><div><p>Agenda de apresentações e informações para contratar Mr Bow. Apenas datas confirmadas são publicadas.</p><nav className="music-library-jump" aria-label="Secções da página"><a href="#agenda-oficial">AGENDA ↓</a><a href="#contratacao">BOOKING ↓</a></nav></div></div>
+    <div className="music-library-intro-row"><h1>ESPECTÁCULOS<br/><em>E EVENTOS.</em></h1><div><p>Agenda de apresentações e informações para contratar Mr Bow. Acompanhe os espectáculos e descubra como solicitar uma actuação.</p><nav className="music-library-jump" aria-label="Secções da página"><a href="#agenda-oficial">AGENDA ↓</a><a href="#contratacao">BOOKING ↓</a></nav></div></div>
    </div>
    <section className="archive-section" id="agenda-oficial">
-    <div className="archive-section-heading"><div><span className="archive-eyebrow">01 / AGENDA</span><h2>PRÓXIMOS <em>ESPECTÁCULOS.</em></h2></div><p>Apenas datas e locais confirmados oficialmente são apresentados nesta página.</p></div>
-    {upcomingShows.length ? <ul className="archive-release-list">{upcomingShows.map(show=><li key={show.date+show.city}><span>{show.date} {show.month}</span><strong>{show.city} — {show.venue}</strong>{show.ticketUrl ? <a href={show.ticketUrl} target="_blank" rel="noopener noreferrer">BILHETES ↗</a> : <small>A CONFIRMAR</small>}</li>)}</ul> : <div className="archive-empty-state"><h3>NOVAS DATAS<br/>A CAMINHO.</h3><p>De momento, não existem datas oficialmente confirmadas para divulgação. Consulte esta página para futuras actualizações.</p></div>}
+    <div className="archive-section-heading"><div><span className="archive-eyebrow">01 / AGENDA</span><h2>PRÓXIMOS <em>ESPECTÁCULOS.</em></h2></div><p>Agenda de apresentações do artista.</p></div>
+    {upcomingShows.length ? <ul className="archive-release-list">{upcomingShows.map(show=><li key={show.date+show.city}><span>{show.date} {show.month}</span><strong>{show.city} — {show.venue}</strong>{show.ticketUrl ? <a href={show.ticketUrl} target="_blank" rel="noopener noreferrer">BILHETES ↗</a> : <small>CONTACTAR ORGANIZAÇÃO</small>}</li>)}</ul> : <div className="archive-empty-state"><h3>AGENDA DE<br/>ESPECTÁCULOS.</h3><p>Actualmente, não há espectáculos anunciados nesta agenda.</p></div>}
    </section>
    <section className="archive-section archive-secondary" id="contratacao">
     <div className="archive-section-heading"><div><span className="archive-eyebrow">02 / CONTRATAÇÕES</span><h2>FAÇAMOS <em>HISTÓRIA.</em></h2></div><p>Concertos, casamentos, eventos corporativos e outras celebrações.</p></div>
