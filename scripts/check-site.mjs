@@ -30,7 +30,7 @@ check(!/<audio[^>]*\sloop(?:\s|=|\/|>)/i.test(page),"A música não deve estar e
 const seen=new Set();
 for(const file of ["src/app/page.tsx","src/lib/media.ts"]){
  const source=read(file);
- for(const [match,url] of source.matchAll(/(["'`])(\/images\/[^"'`\s}]+)\1/g)){
+ for(const [, ,url] of source.matchAll(/(["'`])(\/images\/[^"'`\s}]+)\1/g)){
   const relative=decodeURIComponent(url.slice(1));
   if(seen.has(relative))continue;
   seen.add(relative);
