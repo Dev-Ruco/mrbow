@@ -53,7 +53,7 @@ export default function SiteHeader({
   return (
     <>
       <header className={`masthead ${scrolled ? "masthead-scrolled" : ""} ${open ? "masthead-menu-open" : ""} ${home ? "" : "masthead-inner-page"}`}>
-        <a className="brand" href={homeHref} onClick={close} aria-label="Mr. Bow — página inicial">MR.<span>BOW</span><b>®</b></a>
+        <a className="brand" href={homeHref} onClick={close} aria-label="Mr. Bow — página inicial">MR. <span>BOW</span><b>®</b></a>
         <nav className="desktop-links" aria-label="Menu principal">
           <a href={homeHref} onClick={close}>Início</a>
           <a href="/historia" onClick={close}>História</a>
