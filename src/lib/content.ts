@@ -7,9 +7,9 @@ export const artist = {
 };
 
 export const musicLinks = [
-  { label: "YouTube", href: "https://www.youtube.com/results?search_query=Mr+Bow+oficial" },
-  { label: "Spotify", href: "https://open.spotify.com/search/Mr%20Bow" },
-  { label: "Apple Music", href: "https://music.apple.com/search?term=Mr%20Bow" },
+  { label: "YouTube", href: "https://www.youtube.com/@mrbowofficial" },
+  { label: "Spotify", href: "https://open.spotify.com/artist/71E7QReRzpOhL5RJnAE9FT" },
+  { label: "Apple Music", href: "https://music.apple.com/artist/mr-bow/1534202763" },
 ];
 
 // Não publicar datas ou locais de espectáculos sem confirmação.
