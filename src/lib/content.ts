@@ -1,9 +1,9 @@
 // Conteúdos editoriais provisórios. Substituir por dados aprovados pela equipa antes da publicação.
 export const artist = {
-  name: "MR BOW",
+  name: "MR. BOW",
   tagline: "MÚSICA. IDENTIDADE. LEGADO.",
   introduction: "Uma voz que atravessa gerações. Uma história feita de música, emoção e ligação ao público.",
-  bio: "Da sua origem em Moçambique aos grandes palcos, Mr Bow construiu um percurso marcado pela proximidade com o público e por uma identidade musical própria.",
+  bio: "Da sua origem em Moçambique aos grandes palcos, Mr. Bow construiu um percurso marcado pela proximidade com o público e por uma identidade musical própria.",
 };
 
 export const musicLinks = [
