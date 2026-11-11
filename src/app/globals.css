@@ -1649,3 +1649,41 @@
  .mobile-overlay p{margin-top:27px;padding-bottom:15px}
  .mobile-overlay.shown{pointer-events:auto}
 }
+
+
+/* Discografia: hierarquia tipográfica contida após o título de abertura.
+   O H1 editorial mantém Barlow Condensed + Italiana; os H2 passam a DM Sans. */
+.music-library .archive-section-heading h2,
+.music-library .archive-platforms h2{
+  font-family:"DM Sans",Arial,sans-serif;
+  font-size:clamp(30px,3.2vw,49px);
+  font-weight:700;
+  line-height:1.15;
+  letter-spacing:-.045em;
+  margin-top:18px;
+  max-width:100%;
+}
+.music-library .archive-section-heading h2 em,
+.music-library .archive-platforms h2 em{
+  font:inherit;
+  font-weight:400;
+  font-style:normal;
+  letter-spacing:inherit;
+  color:var(--wine);
+}
+.music-library .archive-platforms h2 em{color:var(--ivory)}
+.music-library .archive-section-heading{align-items:center;gap:42px}
+.music-library .archive-section-heading p{font-size:15px;line-height:1.7}
+.music-library .archive-concert h3{
+  font-family:"DM Sans",Arial,sans-serif;
+  font-size:clamp(32px,4vw,56px);
+  font-weight:700;
+  line-height:1.08;
+  letter-spacing:-.045em;
+}
+@media(max-width:760px){
+  .music-library .archive-section-heading h2,
+  .music-library .archive-platforms h2{font-size:clamp(30px,7.2vw,43px)}
+  .music-library .archive-section-heading{gap:18px}
+  .music-library .archive-concert h3{font-size:clamp(32px,8vw,46px)}
+}
