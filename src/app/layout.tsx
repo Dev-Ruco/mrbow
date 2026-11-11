@@ -78,7 +78,7 @@ const structuredData = {
       sameAs: [
         "https://www.youtube.com/@mrbowofficial",
         "https://www.instagram.com/mrbowofficial/",
-        "https://open.spotify.com/artist/71E7QReRzpOhL5RJnAE9FT",
+        "https://open.spotify.com/artist/3fodDFLQDXX8hpG8T1tDUx",
         "https://music.apple.com/artist/mr-bow/1534202763",
       ],
     },
