@@ -42,8 +42,8 @@ export const metadata: Metadata = {
     description,
     images: [
       {
-        url: "/images/Mr%20bow%20hero.jpg",
-        alt: "Mr Bow — site oficial do artista moçambicano",
+        url: "/images/Mr%20bow%20previwm.jpg",
+        alt: "Mr Bow — imagem oficial de apresentação do artista",
       },
     ],
   },
@@ -51,7 +51,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Mr Bow | Site Oficial",
     description,
-    images: ["/images/Mr%20bow%20hero.jpg"],
+    images: ["/images/Mr%20bow%20previwm.jpg"],
   },
   robots: {
     index: true,
