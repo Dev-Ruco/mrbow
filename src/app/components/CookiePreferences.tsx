@@ -53,7 +53,7 @@ export default function CookiePreferences() {
             <div className="cookie-copy">
               <span className="cookie-eyebrow">PRIVACIDADE & PREFERÊNCIAS</span>
               <h2 id="cookie-title">A SUA EXPERIÊNCIA. A SUA ESCOLHA.</h2>
-              <p id="cookie-description">Guardamos localmente as suas preferências. As capas dos vídeos são disponibilizadas através do nosso servidor, sem ligação directa do seu navegador ao YouTube. Ao escolher assistir a um vídeo, será encaminhado para o YouTube. Pode recusar conteúdos opcionais sem perder acesso ao site.</p>
+              <p id="cookie-description">Guardamos as suas preferências neste dispositivo. Os conteúdos opcionais só são activados com o seu consentimento. Pode aceitar, recusar ou personalizar sem perder acesso ao site.</p>
               <div className="cookie-legal-links"><Link href="/privacidade">Privacidade</Link><Link href="/cookies">Política de cookies</Link><Link href="/termos">Termos</Link></div>
               {customizing && (
                 <div className="cookie-categories">
