@@ -1,5 +1,6 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
 import { ArrowDown, ArrowUpRight, ChevronLeft, ChevronRight, Disc3, Instagram, Menu, Pause, Play, Volume2, X, Youtube } from "lucide-react";
 import { musicLinks, upcomingShows } from "@/lib/content";
 import { mediaAppearances } from "@/lib/media";
@@ -284,11 +285,11 @@ export default function Home(){
     <div className="artist-portrait-stage artist-archive-stage">
      <div className="artist-evolution-photos">
       <figure className="artist-archive-frame">
-       <img src="/images/Mr%20bow%20old%20pinrure.jpg" alt="Mr. Bow nos primeiros anos da sua carreira" className="artist-archive-photo" loading="lazy" />
+       <Image src="/images/Mr%20bow%20old%20pinrure.jpg" alt="Mr. Bow nos primeiros anos da sua carreira" className="artist-archive-photo" width={833} height={1042} sizes="(max-width: 760px) 42vw, 25vw" loading="lazy" />
        <figcaption>MR. BOW <span>— OS PRIMEIROS ANOS</span></figcaption>
       </figure>
       <figure className="artist-now-frame">
-       <div className="artist-now-portrait"><img src="/images/Mr%20bow%2003.jpg" alt="Fotografia mais recente de Mr. Bow" loading="lazy" /></div>
+       <div className="artist-now-portrait"><Image src="/images/Mr%20bow%2003.jpg" alt="Fotografia mais recente de Mr. Bow" width={1161} height={1800} sizes="(max-width: 760px) 42vw, 25vw" loading="lazy" /></div>
        <figcaption>MR. BOW <span>— HOJE</span></figcaption>
       </figure>
      </div>
@@ -321,7 +322,7 @@ export default function Home(){
         {image:"/images/03%20%3A%20A%20ENERGIA.jpeg",label:"03 / A ENERGIA",name:"Fãs a celebrar",className:"music-mosaic-fans"},
         {image:"/images/04%20_%20ATMOSFERA_Easy-Resize.com.jpg",label:"04 / ATMOSFERA",name:"Ambiente de espectáculo",className:"music-mosaic-atmosphere"}
        ].map((photo,i)=><Reveal key={photo.label} className={`music-mosaic-cell ${photo.className}`} delay={i*95}>
-        <img src={photo.image} alt={photo.name+" nos espectáculos de Mr. Bow"} loading="lazy" />
+        <Image src={photo.image} alt={photo.name+" nos espectáculos de Mr. Bow"} width={1600} height={1400} sizes="(max-width: 760px) 80vw, (max-width: 1200px) 35vw, 22vw" loading="lazy" />
         <span className="music-mosaic-label">{photo.label}</span>
        </Reveal>)}
       </div>
@@ -334,7 +335,7 @@ export default function Home(){
        {number:"03",image:"/images/Album%203.jpg",title:"STRONG SHANGANE",url:"https://open.spotify.com/album/58X9KqhtuVPTp1sJgMiSdK"}
       ].map((album,index)=><Reveal className="album-card" key={album.number} delay={index*105}>
         <a className="album-artwork" href={album.url} target="_blank" rel="noopener noreferrer" aria-label={`Ouvir ${album.title} no Spotify`}>
-          <img src={album.image} alt={`Capa do álbum ${album.title}, de Mr. Bow`} loading="lazy"/>
+          <Image src={album.image} alt={`Capa do álbum ${album.title}, de Mr. Bow`} width={800} height={800} sizes="(max-width: 760px) 75vw, (max-width: 1200px) 45vw, 30vw" loading="lazy"/>
           <span className="album-index">{album.number}</span>
           <span className="album-play"><Play fill="currentColor" size={23}/></span>
         </a>
