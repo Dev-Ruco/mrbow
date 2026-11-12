@@ -1,7 +1,28 @@
 import type { Metadata } from "next";
+import { Barlow_Condensed, DM_Sans, Italiana } from "next/font/google";
 import "./globals.css";
 import CookiePreferences from "./components/CookiePreferences";
 import { LocaleProvider } from "./components/LocaleProvider";
+
+// Fontes servidas pelo próprio Next.js: sem pedidos ao Google Fonts no navegador.
+const barlowCondensed = Barlow_Condensed({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800", "900"],
+  display: "swap",
+  variable: "--font-barlow-condensed",
+});
+const dmSans = DM_Sans({
+  subsets: ["latin"],
+  weight: "400 700",
+  display: "swap",
+  variable: "--font-dm-sans",
+});
+const italiana = Italiana({
+  subsets: ["latin"],
+  weight: "400",
+  display: "swap",
+  variable: "--font-italiana",
+});
 
 const siteUrl = "https://mrbow.co.mz";
 const description =
@@ -104,7 +125,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="pt-MZ">
+    <html lang="pt-MZ" className={`${barlowCondensed.variable} ${dmSans.variable} ${italiana.variable}`}>
       <body>
         <script
           type="application/ld+json"
