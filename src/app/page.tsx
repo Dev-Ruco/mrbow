@@ -253,7 +253,7 @@ export default function Home(){
   return()=>{document.body.style.overflow="";document.removeEventListener("keydown",onKeyDown);};
  },[open]);
  return <>
-  <audio ref={audioRef} src="/images/Mr.%20Bow%20-%20Xisuti%20Xamina.mp3" preload="metadata" aria-label="Mr. Bow — Xisuti Xamina"/>
+  <audio ref={audioRef} src="/images/Mr.%20Bow%20-%20Xisuti%20Xamina.mp3" preload="none" aria-label="Mr. Bow — Xisuti Xamina"/>
   {heroAudioEligible&&<>
    {!audioPlaying&&!audioInviteDismissed&&!scrolled&&<div className="audio-invite" aria-hidden="true"><span>ACTIVA A EMOÇÃO.</span><strong>OUVE MR. BOW!</strong><span className="audio-invite-arrow">↘</span></div>}
    <button type="button" className={`site-audio-toggle ${audioPlaying?"is-playing":""}`} onClick={toggleSiteAudio} aria-label={audioPlaying?"Pausar música ambiente":"Reproduzir música ambiente"} aria-pressed={audioPlaying} title={audioPlaying?"Pausar música":"Ouvir Mr. Bow"}>
@@ -265,7 +265,18 @@ export default function Home(){
   <SiteHeader home scrolled={scrolled} menuOpen={open} onMenuChange={setOpen} menuRef={mobileMenuRef} menuButtonRef={mobileMenuButtonRef}/>
   <main>
    <section className={`hero hero-cinematic-slider ${heroPaused||!heroVisible?"is-paused":""}`} id="inicio" ref={heroPanelRef} onMouseEnter={()=>setHeroPaused(true)} onMouseLeave={()=>setHeroPaused(false)} onFocusCapture={()=>setHeroPaused(true)} onBlurCapture={()=>setHeroPaused(false)} onTouchStart={e=>{heroTouchStart.current=e.touches[0]?.clientX??null;}} onTouchEnd={e=>handleSwipe(heroTouchStart,e.changedTouches[0]?.clientX??0,direction=>changeHeroSlide(heroSlide+direction))} onTouchCancel={()=>{heroTouchStart.current=null;}} aria-label="Destaques de Mr. Bow">
-    {heroSlides.map((slide,index)=><div key={slide.image} className={`hero-slide-photo ${heroSlide===index?"is-active":""}`} style={{backgroundImage:`url("${slide.image}")`}} aria-hidden="true"/>)}
+    {heroSlides.map((slide,index)=><div key={slide.image} className={`hero-slide-photo ${heroSlide===index?"is-active":""}`} aria-hidden="true">
+      {(index===0 || heroSlide===index) && <Image
+        src={slide.image}
+        alt=""
+        fill
+        sizes="100vw"
+        quality={75}
+        priority={index===0}
+        loading={index===0 ? undefined : "lazy"}
+        style={{objectFit:"cover",objectPosition:index===1?"50% 49%":"60% 42%"}}
+      />}
+    </div>)}
     <div className="hero-grain" aria-hidden="true"/>
     <div className="hero-title-wrap hero-title-only">
      <h1 className="hero-title"><span className="hero-first">MR<span className="hero-period">.</span></span><span className="hero-second">BOW</span></h1>
@@ -427,7 +438,17 @@ export default function Home(){
    </section>
 
    <section className={`cinema-panel cinema-slider ${livePaused||!liveVisible?"is-paused":""}`} id="ao-vivo" ref={livePanelRef} aria-label="Concertos e celebrações com Mr. Bow" onMouseEnter={()=>setLivePaused(true)} onMouseLeave={()=>setLivePaused(false)} onFocusCapture={()=>setLivePaused(true)} onBlurCapture={()=>setLivePaused(false)} onTouchStart={e=>{liveTouchStart.current=e.touches[0]?.clientX??null;}} onTouchEnd={e=>handleSwipe(liveTouchStart,e.changedTouches[0]?.clientX??0,direction=>changeLiveSlide(liveSlide+direction))} onTouchCancel={()=>{liveTouchStart.current=null;}}>
-    {liveSlides.map((slide,index)=><div key={slide.image} className={`cinema-slide-image ${index===liveSlide?"is-active":""}`} style={{backgroundImage:`url("${slide.image}")`,backgroundPosition:slide.position}} aria-hidden="true"/>)}
+    {liveSlides.map((slide,index)=><div key={slide.image} className={`cinema-slide-image ${index===liveSlide?"is-active":""}`} aria-hidden="true">
+      {index===liveSlide && <Image
+        src={slide.image}
+        alt=""
+        fill
+        sizes="100vw"
+        quality={75}
+        loading="lazy"
+        style={{objectFit:"cover",objectPosition:slide.position}}
+      />}
+    </div>)}
     <div className="cinema-shade cinema-slide-shade" aria-hidden="true"/>
     <div key={liveSlide} className="cinema-content cinema-slide-content" aria-live="polite">
      <span className="cinema-mini">{liveSlides[liveSlide].eyebrow}</span>
