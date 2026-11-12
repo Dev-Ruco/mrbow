@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import SiteHeader from "../components/SiteHeader";
 
@@ -25,7 +26,7 @@ const paragraphs=[
 export default function Historia(){
  return <><SiteHeader/><main className="history-page">
   <section className="history-content">
-   <div className="history-photo"><img src="/images/Elegant%20Tuxedo%20Portrait%20Cutout.png" alt="Mr. Bow com fato preto e óculos escuros"/></div>
+   <div className="history-photo"><Image src="/images/Elegant%20Tuxedo%20Portrait%20Cutout.png" alt="Mr. Bow com fato preto e óculos escuros" width={900} height={1200} sizes="(max-width: 760px) 90vw, 48vw" priority/></div>
    <article className="history-text">
     <span className="eyebrow">THE MAN BEHIND THE MUSIC</span>
     <h1>DO SALVADOR<br/>AO <em>KING BOW.</em></h1>
