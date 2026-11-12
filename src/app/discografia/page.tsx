@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import SiteHeader from "../components/SiteHeader";
 import { musicLinks } from "@/lib/content";
 import { featuredLiveConcert } from "@/lib/media";
@@ -70,7 +71,7 @@ export default function DiscografiaPage() {
             {albums.map(album => (
               <article className="archive-album" key={album.title}>
                 <a href={album.url} target="_blank" rel="noopener noreferrer" aria-label={`Ouvir o álbum ${album.title} de Mr. Bow no Spotify`}>
-                  <img src={album.image} alt={`Capa do álbum ${album.title} de Mr. Bow`} loading="lazy"/>
+                  <Image src={album.image} alt={`Capa do álbum ${album.title} de Mr. Bow`} width={800} height={800} sizes="(max-width: 520px) 90vw, (max-width: 760px) 45vw, 28vw" loading="lazy"/>
                 </a>
                 <div className="archive-album-info">
                   <span>{album.number} / ÁLBUM</span><h3>{album.title}</h3>
@@ -100,7 +101,7 @@ export default function DiscografiaPage() {
                 <span className="popular-number">{String(index + 1).padStart(2, "0")}</span>
                 <span className="popular-cover">
                   {track.artwork
-                    ? <img src={track.artwork} alt="" loading="lazy"/>
+                    ? <Image src={track.artwork} alt="" width={80} height={80} sizes="66px" loading="lazy"/>
                     : <span aria-hidden="true">MB</span>}
                 </span>
                 <span className="popular-song"><strong>{track.title}</strong><small>{track.artists}</small></span>
@@ -143,7 +144,7 @@ export default function DiscografiaPage() {
           </div>
           <div className="archive-concert">
             <a href={featuredLiveConcert.url} target="_blank" rel="noopener noreferrer" aria-label="Ver concerto gravado de Mr. Bow no YouTube">
-              <img src="/images/Mr%20bow%20concert.jpg" alt="Mr. Bow em concerto ao vivo" loading="lazy"/>
+              <Image src="/images/Mr%20bow%20concert.jpg" alt="Mr. Bow em concerto ao vivo" width={1200} height={750} sizes="(max-width: 760px) 90vw, 52vw" loading="lazy"/>
               <span className="archive-video-play" aria-hidden="true">▶</span>
             </a>
             <div>
