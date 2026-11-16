@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { ArrowUpRight, ChevronDown, Menu, X } from "lucide-react";
+import { ArrowUpRight, ChevronDown, Download, Menu, X } from "lucide-react";
 import { LanguageSwitcher } from "./LocaleProvider";
 
 type SiteHeaderProps = {
@@ -48,6 +48,7 @@ export default function SiteHeader({
     ["Prémios", awardsHref],
     ["Agenda de espectáculos", eventsHref],
     ["Contratações", bookingHref],
+    ["BAIXAR APP", "/app"],
   ] as const;
 
   return (
@@ -68,7 +69,7 @@ export default function SiteHeader({
           <a href={eventsHref} onClick={close}>Espectáculos</a>
         </nav>
         <LanguageSwitcher/>
-        <a href={bookingHref} className="masthead-booking" onClick={close}>BOOKING <ArrowUpRight size={17}/></a>
+        <a href="/app" className="masthead-booking masthead-app-cta" onClick={close} aria-label="Baixar a aplicação oficial de Mr. Bow">BAIXAR APP <Download size={17} aria-hidden="true"/></a>
         <button ref={menuButtonRef} className="mobile-trigger" type="button" aria-controls="mobile-site-menu" aria-expanded={open} aria-label={open ? "Fechar menu" : "Abrir menu"} onClick={() => setOpen(!open)}>
           {open ? <X/> : <Menu/>}
         </button>
@@ -76,7 +77,7 @@ export default function SiteHeader({
       <div id="mobile-site-menu" ref={menuRef} className={`mobile-overlay ${open ? "shown" : ""}`} aria-hidden={!open}>
         <nav aria-label="Menu móvel">
           {mobileLinks.map(([label, href], i) => (
-            <a key={href} className={discographyLinks.some(([, sectionHref]) => sectionHref === href) ? "mobile-menu-subitem" : ""} tabIndex={open ? 0 : -1} href={href} onClick={close}>
+            <a key={href} className={href === "/app" ? "mobile-app-cta" : discographyLinks.some(([, sectionHref]) => sectionHref === href) ? "mobile-menu-subitem" : ""} tabIndex={open ? 0 : -1} href={href} onClick={close}>
               <span>{String(i+1).padStart(2, "0")}</span>{label}<ArrowUpRight size={20}/>
             </a>
           ))}
