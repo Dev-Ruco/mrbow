@@ -1,6 +1,8 @@
 export type Locale = 'pt' | 'en' | 'ts';
 export const translations: Record<'en'|'ts',Record<string,string>> = {
   "en": {
+    "BAIXAR APP": "DOWNLOAD APP",
+    "Baixar a aplicação oficial de Mr. Bow": "Download the official Mr. Bow app",
     "Início": "Home",
     "Artista": "Artist",
     "Música": "Music",
@@ -147,6 +149,8 @@ export const translations: Record<'en'|'ts',Record<string,string>> = {
     "PERFIL": "PROFILE"
   },
   "ts": {
+    "BAIXAR APP": "KOPA APP",
+    "Baixar a aplicação oficial de Mr. Bow": "Kopa app ya ximfumo ya Mr. Bow",
     "Início": "Masungulo",
     "Artista": "Muyimbeleri",
     "Música": "Vuyimbeleri",
