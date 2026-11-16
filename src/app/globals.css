@@ -1881,3 +1881,11 @@
   .cookie-actions{gap:6px}
   .cookie-actions button{min-height:40px;font-size:9px;padding:8px 7px}
 }
+
+/* CTA principal da aplicação: destaque visual trilingue sem alterar a secção de contratações. */
+.masthead .masthead-app-cta{background:#c73559;color:#fff;border:1px solid #e36581;border-radius:5px;box-shadow:0 7px 24px rgba(155,21,59,.32);font-weight:800;letter-spacing:.10em;white-space:nowrap;transition:background .25s,transform .25s,box-shadow .25s}
+.masthead .masthead-app-cta:hover,.masthead .masthead-app-cta:focus-visible{background:#e2486b;color:#fff;border-color:#ffadc0;transform:translateY(-2px);box-shadow:0 11px 30px rgba(155,21,59,.48)}
+.mobile-overlay nav a.mobile-app-cta{background:#b6294d;border:1px solid #e16984;padding:14px 18px;margin-top:16px;font-size:clamp(30px,8vw,46px);border-radius:5px;color:#fff;box-shadow:0 10px 28px rgba(0,0,0,.18)}
+.mobile-overlay nav a.mobile-app-cta span{color:#fff}
+.mobile-overlay nav a.mobile-app-cta:focus-visible{outline:2px solid #fff;outline-offset:3px}
+@media(prefers-reduced-motion:reduce){.masthead .masthead-app-cta{transition:none}.masthead .masthead-app-cta:hover{transform:none}}
