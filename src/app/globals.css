@@ -1889,3 +1889,16 @@
 .mobile-overlay nav a.mobile-app-cta span{color:#fff}
 .mobile-overlay nav a.mobile-app-cta:focus-visible{outline:2px solid #fff;outline-offset:3px}
 @media(prefers-reduced-motion:reduce){.masthead .masthead-app-cta{transition:none}.masthead .masthead-app-cta:hover{transform:none}}
+
+/* Página de destino da app, sem inventar ligações para lojas ainda não confirmadas. */
+.app-download-page{min-height:100svh;display:grid;place-items:center;padding:135px 6vw 70px;background:radial-gradient(circle at 83% 18%,rgba(159,42,76,.34),transparent 42%),linear-gradient(130deg,#171014,#090809 68%)}
+.app-download-panel{width:min(100%,850px);padding:clamp(35px,6vw,75px);border:1px solid rgba(255,255,255,.19);background:rgba(255,255,255,.025)}
+.app-download-eyebrow{display:flex;align-items:center;gap:12px;font-size:11px;letter-spacing:.18em;font-weight:800;color:#e7a2b3}
+.app-download-panel h1{font:900 clamp(66px,11vw,135px)/.9 var(--font-barlow-condensed),sans-serif;letter-spacing:-.045em;margin:32px 0 25px}
+.app-download-lead{font-size:clamp(17px,2vw,23px);line-height:1.5;max-width:590px}
+.app-download-note{font-size:14px;line-height:1.8;color:#c9bfc2;max-width:600px;margin-top:38px}
+.app-download-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
+.app-download-actions a{display:inline-flex;align-items:center;justify-content:center;gap:12px;background:#bc2d52;border:1px solid #e16b8a;padding:17px 21px;font-weight:800;font-size:12px;letter-spacing:.08em;transition:background .2s}
+.app-download-actions a:hover{background:#dc4168}
+.app-download-back{display:inline-flex;align-items:center;gap:13px;border-bottom:1px solid rgba(255,255,255,.6);padding-bottom:9px;font-size:11px;letter-spacing:.1em;font-weight:800;margin-top:45px}
+@media(max-width:760px){.app-download-page{padding-top:115px}.app-download-panel{padding:36px 25px}.app-download-panel h1{font-size:clamp(59px,16vw,95px)}}
